@@ -12,7 +12,7 @@ struct OpenLoginKeyViewerApp: App {
     var body: some Scene {
         WindowGroup {
             //LoginMethodSelectionPage()
-            HomePageview()
+            LoginHomePageview()
         }
     }
 }

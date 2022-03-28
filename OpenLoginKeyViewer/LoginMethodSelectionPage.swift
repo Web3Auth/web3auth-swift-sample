@@ -166,7 +166,7 @@ struct LoginMethodSelectionPage: View {
                            title: Text("Username: \(userInfo?.userInfo.name ?? "")"),message: Text("PrivKey: \(userInfo?.privKey ?? "")")
                        )
                }
-        .toast(isPresenting: $showError, duration: 1, tapToDismiss: true) {
+        .toast(isPresenting: $showError, duration: 2, tapToDismiss: true) {
             AlertToast(displayMode: .alert, type: .error(.red), title: errorMessage, style: .style(backgroundColor: .white))
         }
         }
@@ -209,7 +209,6 @@ struct LoginMethodSelectionPage: View {
    
     
     func login(_ provider: Web3AuthProvider?) {
-       
         auth.login(.init(loginProvider: provider?.rawValue)) {
             result in
                 switch result{

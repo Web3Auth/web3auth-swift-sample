@@ -16,9 +16,10 @@
 		E44B3AF3278812590017646F /* OpenLoginKeyViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AF2278812590017646F /* OpenLoginKeyViewerTests.swift */; };
 		E44B3AFD278812590017646F /* OpenLoginKeyViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */; };
 		E44B3AFF278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */; };
+		FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0811C627F1B4E400F20BDD /* HomeView.swift */; };
 		FB18F0D327F19849007F9751 /* Web3Auth in Frameworks */ = {isa = PBXBuildFile; productRef = FB18F0D227F19849007F9751 /* Web3Auth */; };
 		FB950E8127F1966D009D1465 /* Web3Auth in Frameworks */ = {isa = PBXBuildFile; productRef = FB950E8027F1966D009D1465 /* Web3Auth */; };
-		FBB23EE627EC483C00370ECE /* HomePageview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EE527EC483C00370ECE /* HomePageview.swift */; };
+		FBB23EE627EC483C00370ECE /* LoginHomePageview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */; };
 		FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */; };
 		FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE927EC491200370ECE /* Color.xcassets */; };
 		FBB23EEC27EC4A3600370ECE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EEB27EC4A3600370ECE /* Extensions.swift */; };
@@ -59,7 +60,8 @@
 		E44B3AF8278812590017646F /* OpenLoginKeyViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenLoginKeyViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerUITests.swift; sourceTree = "<group>"; };
 		E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FBB23EE527EC483C00370ECE /* HomePageview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageview.swift; sourceTree = "<group>"; };
+		FB0811C627F1B4E400F20BDD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHomePageview.swift; sourceTree = "<group>"; };
 		FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBB23EE927EC491200370ECE /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		FBB23EEB27EC4A3600370ECE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -140,8 +142,9 @@
 			children = (
 				E44B3AE1278812580017646F /* OpenLoginKeyViewerApp.swift */,
 				E44B3AE3278812580017646F /* ContentView.swift */,
-				FBB23EE527EC483C00370ECE /* HomePageview.swift */,
+				FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */,
 				FBFFCF8527ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift */,
+				FB0811C627F1B4E400F20BDD /* HomeView.swift */,
 				FBFFCF8A27ED9DE300A5B7AF /* Enviroment.swift */,
 				FBB23EED27EC4D5B00370ECE /* SwiftUIView.swift */,
 				FBB23EEB27EC4A3600370ECE /* Extensions.swift */,
@@ -365,11 +368,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBB23EE627EC483C00370ECE /* HomePageview.swift in Sources */,
+				FBB23EE627EC483C00370ECE /* LoginHomePageview.swift in Sources */,
 				FBFFCF8627ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift in Sources */,
 				FBFFCF8B27ED9DE300A5B7AF /* Enviroment.swift in Sources */,
 				E44B3AE4278812580017646F /* ContentView.swift in Sources */,
 				E44B3AE2278812580017646F /* OpenLoginKeyViewerApp.swift in Sources */,
+				FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */,
 				FBB23EEC27EC4A3600370ECE /* Extensions.swift in Sources */,
 				FBB23EEE27EC4D5B00370ECE /* SwiftUIView.swift in Sources */,
 			);

@@ -10,7 +10,7 @@ import Web3Auth
 
 
 
-struct HomePageview: View {
+struct LoginHomePageview: View {
     @State var showNext = false
     @State var selectedBlockChain:BlockchainEnum = .Ethereum
     @State var selectedNetwork:Network = .mainnet
@@ -132,7 +132,7 @@ struct HomePageview: View {
 
 struct HomePageview_Previews: PreviewProvider {
     static var previews: some View {
-        HomePageview()
+        LoginHomePageview()
     }
 }
 
