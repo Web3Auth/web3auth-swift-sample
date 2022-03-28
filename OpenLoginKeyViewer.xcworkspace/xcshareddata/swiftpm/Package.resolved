@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "web3auth-swift-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/web3auth/web3auth-swift-sdk",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e699f11175c8aaecb6a2da4ae1a85fa9c297aa3d"
+      }
+    }
+  ],
+  "version" : 2
+}
