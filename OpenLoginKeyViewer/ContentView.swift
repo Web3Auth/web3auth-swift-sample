@@ -7,10 +7,18 @@
 
 import SwiftUI
 
-//commit
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginHomePageview()
+struct ContentView: View {
+    @EnvironmentObject var authManager: AuthManager
+    
+    var body: some View {
+        if authManager.currentUser != nil {
+            HomeView()
+        } else {
+            LoginHomePageview()
         }
+        
     }
+}
+
+
 

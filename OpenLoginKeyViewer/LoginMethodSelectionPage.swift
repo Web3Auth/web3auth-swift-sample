@@ -11,11 +11,20 @@ import AlertToast
 
 struct LoginMethodSelectionPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    let auth = Web3Auth(.init(clientId: Env.shared.getClientID(), network: Env.shared.getCurrentNetwork()))
+    @EnvironmentObject var authManager:AuthManager
+    @EnvironmentObject var web3AuthManager:Web3AuthManager
+    @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var isExpanded = false
     @State var showError = false
     @State var showSuccess = false
-    @State var userInfo:Web3AuthState?
+    @State var isLoggedIn = false
+    @State var userInfo:Web3AuthState?{
+        didSet{
+            guard let safeuser = userInfo else{return}
+            authManager.saveUser(user: .init(privKey: safeuser.privKey, ed25519PrivKey: safeuser.ed25519PrivKey, userInfo: .init(name: safeuser.userInfo.name, profileImage: safeuser.userInfo.profileImage, typeOfLogin: safeuser.userInfo.typeOfLogin, aggregateVerifier: safeuser.userInfo.aggregateVerifier, verifier: safeuser.userInfo.verifier, verifierId: safeuser.userInfo.verifierId, email: safeuser.userInfo.email)))
+            isLoggedIn.toggle()
+        }
+    }
     @State var errorMessage = ""
     var arr1: [Web3AuthProvider] = [
         .GOOGLE,.FACEBOOK,.TWITTER,.DISCORD]
@@ -37,11 +46,10 @@ struct LoginMethodSelectionPage: View {
 
                 VStack(spacing:5){
                     Text("Welcome onboard")
-                        .fontWeight(.bold)
-                        .font(.system(size: 24))
+                        .font(.custom(POPPINS_FONT_LIST.Bold, size: 24))
                     Text("Select how you would like to continue")
-                        .font(.system(size: 16))
                         .foregroundColor(.gray)
+                        .font(.custom(DM_SANS_FONT_LIST.Regular, size: 16))
                 }
                 .padding(.top,40)
             }
@@ -51,8 +59,7 @@ struct LoginMethodSelectionPage: View {
             HStack{
             VStack(alignment:.leading){
             Text("Continue with")
-                .fontWeight(.semibold)
-                .font(.system(size: 14))
+                    .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
         }
             .padding(.leading,53)
             .padding(.bottom,10)
@@ -129,8 +136,7 @@ struct LoginMethodSelectionPage: View {
                 VStack(alignment: .leading, spacing: 24){
             Text("Email")
                 .foregroundColor(.init(.labelColor()))
-                .fontWeight(.semibold)
-                .font(.init(.system(size: 14)))
+                .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
                 
             TextField("Email", text: $userEmail)
                     .autocapitalization(.none)
@@ -141,6 +147,7 @@ struct LoginMethodSelectionPage: View {
                                 .frame(width: 308, height: 48, alignment: .center)
                                 .foregroundColor(.white)
                     )
+                   
                     
                 }
                 Button(action: {
@@ -149,6 +156,7 @@ struct LoginMethodSelectionPage: View {
                     Text("Continue with Email")
                         .frame(width: 308, height: 48, alignment: .center)
                         .foregroundColor(.gray)
+                        .font(.custom(DM_SANS_FONT_LIST.Medium, size: 16))
                         .background(.white)
                         .cornerRadius(24)
                 })
@@ -161,6 +169,7 @@ struct LoginMethodSelectionPage: View {
         
            
         }
+        .offset(y: -keyboardResponder.currentHeight * 0.9)
         .alert(isPresented: self.$showSuccess) {
             Alert(
                            title: Text("Username: \(userInfo?.userInfo.name ?? "")"),message: Text("PrivKey: \(userInfo?.privKey ?? "")")
@@ -173,6 +182,10 @@ struct LoginMethodSelectionPage: View {
         .frame(maxWidth:.infinity,maxHeight: .infinity)
     .background(Color(uiColor: .bkgColor()))
     .ignoresSafeArea()
+    }
+    
+    func initEnv(){
+        
     }
         
     
@@ -187,11 +200,11 @@ struct LoginMethodSelectionPage: View {
         }
         else{
             let extraOptions = ExtraLoginOptions(display: nil, prompt: nil, max_age: nil, ui_locales: nil, id_token_hint: nil, login_hint: userEmail, acr_values: nil, scope: nil, audience: nil, connection: nil, domain: nil, client_id: nil, redirect_uri: nil, leeway: nil, verifierIdField: nil, isVerifierIdCaseSensitive: nil)
-            auth.login(.init(loginProvider: Web3AuthProvider.EMAIL_PASSWORDLESS.rawValue, extraLoginOptions:extraOptions)) { result in
+            web3AuthManager.auth.login(.init(loginProvider: Web3AuthProvider.EMAIL_PASSWORDLESS.rawValue, extraLoginOptions:extraOptions)) { result in
                 switch result{
                 case .success(let model):
                     print(model)
-                    showSuccess.toggle()
+                    userInfo = model
                 case .failure(let error):
                     print(error)
                     errorMessage = error.localizedDescription
@@ -209,12 +222,11 @@ struct LoginMethodSelectionPage: View {
    
     
     func login(_ provider: Web3AuthProvider?) {
-        auth.login(.init(loginProvider: provider?.rawValue)) {
+        web3AuthManager.auth.login(.init(loginProvider: provider?.rawValue)) {
             result in
                 switch result{
                 case .success(let model):
                     userInfo = model
-                    showSuccess.toggle()
                 case .failure(let error):
                     print(error)
                     errorMessage = error.localizedDescription

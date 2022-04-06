@@ -9,19 +9,17 @@ import SwiftUI
 
 @main
 struct OpenLoginKeyViewerApp: App {
+    @StateObject var authManager = AuthManager()
+    @StateObject var web3AuthManager = Web3AuthManager(network: .mainnet)
     var body: some Scene {
         WindowGroup {
-            //LoginMethodSelectionPage()
-            LoginHomePageview()
+                ContentView()
+                .environmentObject(authManager)
+                .environmentObject(web3AuthManager)
+            }
+            
         }
-    }
 }
 
 
-struct POPPINS_FONT_LIST {
-    static let medium = "Poppins-Medium"
-    static let Regular = "Poppins"
-    static let Bold = "Poppins-Bold"
-    static let SemiBold = "Poppins-Semibold"
-    static let Medium = "Poppins-Medium"
-}
+

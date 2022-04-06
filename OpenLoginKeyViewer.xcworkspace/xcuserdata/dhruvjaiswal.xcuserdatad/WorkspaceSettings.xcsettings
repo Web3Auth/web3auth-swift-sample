@@ -13,6 +13,6 @@
 	<key>LiveSourceIssuesEnabled</key>
 	<true/>
 	<key>ShowSharedSchemesAutomaticallyEnabled</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

@@ -9,7 +9,12 @@ import UIKit
 import SwiftUI
 import Web3Auth
 
-enum BlockchainEnum:Int,CaseIterable,Hashable {
+protocol MenuPickerProtocol:Hashable{
+    var name:String { get }
+}
+
+
+enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
     case Ethereum, Solana, Binance, Polygon
     
     var name:String{
@@ -26,7 +31,13 @@ enum BlockchainEnum:Int,CaseIterable,Hashable {
     }
 }
 
-extension Network{
+
+
+
+
+extension Network:MenuPickerProtocol{
+    
+    
     
     var name:String{
         switch self {
@@ -35,20 +46,6 @@ extension Network{
         case .testnet:
             return "TESTNET"
         case .cyan:
-            return "CYAN"
-        }
-    }
-}
-enum NetworkEnum:Int,CaseIterable,Hashable {
-    case MAINNET, TESTNET, CYAN
-    
-    var name:String{
-        switch self {
-        case .MAINNET:
-            return "MAINNET"
-        case .TESTNET:
-            return "TESTNET"
-        case .CYAN:
             return "CYAN"
         }
     }
@@ -124,31 +121,30 @@ extension UIScreen{
    static let screenSize = UIScreen.main.bounds.size
 }
 
-struct KeyboardManagment: ViewModifier {
-    @State private var offset: CGFloat = 0
-    func body(content: Content) -> some View {
-        GeometryReader { geo in
-            content
-                .onAppear {
-                    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (notification) in
-                        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-                        withAnimation(Animation.easeOut(duration: 0.5)) {
-                            offset = keyboardFrame.height - geo.safeAreaInsets.bottom - 10
-                        }
-                    }
-                    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (notification) in
-                        withAnimation(Animation.easeOut(duration: 0.1)) {
-                            offset = 0
-                        }
-                    }
-                }
-                .padding(.bottom, offset)
-        }
-    }
-}
-extension View {
-    func keyboardManagment() -> some View {
-        self.modifier(KeyboardManagment())
+import Foundation
+import SwiftUI
+class KeyboardResponder: ObservableObject {
+    @Published var currentHeight: CGFloat = 0
     
-    }
+var _center: NotificationCenter
+    init(center: NotificationCenter = .default) {
+            _center = center
+        //4. Tell the notification center to listen to the system keyboardWillShow and keyboardWillHide notification
+            _center.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            _center.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        }
+    @objc func keyBoardWillShow(notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                withAnimation {
+                   currentHeight = keyboardSize.height
+                }
+            }
+        }
+    @objc func keyBoardWillHide(notification: Notification) {
+            withAnimation {
+               currentHeight = 0
+            }
+        }
 }
+
+

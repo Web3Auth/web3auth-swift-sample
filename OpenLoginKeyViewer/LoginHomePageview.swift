@@ -11,10 +11,13 @@ import Web3Auth
 
 
 struct LoginHomePageview: View {
+    @EnvironmentObject var auth:AuthManager
+    @EnvironmentObject var web3authManager:Web3AuthManager
     @State var showNext = false
     @State var selectedBlockChain:BlockchainEnum = .Ethereum
     @State var selectedNetwork:Network = .mainnet
     var networkArr:[Network] = [.mainnet,.testnet,.cyan]
+    let blockChainArr = BlockchainEnum.allCases.map{return $0}
     var body: some View {
         VStack(){
         VStack{
@@ -24,75 +27,20 @@ struct LoginHomePageview: View {
                 .frame(width: 240, height: 32, alignment: .center)
                 Text("Select network and Blockchain to login")
                 .foregroundColor(.gray)
-                .font(.init(.system(size: 16)))
+                .font(.custom(DM_SANS_FONT_LIST.Regular, size: 16))
         }
         .padding([.top,.bottom] ,100)
             VStack(spacing:24){
-            VStack(alignment:.leading){
-            Text("Web3Auth Network")
-                .foregroundColor(.init(.labelColor()))
-                .fontWeight(.semibold)
-                .font(.init(.system(size: 14)))
-                Menu(content: {
-                    ForEach(networkArr,id:\.self){ category in
-                        Button {
-                            changeNetwork(val: category)
-                                           } label: {
-                                               Text(category.name)
-                                           }
-                                        }
-                }, label: {
-                    HStack(alignment:.center){
-                    Text(selectedNetwork.name)
-                            .font(.system(size: 16))
-                            .padding()
-                        Spacer()
-                    Image("dropDown")
-                            .frame(alignment: .trailing)
-                            .padding()
-                    }
-                })
-                .foregroundColor(.gray)
-                .frame(width: 308, height: 48, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(36)
-            
-        }
-            VStack(alignment:.leading){
-            Text("Blockchain")
-                .foregroundColor(.init(.labelColor()))
-                .fontWeight(.semibold)
-                .font(.init(.system(size: 14)))
-                Menu(content: {
-                    ForEach(BlockchainEnum.allCases, id: \.self) { category in
-                        Button {
-                            changeBlockChain(val: category.rawValue)
-                                           } label: {
-                                               Text(category.name)
-                                           }
-                                        }
-                }, label: {
-                    HStack(alignment:.center){
-                    Text(selectedBlockChain.name)
-                            .font(.system(size: 16))
-                            .padding()
-                        Spacer()
-                    Image("dropDown")
-                            .frame(alignment: .trailing)
-                            .padding()
-                    }
-                })
-                .foregroundColor(.gray)
-                .frame(width: 308, height: 48, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(36)
-            
+                VStack(spacing:24){
+                    MenuPickerView(currentSelection: $web3authManager.network, arr: networkArr, title: "Web3Auth Network")
+                MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "BlockChain")
         }
             .padding(.bottom,48)
                 Button {
                     showNext.toggle()
                 } label: {
                     Text("Login")
+                        .font(.custom(DM_SANS_FONT_LIST.Medium, size: 16))
                         .foregroundColor(.white)
                         .frame(width: 308, height: 48)
                         .background(Color(UIColor.themeColor()))
@@ -103,6 +51,7 @@ struct LoginHomePageview: View {
                 
             }
             .fullScreenCover(isPresented: $showNext) {
+                
                 LoginMethodSelectionPage()
             }
             
@@ -120,7 +69,6 @@ struct LoginHomePageview: View {
     
     func changeNetwork(val:Network){
         selectedNetwork = val
-        Env.shared.changeNetwork(net: selectedNetwork)
     }
     
 
@@ -132,8 +80,16 @@ struct LoginHomePageview: View {
 
 struct HomePageview_Previews: PreviewProvider {
     static var previews: some View {
-        LoginHomePageview()
+        Group {
+            LoginHomePageview()
+            let arr:[Network] = [.mainnet,.testnet,.cyan]
+            MenuPickerView(currentSelection: .constant(arr[0]), arr: arr, title: "web3Auth Network")
+        }
     }
 }
+
+
+
+
 
 
