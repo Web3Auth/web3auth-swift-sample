@@ -17,6 +17,7 @@
 		E44B3AFD278812590017646F /* OpenLoginKeyViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */; };
 		E44B3AFF278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */; };
 		FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0811C627F1B4E400F20BDD /* HomeView.swift */; };
+		FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29477927FEDA8400E717E4 /* EthManager.swift */; };
 		FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3227F2E09A00298116 /* TransferAssetView.swift */; };
 		FB530F3527F2FFA600298116 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3427F2FFA600298116 /* Constants.swift */; };
 		FB530F3827F3036C00298116 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB530F3727F3036C00298116 /* web3.swift */; };
@@ -28,7 +29,10 @@
 		FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */; };
 		FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE927EC491200370ECE /* Color.xcassets */; };
 		FBB23EEC27EC4A3600370ECE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EEB27EC4A3600370ECE /* Extensions.swift */; };
-		FBB23EEE27EC4D5B00370ECE /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EED27EC4D5B00370ECE /* SwiftUIView.swift */; };
+		FBE0A8602800426700661B1F /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0A85F2800426700661B1F /* PopUpView.swift */; };
+		FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */; };
+		FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE74534280005FF002680A3 /* NetworkHelper.swift */; };
+		FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453928000DF2002680A3 /* NetworkingClient.swift */; };
 		FBFD6D3527F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3627F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3727F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
@@ -141,6 +145,7 @@
 		E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerUITests.swift; sourceTree = "<group>"; };
 		E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FB0811C627F1B4E400F20BDD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FB29477927FEDA8400E717E4 /* EthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthManager.swift; sourceTree = "<group>"; };
 		FB530F3227F2E09A00298116 /* TransferAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAssetView.swift; sourceTree = "<group>"; };
 		FB530F3427F2FFA600298116 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB530F3927F3044E00298116 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -150,7 +155,10 @@
 		FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBB23EE927EC491200370ECE /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		FBB23EEB27EC4A3600370ECE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		FBB23EED27EC4D5B00370ECE /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		FBE0A85F2800426700661B1F /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusWeb3Utils.swift; sourceTree = "<group>"; };
+		FBE74534280005FF002680A3 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		FBE7453928000DF2002680A3 /* NetworkingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
 		FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		FBFD6D2327F2CED100FD7288 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		FBFD6D2427F2CED100FD7288 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -254,15 +262,12 @@
 				FBFD6D2127F2CED100FD7288 /* Poppins */,
 				E44B3AE1278812580017646F /* OpenLoginKeyViewerApp.swift */,
 				E44B3AE3278812580017646F /* ContentView.swift */,
-				FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */,
-				FBFFCF8527ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift */,
+				FBE7453828000A83002680A3 /* Networking */,
+				FBE7452F27FF01B2002680A3 /* VIews */,
 				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
-				FB0811C627F1B4E400F20BDD /* HomeView.swift */,
-				FB530F3227F2E09A00298116 /* TransferAssetView.swift */,
-				FB7F86E027F430F2006E8611 /* HelperViews.swift */,
 				FB530F3927F3044E00298116 /* AuthManager.swift */,
-				FBB23EED27EC4D5B00370ECE /* SwiftUIView.swift */,
 				FBB23EEB27EC4A3600370ECE /* Extensions.swift */,
+				FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */,
 				FB530F3427F2FFA600298116 /* Constants.swift */,
 				FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */,
 				E44B3AE5278812590017646F /* Assets.xcassets */,
@@ -296,6 +301,29 @@
 				E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */,
 			);
 			path = OpenLoginKeyViewerUITests;
+			sourceTree = "<group>";
+		};
+		FBE7452F27FF01B2002680A3 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				FB7F86E027F430F2006E8611 /* HelperViews.swift */,
+				FB530F3227F2E09A00298116 /* TransferAssetView.swift */,
+				FBFFCF8527ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift */,
+				FB0811C627F1B4E400F20BDD /* HomeView.swift */,
+				FBE0A85F2800426700661B1F /* PopUpView.swift */,
+				FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		FBE7453828000A83002680A3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FBE74534280005FF002680A3 /* NetworkHelper.swift */,
+				FBE7453928000DF2002680A3 /* NetworkingClient.swift */,
+				FB29477927FEDA8400E717E4 /* EthManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		FBFD6D2127F2CED100FD7288 /* Poppins */ = {
@@ -603,14 +631,18 @@
 				FBFFCF8627ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift in Sources */,
 				E44B3AE4278812580017646F /* ContentView.swift in Sources */,
 				FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */,
+				FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */,
 				E44B3AE2278812580017646F /* OpenLoginKeyViewerApp.swift in Sources */,
 				FB530F3527F2FFA600298116 /* Constants.swift in Sources */,
+				FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */,
 				FB7F86E127F430F2006E8611 /* HelperViews.swift in Sources */,
+				FBE0A8602800426700661B1F /* PopUpView.swift in Sources */,
 				FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */,
+				FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */,
+				FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */,
 				FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */,
 				FB530F3A27F3044E00298116 /* AuthManager.swift in Sources */,
 				FBB23EEC27EC4A3600370ECE /* Extensions.swift in Sources */,
-				FBB23EEE27EC4D5B00370ECE /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

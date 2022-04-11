@@ -26,7 +26,7 @@ struct TransferAssetView: View {
 
                 Text("Transfer assets")
                     .foregroundColor(.black)
-                    .font(.custom(POPPINS_FONT_LIST.Bold, size: 24))
+                    .font(.custom(POPPINSFONTLIST.Bold, size: 24))
             }
             .padding(.top,20)
             .frame(height: 115,alignment: .center)
@@ -39,7 +39,7 @@ struct TransferAssetView: View {
                 VStack(alignment:.center,spacing: 8){
                 HStack{
             Text("Send to")
-                        .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+                        .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                     Spacer()
                     Button {
                         openScanner()
@@ -56,7 +56,7 @@ struct TransferAssetView: View {
             }
                 VStack(alignment:.leading){
                     Text("Amount")
-                        .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+                        .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                 HStack{
         TextField("0.00", text: $Amt)
                 HStack{
@@ -91,7 +91,7 @@ struct TransferAssetView: View {
                 }
                 VStack(alignment:.leading){
                 Text("Max Transaction Fee*")
-                        .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+                        .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                     HStack{
                 TextField("Up to 0.00004157", text: $maxTranscFee)
                         Spacer()
@@ -107,11 +107,11 @@ struct TransferAssetView: View {
                     Spacer()
                     VStack(spacing: 5){
                         Text("Total cost")
-                            .font(.custom(DM_SANS_FONT_LIST.Regular, size: 14))
+                            .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                         Text("0.000096 ETH")
-                            .font(.custom(DM_SANS_FONT_LIST.Bold, size: 24))
+                            .font(.custom(DMSANSFONTLIST.Bold, size: 24))
                         Text("= 0.012 USD")
-                            .font(.custom(DM_SANS_FONT_LIST.Regular, size: 12))
+                            .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                     }
                     .padding()
                 }

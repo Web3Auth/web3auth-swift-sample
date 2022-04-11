@@ -13,6 +13,7 @@ class AuthManager:ObservableObject{
     
     var userInfoString = "userInfo"
     var isUserLoggedIn = false
+ 
     @Published var currentUser:User?
     let keychain = KeychainSwift()
     
@@ -29,9 +30,9 @@ class AuthManager:ObservableObject{
         catch{
             print(error)
         }
-        
     }
     
+
     func saveUser(user:User){
         do{
         let data = try JSONEncoder().encode(user)
@@ -53,6 +54,15 @@ public struct User: Codable {
     public let privKey: String
     public let ed25519PrivKey: String
     public let userInfo: UserInfo
+    public var firstName:String{
+        return String(userInfo.name.split(separator: " ").first ?? "")
+    }
+    
+    public var typeOfImage:String{
+        let typeOflogin = userInfo.typeOfLogin
+        let img = Web3AuthProvider(rawValue: typeOflogin)?.img ?? ""
+        return img
+    }
     
     public struct UserInfo: Codable {
         public let name: String

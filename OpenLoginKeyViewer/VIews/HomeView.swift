@@ -8,27 +8,37 @@
 import SwiftUI
 import Web3Auth
 import UIKit
+import BigInt
+import CoreImage.CIFilterBuiltins
 
 struct HomeView: View {
     @EnvironmentObject var authManager: AuthManager
-    @State var userInfo:Web3AuthState?
+    @StateObject var ethManager: EthManager
+    @State var balance:Double = 0
     @State var showTransferScreen = false
+    @State var currentRate:Double = 0
+    @State var showPrivateKeyQRCode: Bool = false
+    @State var currentCurrency:TorusSupportedCurrencies = .ETH
     @State var message:String = "Enter your message here"
+    @State var showPopup = false
+    @State var SignedMessageHashString:String = ""
+    @State var signedMessageResult:Bool = false
     var body: some View {
+        ZStack{
         ScrollView{
             VStack{
             HStack{
             VStack(alignment:.leading,spacing: 8){
-            Text("Welcome! Vinay")
+                Text("Welcome! \( authManager.currentUser?.firstName ?? "")")
                 .fontWeight(.bold)
-                .font(.custom(POPPINS_FONT_LIST.Bold, size: 24))
+                .font(.custom(POPPINSFONTLIST.Bold, size: 24))
                 HStack{
-                    Image("Facebook")
+                    Image(authManager.currentUser?.typeOfImage ?? "")
                         .resizable()
                         .frame(width: 18, height: 18, alignment: .center)
                         .aspectRatio(contentMode: .fit)
-                    Text(verbatim: "nattchireddi@gmail.com")
-                        .font(.custom(POPPINS_FONT_LIST.Regular, size: 14))
+                    Text(verbatim: "\(authManager.currentUser?.userInfo.email ?? "")")
+                        .font(.custom(POPPINSFONTLIST.Regular, size: 14))
                         .foregroundColor(.black)
                        
                 }
@@ -45,7 +55,7 @@ struct HomeView: View {
                     }
                     .frame(width: 24, height: 24, alignment: .center)
                     Text("Logout")
-                        .font(.custom(POPPINS_FONT_LIST.Regular, size: 14))
+                        .font(.custom(POPPINSFONTLIST.Regular, size: 14))
 
                 }
                 .padding(.top,37)
@@ -58,7 +68,7 @@ struct HomeView: View {
                 
                 HStack(alignment: .center){
                     Text("Account Details")
-                        .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 16))
+                        .font(.custom(POPPINSFONTLIST.SemiBold, size: 16))
                         .padding()
                 
                     Spacer()
@@ -74,10 +84,13 @@ struct HomeView: View {
                     }
                   
                     Button {
-                        showPublicKey()
+                        copyPublicKey()
                     } label: {
                         Image("Shape")
-                        Text("cxdjdk")
+                        Text(ethManager.account.publicKey)
+                            .lineLimit(1)
+                            .frame(width:63)
+                            .font(.custom(DMSANSFONTLIST.Bold, size: 12))
                             .foregroundColor(.gray)
                     }
                     .padding()
@@ -92,10 +105,12 @@ struct HomeView: View {
                 .padding(.leading,16)
                 .padding(.trailing,16)
                 }
-                VStack(alignment: .center,spacing: 10){
+                VStack(){
                     HStack{
                         Text("Account Balance")
-                            .font(.custom(POPPINS_FONT_LIST.Medium, size: 14))
+                            .frame(alignment: .leading)
+                            .font(.custom(POPPINSFONTLIST.Medium, size: 14))
+                            .padding(.leading ,-10)
                         Spacer()
                         Button {
                             changeNetwork()
@@ -104,7 +119,7 @@ struct HomeView: View {
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
                             Text("Ethereum Testnet")
-                                .font(.custom(DM_SANS_FONT_LIST.Medium, size: 12))
+                                .font(.custom(DMSANSFONTLIST.Medium, size: 12))
                         }
                         .background(
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -115,43 +130,47 @@ struct HomeView: View {
                         
 
                     }
-                    .padding()
-                    HStack{
+                    .padding(.top,10)
+                    .padding(.leading,10)
+                    .padding(.trailing,10)
+                    HStack(alignment:.center){
                         VStack(alignment: .leading){
-                            HStack(alignment:.bottom){
-                    Text("0.000044")
-                                    .font(.custom(POPPINS_FONT_LIST.Bold, size: 32))
+                            HStack(alignment:.lastTextBaseline){
+                                Text("\(String(format: "%.2f",balance))")
+                                    .font(.custom(POPPINSFONTLIST.Bold, size: 32))
                         Menu {
-                            ForEach(BlockchainEnum.allCases ,id:\.self) { category in
+                            ForEach(TorusSupportedCurrencies.allCases ,id:\.self) { category in
                                 Button {
-                                    changeNetwork()
+                                    currentCurrency = category
+                                    getConversionRate()
                                 } label: {
-                                    Text(category.name)
+                                    Text(category.rawValue)
                                 }
 
                             }
                         } label: {
-                            Text("ETH")
-                          .font(.custom(POPPINS_FONT_LIST.Bold, size: 12))
+                            Text(currentCurrency.rawValue)
+                          .font(.custom(POPPINSFONTLIST.Bold, size: 12))
                                 .foregroundColor(.black)
                             Image("dropDown")
                                 .frame(width: 16, height: 16, alignment: .center)
                         }
 
                     }
-                    Text("1 ETH = 268.21 USD")
-                                .font(.custom(DM_SANS_FONT_LIST.Regular, size: 12))
+                            Text("1 ETH = \(String(format: "%.2f",currentRate)) \(currentCurrency.rawValue)")
+                                .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                         }
                         Spacer()
                         Text("= 0.012 USD")
-                            .font(.custom(DM_SANS_FONT_LIST.Regular, size: 12))
+                            .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                     }
-                    .padding([.leading,.trailing,.bottom],10)
+                    .padding([.bottom],10)
                     Button {
                         pasTransOnEtherScan()
                     } label: {
                        Text("View past transaction’s status on Etherscan")
-                            .font(.custom(DM_SANS_FONT_LIST.Medium, size: 14))
+                            .font(.custom(DMSANSFONTLIST.Medium, size: 14))
+                            .minimumScaleFactor(0.95)
                         Image("open-in-browser")
                             .frame(width: 16, height: 16, alignment: .center)
                     }
@@ -160,7 +179,7 @@ struct HomeView: View {
                         transferAsset()
                     } label: {
                         Text("Transfer assets")
-                            .font(.custom(DM_SANS_FONT_LIST.Medium, size: 16))
+                            .font(.custom(DMSANSFONTLIST.Medium, size: 16))
                             .foregroundColor(.gray)
                     }
                     .background(
@@ -180,6 +199,7 @@ struct HomeView: View {
                     
 
                 }
+                .padding()
                 .frame(height:248,alignment: .center)
                 .frame(maxWidth:.infinity)
                 .background(.white)
@@ -187,14 +207,14 @@ struct HomeView: View {
                 .padding()
                 HStack{
                 Text("Sign Message (Demo)")
-                    .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 16))
+                    .font(.custom(POPPINSFONTLIST.SemiBold, size: 16))
                     .padding(.leading,27)
                     Spacer()
                 }
                 VStack(alignment:.center,spacing: 8){
                     HStack{
                     Text("Message")
-                            .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+                            .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                             .padding(.leading,27)
                         Spacer()
                         
@@ -207,7 +227,7 @@ struct HomeView: View {
                         signMessage()
                     } label: {
                         Text("Sign Message")
-                            .font(.custom(DM_SANS_FONT_LIST.Medium, size: 16))
+                            .font(.custom(DMSANSFONTLIST.Medium, size: 16))
                             .foregroundColor(.gray)
                     }
                     .background(
@@ -230,15 +250,63 @@ struct HomeView: View {
                 .cornerRadius(24)
                 .padding()
                 
+            }
+              
         }
-        }
+        .onAppear(perform: {
+            initialSetup()
+        })
+        .animation(.easeInOut, value: showPrivateKeyQRCode)
         .ignoresSafeArea()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .background(Color(uiColor: .bkgColor()))
+         
+        }
+//        messageSignedView(success: $signedMessageResult, info: SignedMessageHashString)
+//        .opacity(showPopup ? 1:0)
+      
+        
+            if showPrivateKeyQRCode, let key = authManager.currentUser?.privKey {
+                            QRCodeAlert(message: key, isPresenting: $showPrivateKeyQRCode)
+                        }
+    }
+    
+    func initialSetup(){
+        
+        Task(priority: .userInitiated){
+        do{
+            let userBalance = try await ethManager.getBalance()
+            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
+            balance = userBalance * currentRate
+
+        }
+        catch{
+            print(error)
+        }
+        }
+
+    }
+    
+    func getConversionRate(){
+        Task(priority: .userInitiated){
+        do{
+            let userBalance = try await ethManager.getBalance()
+            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
+            balance = userBalance * currentRate
+
+        }
+        catch{
+            print(error)
+        }
+        }
     }
     
     func transferAsset(){
         showTransferScreen = true
+    }
+    
+    func getCurrentPrice(){
+        
     }
     
     func pasTransOnEtherScan(){
@@ -250,8 +318,14 @@ struct HomeView: View {
         
     }
     
-    func signMessage(){
-        
+     func signMessage(){
+        if !message.isEmpty{
+            if let signedMessage = ethManager.signMessage(message: message){
+                SignedMessageHashString = "signedMessage"
+                showPopup = true
+                print(signedMessage)
+            }
+        }
     }
     
     func logout(){
@@ -260,17 +334,20 @@ struct HomeView: View {
     }
     
     func openQRCode(){
-        
+        showPrivateKeyQRCode.toggle()
     }
     
-    func showPublicKey(){
+    func copyPublicKey(){
+        UIPasteboard.general.string = ethManager.account.publicKey
         
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(userInfo: nil)
+        HomeView(ethManager: EthManager(proxyAddress: "", authManager: AuthManager())!)
+            .environmentObject(AuthManager())
+        
     }
 }
 
@@ -290,7 +367,7 @@ struct TextView: UIViewRepresentable {
         textView.backgroundColor = .bkgColor()
         textView.layer.cornerRadius = 24
         textView.clipsToBounds = true
-        textView.font = .init(name: DM_SANS_FONT_LIST.Regular, size: 16)
+        textView.font = .init(name: DMSANSFONTLIST.Regular, size: 16)
         textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
  
         return textView
@@ -299,5 +376,65 @@ struct TextView: UIViewRepresentable {
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
         uiView.font = UIFont.preferredFont(forTextStyle: .body)
+    }
+}
+
+func generateQRCode(message: String) -> UIImage {
+    let ciContext = CIContext()
+    let filter = CIFilter.qrCodeGenerator()
+
+    filter.message = Data(message.utf8)
+    filter.correctionLevel = "H"
+
+    if let outputImage = filter.outputImage {
+        if let cgimg = ciContext.createCGImage(outputImage, from: outputImage.extent) {
+            return UIImage(cgImage: cgimg)
+        }
+    }
+
+    return UIImage(systemName: "xmark.circle") ?? UIImage()
+}
+
+
+struct QRCodeAlert: View {
+    var message: String
+    @Binding var isPresenting: Bool
+
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .fill(Color.gray)
+                .opacity(0.5)
+                .ignoresSafeArea()
+            VStack {
+                Spacer()
+                HStack {
+                    VStack() {
+                        Text("Private Key").fontWeight(.bold).padding(.all, 20).foregroundColor(.black)
+
+                        Image(uiImage: generateQRCode(message: message))
+                            .interpolation(.none)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(10)
+                            .overlay(
+                                Image("web3auth-logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                            )
+
+
+
+                    }
+                }
+                .frame(minWidth: 300, idealWidth: 300, maxWidth: 300, minHeight: 250, idealHeight: 250, maxHeight: 600, alignment: .top).scaledToFit()
+                .background(RoundedRectangle(cornerRadius: 27).fill(Color.white.opacity(1)))
+                Spacer()
+            }
+        }.onTapGesture {
+            self.isPresenting = false
+        }
+
     }
 }

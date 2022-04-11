@@ -13,12 +13,13 @@ struct OpenLoginKeyViewerApp: App {
     @StateObject var web3AuthManager = Web3AuthManager(network: .mainnet)
     var body: some Scene {
         WindowGroup {
-                ContentView()
+            ContentView()
                 .environmentObject(authManager)
                 .environmentObject(web3AuthManager)
-            }
-            
         }
+        
+    }
+    
 }
 
 

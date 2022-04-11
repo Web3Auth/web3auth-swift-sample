@@ -50,7 +50,7 @@ struct MenuPickerView<T:MenuPickerProtocol>:View{
         VStack(alignment: .leading){
         Text(title)
             .foregroundColor(.init(.labelColor()))
-            .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+            .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
             Menu(content: {
                 ForEach(arr,id:\.self){ category in
                     Button {
@@ -62,7 +62,7 @@ struct MenuPickerView<T:MenuPickerProtocol>:View{
             }, label: {
                 HStack(alignment:.center){
                 Text(currentSelection.name)
-                        .font(.custom(DM_SANS_FONT_LIST.Regular, size: 16))
+                        .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                         .padding()
                     Spacer()
                 Image("dropDown")

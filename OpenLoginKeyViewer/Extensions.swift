@@ -9,9 +9,11 @@ import UIKit
 import SwiftUI
 import Web3Auth
 
+
 protocol MenuPickerProtocol:Hashable{
     var name:String { get }
 }
+
 
 
 enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
@@ -37,6 +39,19 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
 
 extension Network:MenuPickerProtocol{
     
+
+    
+    
+    var networkURL:String{
+        switch self {
+        case .mainnet:
+            return "mainnet"
+        case .testnet:
+            return "testnet"
+        case .cyan:
+            return "cyan"
+        }
+    }
     
     
     var name:String{
@@ -49,6 +64,10 @@ extension Network:MenuPickerProtocol{
             return "CYAN"
         }
     }
+}
+
+enum OpenLoginError:Error{
+    case AccountError
 }
 
 

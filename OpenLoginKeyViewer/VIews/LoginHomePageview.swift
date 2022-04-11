@@ -27,7 +27,7 @@ struct LoginHomePageview: View {
                 .frame(width: 240, height: 32, alignment: .center)
                 Text("Select network and Blockchain to login")
                 .foregroundColor(.gray)
-                .font(.custom(DM_SANS_FONT_LIST.Regular, size: 16))
+                .font(.custom(DMSANSFONTLIST.Regular, size: 16))
         }
         .padding([.top,.bottom] ,100)
             VStack(spacing:24){
@@ -40,7 +40,7 @@ struct LoginHomePageview: View {
                     showNext.toggle()
                 } label: {
                     Text("Login")
-                        .font(.custom(DM_SANS_FONT_LIST.Medium, size: 16))
+                        .font(.custom(DMSANSFONTLIST.Medium, size: 16))
                         .foregroundColor(.white)
                         .frame(width: 308, height: 48)
                         .background(Color(UIColor.themeColor()))
@@ -82,6 +82,7 @@ struct HomePageview_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LoginHomePageview()
+                .environmentObject(Web3AuthManager(network: .mainnet))
             let arr:[Network] = [.mainnet,.testnet,.cyan]
             MenuPickerView(currentSelection: .constant(arr[0]), arr: arr, title: "web3Auth Network")
         }

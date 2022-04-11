@@ -46,10 +46,10 @@ struct LoginMethodSelectionPage: View {
 
                 VStack(spacing:5){
                     Text("Welcome onboard")
-                        .font(.custom(POPPINS_FONT_LIST.Bold, size: 24))
+                        .font(.custom(POPPINSFONTLIST.Bold, size: 24))
                     Text("Select how you would like to continue")
                         .foregroundColor(.gray)
-                        .font(.custom(DM_SANS_FONT_LIST.Regular, size: 16))
+                        .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                 }
                 .padding(.top,40)
             }
@@ -59,7 +59,7 @@ struct LoginMethodSelectionPage: View {
             HStack{
             VStack(alignment:.leading){
             Text("Continue with")
-                    .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+                    .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
         }
             .padding(.leading,53)
             .padding(.bottom,10)
@@ -136,7 +136,7 @@ struct LoginMethodSelectionPage: View {
                 VStack(alignment: .leading, spacing: 24){
             Text("Email")
                 .foregroundColor(.init(.labelColor()))
-                .font(.custom(POPPINS_FONT_LIST.SemiBold, size: 14))
+                .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                 
             TextField("Email", text: $userEmail)
                     .autocapitalization(.none)
@@ -156,7 +156,7 @@ struct LoginMethodSelectionPage: View {
                     Text("Continue with Email")
                         .frame(width: 308, height: 48, alignment: .center)
                         .foregroundColor(.gray)
-                        .font(.custom(DM_SANS_FONT_LIST.Medium, size: 16))
+                        .font(.custom(DMSANSFONTLIST.Medium, size: 16))
                         .background(.white)
                         .cornerRadius(24)
                 })
