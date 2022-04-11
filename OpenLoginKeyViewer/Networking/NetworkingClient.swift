@@ -10,8 +10,6 @@ import Foundation
 import MobileCoreServices
 import SystemConfiguration
 
-
-
 class NetworkingClient{
         var a = 0
         var session:URLSession
