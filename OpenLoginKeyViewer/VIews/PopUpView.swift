@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct messageSignedView: View {
+struct MessageSignedView: View {
     @Binding var success:Bool
     @State var successMessage:String = "Signed Successfully"
     @State var errorMessage:String = "Sign Failed"
@@ -49,7 +49,7 @@ struct PopUpView: View {
         VStack{
             
             }
-        .frame(width: UIScreen.screenWidth - 54, height: 598, alignment: .center)
+        .frame(width: UIScreen.screenWidth - 32, height: UIScreen.screenHeight * 0.5, alignment: .center)
         .background(.white)
         .cornerRadius(20)
     }
@@ -61,8 +61,8 @@ struct PopUpView: View {
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
         PopUpView()
-        messageSignedView(success: .constant(true), info: "saasa")
-        messageSignedView(success: .constant(false), info: "samsa")
+        MessageSignedView(success: .constant(true), info: "saasa")
+        MessageSignedView(success: .constant(false), info: "samsa")
     }
 }
 

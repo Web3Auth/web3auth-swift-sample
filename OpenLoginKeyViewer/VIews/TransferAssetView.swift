@@ -6,18 +6,30 @@
 //
 
 import SwiftUI
+import web3
+import BigInt
+import CodeScanner
 
 struct TransferAssetView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var ethManager: EthManager
+    @ObservedObject var keyboardResponder = KeyboardResponder()
+    @State var scannedCode:String = ""
     @State var sendTo:String = ""
-    @State var Amt:String = ""
+    @State var amt:String = ""
     @State var maxTranscFee:String = ""
-    @State var selectedBlockChain:BlockchainEnum = .Ethereum
-    let blockChainArr = BlockchainEnum.allCases.map{return $0}
+    @State var showScanner = false
+    @State var isPresentingScanner = false
+    @State var selectedBlockChain:BlockchainEnum = .ethereum
+    let blockChainArr:[BlockchainEnum] = [.ethereum]
+    let currencyInArr:[TorusSupportedCurrencies] = [.ETH,.USD]
+    @State var currentCurrency:TorusSupportedCurrencies = .ETH
+    
     var body: some View {
         ScrollView{
         VStack{
             HStack(){
+                HStack(alignment: .center,spacing:24){
                 Button {
                     dismissView()
                 } label: {
@@ -27,11 +39,17 @@ struct TransferAssetView: View {
                 Text("Transfer assets")
                     .foregroundColor(.black)
                     .font(.custom(POPPINSFONTLIST.Bold, size: 24))
+                }
+                
+                .padding(.leading,40)
+                Spacer()
+                 
             }
             .padding(.top,20)
             .frame(height: 115,alignment: .center)
             .frame(maxWidth:.infinity)
             .background(.white)
+            .padding(.leading,-20)
             VStack(alignment: .center, spacing: 24){
                 VStack(alignment: .leading){
                     MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "Send to")
@@ -54,40 +72,22 @@ struct TransferAssetView: View {
                         .truncationMode(.middle)
                     MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "")
             }
-                VStack(alignment:.leading){
+                VStack(alignment:.center,spacing: 16){
+                    HStack{
                     Text("Amount")
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
-                HStack{
-        TextField("0.00", text: $Amt)
-                HStack{
-                Button {
-                    amtToEth()
-                } label: {
-                    Text("ETH")
-                }
-                .foregroundColor(.gray)
-                .frame(width: 55, height: 24, alignment: .center)
-                .background(Color.white)
-                .border(.gray)
-                .cornerRadius(24)
-                Button {
-                    amtToUSD()
-                } label: {
-                    Text("USD")
-                }
-                .foregroundColor(.gray)
-                .frame(width: 55, height: 24, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(24)
-                .border(.gray)
-                }
-                .frame(width: 120, height: 24, alignment: .center)
-                }
-                .padding()
-                .foregroundColor(.gray)
-                .frame(width: 308, height: 48, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(36)
+                        Spacer()
+                        Picker("", selection: $currentCurrency) {
+                            ForEach(currencyInArr,id:\.self){
+                                Text($0.rawValue)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 110, height:24)
+                    }
+                    .padding([.leading,.trailing],40)
+                    TextRoundedFieldView(text: $amt,placeHolder: "0.00")
+                        .truncationMode(.middle)
                 }
                 VStack(alignment:.leading){
                 Text("Max Transaction Fee*")
@@ -95,7 +95,7 @@ struct TransferAssetView: View {
                     HStack{
                 TextField("Up to 0.00004157", text: $maxTranscFee)
                         Spacer()
-                    Text("Eth")
+                    Text("ETH")
                 }
                     .padding()
                     .foregroundColor(.gray)
@@ -117,35 +117,61 @@ struct TransferAssetView: View {
                 }
                 Button {
                     transfer()
-                } label: {
+                }
+            label: {
                     Text("Transfer")
                         .foregroundColor(.gray)
-                }
-                .background(
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .stroke(.gray)
-                        .background(.white)
                         .frame(width: 308, height: 48, alignment: .center)
+                        .background(.white)
                         .cornerRadius(24)
-                            
-    
-                            
-                )
+                        .overlay(
+                                            RoundedRectangle(cornerRadius: 40)
+                                                .stroke(Color(uiColor: .grayColor()), lineWidth: 1)
+                                        )
+                }
+            
+          
+                
+               
                 
 
 
         }
         }
+            if showScanner{
+                QRCodeScannerExampleView()
+            }
        
     }
+        .onTapGesture {
+            endEditing()
+        }
         .frame(alignment: .center)
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .ignoresSafeArea()
         .background(Color(uiColor: .bkgColor()))
+        .sheet(isPresented: $showScanner) {
+            CodeScannerView(codeTypes: [.qr]) { response in
+                if case let .success(result) = response {
+                    sendTo = result.string
+                    isPresentingScanner = false
+                    showScanner.toggle()
+                }
+            }
+        }
+        .offset(y: -keyboardResponder.currentHeight * 0.9)
     }
     
     func transfer(){
-        
+        do{
+            guard !amt.isEmpty,!sendTo.isEmpty,let newAmt = currentCurrency == .ETH ? try Converter.toWei(ether: amt) : BigUInt(amt) else{return}
+        Task{
+           let result = try await ethManager.transferAsset(sendTo: EthereumAddress(sendTo), amount: newAmt)
+            print(result)
+        }
+        }catch{
+            
+        }
     }
     
     func amtToEth(){
@@ -158,7 +184,7 @@ struct TransferAssetView: View {
     
     
     func openScanner(){
-        
+        showScanner.toggle()
     }
     
     func dismissView(){
@@ -168,6 +194,9 @@ struct TransferAssetView: View {
     func changeBlockChain(val:BlockchainEnum){
         
     }
+    func endEditing() {
+            UIApplication.shared.endEditing()
+        }
 }
 
 struct TransferAssetView_Previews: PreviewProvider {

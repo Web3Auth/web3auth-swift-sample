@@ -11,7 +11,7 @@ import BigInt
 
 
 public typealias Ether = Double
-public typealias Wei = BigInt
+public typealias Wei = BigUInt
 
 public final class Converter {
     

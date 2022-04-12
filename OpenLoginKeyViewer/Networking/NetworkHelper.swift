@@ -9,7 +9,7 @@ import Foundation
 import MobileCoreServices
 import SystemConfiguration
 
-public enum HTTPMethod:String{
+public enum HTTPMethod: String{
     case get
     case post
     case delete
@@ -27,9 +27,8 @@ public protocol URLType {
     /// The HTTP method used in the request.
     var method: HTTPMethod { get }
 
-
     /// The headers to be used in the request.
-    var headers: [String: String] { get }
+    var headers: [String: String]{get}
     
     
     func requestCreator<T:Codable>(param:T) -> URLRequest

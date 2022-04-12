@@ -14,20 +14,26 @@ protocol MenuPickerProtocol:Hashable{
     var name:String { get }
 }
 
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 
 
 enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
-    case Ethereum, Solana, Binance, Polygon
+    case ethereum, solana, binance, polygon
     
     var name:String{
         switch self {
-        case .Ethereum:
+        case .ethereum:
             return "Ethereum"
-        case .Solana:
+        case .solana:
             return "Solana"
-        case .Binance:
+        case .binance:
             return "Binance"
-        case .Polygon:
+        case .polygon:
             return "Polygon"
         }
     }
@@ -67,7 +73,7 @@ extension Network:MenuPickerProtocol{
 }
 
 enum OpenLoginError:Error{
-    case AccountError
+    case accountError
 }
 
 
@@ -81,11 +87,14 @@ extension UIColor{
     static func themeColor() -> UIColor{
         return UIColor(named: "themeColor") ?? .white
     }
+    static func grayColor() -> UIColor{
+        return UIColor(named: "grayColor") ?? .white
+    }
 }
 
 extension String{
     
-    func InvalidEmail() -> Bool{
+    func invalidEmail() -> Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
           let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
           return !emailPred.evaluate(with: self)
@@ -145,12 +154,12 @@ import SwiftUI
 class KeyboardResponder: ObservableObject {
     @Published var currentHeight: CGFloat = 0
     
-var _center: NotificationCenter
+var center: NotificationCenter
     init(center: NotificationCenter = .default) {
-            _center = center
+        self.center = center
         //4. Tell the notification center to listen to the system keyboardWillShow and keyboardWillHide notification
-            _center.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-            _center.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+            center.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            center.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         }
     @objc func keyBoardWillShow(notification: Notification) {
     if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

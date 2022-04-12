@@ -11,18 +11,22 @@ import UIKit
 import BigInt
 import CoreImage.CIFilterBuiltins
 
+
 struct HomeView: View {
     @EnvironmentObject var authManager: AuthManager
     @StateObject var ethManager: EthManager
     @State var balance:Double = 0
     @State var showTransferScreen = false
+    @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var currentRate:Double = 0
-    @State var showPrivateKeyQRCode: Bool = false
+    @State var didStartEditing = false
+    @State var showPublicAddressQR: Bool = false
     @State var currentCurrency:TorusSupportedCurrencies = .ETH
-    @State var message:String = "Enter your message here"
+    @State var message:String = ""
     @State var showPopup = false
-    @State var SignedMessageHashString:String = ""
+    @State var signedMessageHashString:String = ""
     @State var signedMessageResult:Bool = false
+    @State var showQRCode:Bool = false
     var body: some View {
         ZStack{
         ScrollView{
@@ -87,7 +91,7 @@ struct HomeView: View {
                         copyPublicKey()
                     } label: {
                         Image("Shape")
-                        Text(ethManager.account.publicKey)
+                        Text(ethManager.account.address.value)
                             .lineLimit(1)
                             .frame(width:63)
                             .font(.custom(DMSANSFONTLIST.Bold, size: 12))
@@ -119,6 +123,7 @@ struct HomeView: View {
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
                             Text("Ethereum Testnet")
+                                .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 12))
                         }
                         .background(
@@ -136,7 +141,7 @@ struct HomeView: View {
                     HStack(alignment:.center){
                         VStack(alignment: .leading){
                             HStack(alignment:.lastTextBaseline){
-                                Text("\(String(format: "%.2f",balance))")
+                                Text("\(String(format: "%.4f",balance))")
                                     .font(.custom(POPPINSFONTLIST.Bold, size: 32))
                         Menu {
                             ForEach(TorusSupportedCurrencies.allCases ,id:\.self) { category in
@@ -161,8 +166,8 @@ struct HomeView: View {
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                         }
                         Spacer()
-                        Text("= 0.012 USD")
-                            .font(.custom(DMSANSFONTLIST.Regular, size: 12))
+//                        Text("= 0.012 USD")
+//                            .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                     }
                     .padding([.bottom],10)
                     Button {
@@ -181,17 +186,20 @@ struct HomeView: View {
                         Text("Transfer assets")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 16))
                             .foregroundColor(.gray)
+                            .frame(width: UIScreen.screenWidth - 57, height: 48, alignment: .center)
+                            .background(.white)
+                            .cornerRadius(24)
+                            .overlay(
+                                                RoundedRectangle(cornerRadius: 40)
+                                                    .stroke(Color(uiColor: .grayColor()), lineWidth: 1)
+                                            )
+                            
                     }
-                    .background(
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .stroke(.gray)
-                                .frame(width: 308, height: 48, alignment: .center)
-                                .foregroundColor(.white)
-                        
-                                
-                    )
+                  
+                    
                     .fullScreenCover(isPresented: $showTransferScreen, content: {
                         TransferAssetView()
+                            .environmentObject(ethManager)
                     })
                     .padding()
                     Spacer()
@@ -201,7 +209,7 @@ struct HomeView: View {
                 }
                 .padding()
                 .frame(height:248,alignment: .center)
-                .frame(maxWidth:.infinity)
+                .frame(maxWidth:UIScreen.screenWidth - 32)
                 .background(.white)
                 .cornerRadius(24)
                 .padding()
@@ -219,7 +227,7 @@ struct HomeView: View {
                         Spacer()
                         
                     }
-                    TextView(text: $message)
+                    TextView(text: $message, placeholderText: "Enter your message here")
                         .frame(width:308,height: 210, alignment: .center)
                         .cornerRadius(24)
                         .padding()
@@ -239,37 +247,86 @@ struct HomeView: View {
                         
                                 
                     )
+                    .disabled(message.isEmpty)
+                    .opacity(message.isEmpty ? 0.5 : 1)
                     .padding(.top,24)
                     
 
                     
                 }
                 .frame(height:362,alignment: .center)
-                .frame(maxWidth:.infinity)
+                .frame(maxWidth:UIScreen.screenWidth - 32)
                 .background(.white)
                 .cornerRadius(24)
                 .padding()
                 
             }
+
               
         }
+        .onTapGesture {
+            self.endEditing()
+        }
+        .offset(y: -keyboardResponder.currentHeight * 0.9)
+
+                 
+                  
         .onAppear(perform: {
             initialSetup()
         })
-        .animation(.easeInOut, value: showPrivateKeyQRCode)
         .ignoresSafeArea()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .background(Color(uiColor: .bkgColor()))
-         
-        }
-//        messageSignedView(success: $signedMessageResult, info: SignedMessageHashString)
-//        .opacity(showPopup ? 1:0)
-      
-        
-            if showPrivateKeyQRCode, let key = authManager.currentUser?.privKey {
-                            QRCodeAlert(message: key, isPresenting: $showPrivateKeyQRCode)
+            
+                if showPopup{
+                        ZStack{
+                            Rectangle()
+                                .fill(.black)
+                                .opacity(0.5)
+                                .ignoresSafeArea()
+                            MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
                         }
+                        .onTapGesture {
+                            withAnimation {
+                                showPopup.toggle()
+                            }
+                            
+                        }
+                  
+                }
+            
+            
+                if showPublicAddressQR{
+                        ZStack{
+                            Rectangle()
+                                .fill(.black)
+                                .opacity(0.5)
+                                .ignoresSafeArea()
+                            
+                            if showPublicAddressQR, let key = ethManager.address.value{
+                                                QRCodeAlert(message: key, isPresenting: $showPublicAddressQR)
+                                            }
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                showPopup.toggle()
+                            }
+                            
+                        }
+                  
+                }
+            
+
+          
+            
+
+
+        }
+
+      
+
     }
+    
     
     func initialSetup(){
         
@@ -319,13 +376,23 @@ struct HomeView: View {
     }
     
      func signMessage(){
+        endEditing()
         if !message.isEmpty{
             if let signedMessage = ethManager.signMessage(message: message){
-                SignedMessageHashString = "signedMessage"
-                showPopup = true
-                print(signedMessage)
+                signedMessageHashString = signedMessage
+                signedMessageResult = true
+             
+                withAnimation {
+                    showPopup = true
+                }
+            }
+            else{
+                signedMessageResult = false
             }
         }
+         else{
+             
+         }
     }
     
     func logout(){
@@ -334,107 +401,31 @@ struct HomeView: View {
     }
     
     func openQRCode(){
-        showPrivateKeyQRCode.toggle()
+        showPublicAddressQR.toggle()
     }
     
     func copyPublicKey(){
-        UIPasteboard.general.string = ethManager.account.publicKey
+        UIPasteboard.general.string = ethManager.account.address.value
         
     }
+    
+    func endEditing() {
+            UIApplication.shared.endEditing()
+        }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(ethManager: EthManager(proxyAddress: "", authManager: AuthManager())!)
+        HomeView(ethManager: EthManager(authManager: AuthManager()))
             .environmentObject(AuthManager())
         
     }
 }
 
 
-struct TextView: UIViewRepresentable {
- 
-    @Binding var text: String
- 
-    func makeUIView(context: Context) -> UITextView {
-        let textView = UITextView()
- 
-        textView.font = UIFont.preferredFont(forTextStyle: .body)
-        textView.autocapitalizationType = .sentences
-        textView.isSelectable = true
-        textView.isUserInteractionEnabled = true
-        textView.textColor = .gray
-        textView.backgroundColor = .bkgColor()
-        textView.layer.cornerRadius = 24
-        textView.clipsToBounds = true
-        textView.font = .init(name: DMSANSFONTLIST.Regular, size: 16)
-        textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
- 
-        return textView
-    }
- 
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
-        uiView.font = UIFont.preferredFont(forTextStyle: .body)
-    }
-}
-
-func generateQRCode(message: String) -> UIImage {
-    let ciContext = CIContext()
-    let filter = CIFilter.qrCodeGenerator()
-
-    filter.message = Data(message.utf8)
-    filter.correctionLevel = "H"
-
-    if let outputImage = filter.outputImage {
-        if let cgimg = ciContext.createCGImage(outputImage, from: outputImage.extent) {
-            return UIImage(cgImage: cgimg)
-        }
-    }
-
-    return UIImage(systemName: "xmark.circle") ?? UIImage()
-}
-
-
-struct QRCodeAlert: View {
-    var message: String
-    @Binding var isPresenting: Bool
-
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.gray)
-                .opacity(0.5)
-                .ignoresSafeArea()
-            VStack {
-                Spacer()
-                HStack {
-                    VStack() {
-                        Text("Private Key").fontWeight(.bold).padding(.all, 20).foregroundColor(.black)
-
-                        Image(uiImage: generateQRCode(message: message))
-                            .interpolation(.none)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(10)
-                            .overlay(
-                                Image("web3auth-logo")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                            )
 
 
 
-                    }
-                }
-                .frame(minWidth: 300, idealWidth: 300, maxWidth: 300, minHeight: 250, idealHeight: 250, maxHeight: 600, alignment: .top).scaledToFit()
-                .background(RoundedRectangle(cornerRadius: 27).fill(Color.white.opacity(1)))
-                Spacer()
-            }
-        }.onTapGesture {
-            self.isPresenting = false
-        }
 
-    }
-}
+
+

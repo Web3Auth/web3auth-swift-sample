@@ -8,13 +8,11 @@
 import SwiftUI
 import Web3Auth
 
-
-
 struct LoginHomePageview: View {
     @EnvironmentObject var auth:AuthManager
     @EnvironmentObject var web3authManager:Web3AuthManager
     @State var showNext = false
-    @State var selectedBlockChain:BlockchainEnum = .Ethereum
+    @State var selectedBlockChain:BlockchainEnum = .ethereum
     @State var selectedNetwork:Network = .mainnet
     var networkArr:[Network] = [.mainnet,.testnet,.cyan]
     let blockChainArr = BlockchainEnum.allCases.map{return $0}
@@ -45,6 +43,7 @@ struct LoginHomePageview: View {
                         .frame(width: 308, height: 48)
                         .background(Color(UIColor.themeColor()))
                         .cornerRadius(24)
+                    
                 }
               
               
@@ -74,7 +73,7 @@ struct LoginHomePageview: View {
 
     
     func changeBlockChain(val:Int){
-        selectedBlockChain = BlockchainEnum(rawValue:val) ?? .Ethereum
+        selectedBlockChain = BlockchainEnum(rawValue:val) ?? .ethereum
     }
 }
 

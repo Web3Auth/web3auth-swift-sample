@@ -8,9 +8,18 @@
 import Foundation
 import KeychainSwift
 import Web3Auth
+import web3
 
-class AuthManager:ObservableObject{
+class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
+    func storePrivateKey(key: Data) throws {
+        
+    }
     
+    func loadPrivateKey() throws -> Data {
+        currentUser?.privKey.web3.hexData ?? Data()
+    }
+    
+    var privatekeyInfoString = "privateKey"
     var userInfoString = "userInfo"
     var isUserLoggedIn = false
  

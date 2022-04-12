@@ -15,7 +15,7 @@ struct POPPINSFONTLIST {
     static let Medium = "Poppins-Medium"
 }
 
-struct DMSANSFONTLIST {
+struct DMSANSFONTLIST{
     static let Regular = "DMSans-Regular"
     static let Bold = "DMSans-Bold"
     static let Medium = "DMSans-Medium"

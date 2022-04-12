@@ -194,7 +194,7 @@ struct LoginMethodSelectionPage: View {
     }
     
      func loginWithEmail(){
-         if userEmail.InvalidEmail(){
+         if userEmail.invalidEmail(){
             errorMessage = "Invalid Email"
              showError.toggle()
         }
@@ -234,7 +234,6 @@ struct LoginMethodSelectionPage: View {
                 }
         }
     }
-    
 }
 
 struct LoginMethodSelectionPage_Previews: PreviewProvider {
