@@ -23,17 +23,18 @@ class EthManager:ObservableObject{
     var account:EthereumAccount
     
     
-    init(urlSession:URLSession = URLSession.shared,authManager:AuthManager){
+    init?(urlSession:URLSession = URLSession.shared,authManager:AuthManager){
         do{
         self.authManager = authManager
         self.urlSession = urlSession
             let clientUrl = URL(string: "https://ropsten.infura.io/v3/\(projectID)")!
             client = EthereumClient(url: clientUrl, sessionConfig: urlSession.configuration)
-            account = try! EthereumAccount.init(keyStorage: authManager)
+            account = try EthereumAccount.init(keyStorage: authManager)
             address = account.address
         }
         catch{
        print(error)
+           return nil
         }
     }
     
@@ -44,15 +45,9 @@ class EthManager:ObservableObject{
                     continuation.resume(throwing: error)
                 }
                 if let balance = balance {
-                    do{
-                    let newBalance = try Converter.toEther(wei: Wei(balance))
+                    let newBalance = TorusUtil.toEther(wei: Wei(balance))
                         continuation.resume(returning: newBalance)
                     }
-                    catch{
-                        continuation.resume(throwing: error)
-                    }
-                    
-                }
             }
         }
     }
@@ -69,15 +64,14 @@ class EthManager:ObservableObject{
     }
     
     
-    func transferAsset(sendTo:EthereumAddress,amount:BigUInt,gasLimit:BigUInt = 21000) async throws -> String {
+    func transferAsset(sendTo:EthereumAddress,amount:BigUInt,maxTip:BigUInt,gasLimit:BigUInt = 21000) async throws -> String {
         let gasPrice = try await client.eth_gasPrice()
-        let transaction = EthereumTransaction(from: address, to: sendTo, value: amount, data: Data(), gasPrice: gasPrice, gasLimit: gasLimit)
-       let val = try await client.eth_sendRawTransaction(transaction, withAccount: self.account)
+        let totalGas = gasPrice + maxTip
+        let transaction = EthereumTransaction(from: address, to: sendTo, value: amount, data: Data(), gasPrice: totalGas, gasLimit: gasLimit)
+        let val = try await client.eth_sendRawTransaction(transaction, withAccount: self.account)
+        print(val)
         return val
     }
-    
-    
-   
 }
 
 

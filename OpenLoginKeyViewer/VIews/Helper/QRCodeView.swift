@@ -95,7 +95,7 @@ func generateQRCode(message: String) -> UIImage {
         }
     }
 
-    return UIImage(systemName: "xmark.circle") ?? UIImage()
+    return UIImage(systemName: "xmark.circle")!
 }
 
 

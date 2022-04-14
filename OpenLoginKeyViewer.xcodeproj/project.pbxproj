@@ -17,7 +17,12 @@
 		E44B3AFD278812590017646F /* OpenLoginKeyViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */; };
 		E44B3AFF278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */; };
 		FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0811C627F1B4E400F20BDD /* HomeView.swift */; };
+		FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = FB1BDF4828056860003509B6 /* CodeScanner */; };
+		FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEF828049AD90093E4A6 /* UITextView.swift */; };
+		FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */; };
 		FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29477927FEDA8400E717E4 /* EthManager.swift */; };
+		FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */; };
+		FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */; };
 		FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3227F2E09A00298116 /* TransferAssetView.swift */; };
 		FB530F3527F2FFA600298116 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3427F2FFA600298116 /* Constants.swift */; };
 		FB530F3827F3036C00298116 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB530F3727F3036C00298116 /* web3.swift */; };
@@ -145,7 +150,11 @@
 		E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerUITests.swift; sourceTree = "<group>"; };
 		E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FB0811C627F1B4E400F20BDD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FB23EEF828049AD90093E4A6 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		FB29477927FEDA8400E717E4 /* EthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthManager.swift; sourceTree = "<group>"; };
+		FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxTransactionFeeView.swift; sourceTree = "<group>"; };
+		FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmTransactionView.swift; sourceTree = "<group>"; };
 		FB530F3227F2E09A00298116 /* TransferAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAssetView.swift; sourceTree = "<group>"; };
 		FB530F3427F2FFA600298116 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB530F3927F3044E00298116 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -196,6 +205,7 @@
 				FB530F3827F3036C00298116 /* web3.swift in Frameworks */,
 				FB530F3E27F305EE00298116 /* KeychainSwift in Frameworks */,
 				FBFD6D9D27F2D60F00FD7288 /* Web3Auth in Frameworks */,
+				FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +276,7 @@
 				FBE7452F27FF01B2002680A3 /* VIews */,
 				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
 				FB530F3927F3044E00298116 /* AuthManager.swift */,
+				FB29477927FEDA8400E717E4 /* EthManager.swift */,
 				FBB23EEB27EC4A3600370ECE /* Extensions.swift */,
 				FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */,
 				FB530F3427F2FFA600298116 /* Constants.swift */,
@@ -303,15 +314,43 @@
 			path = OpenLoginKeyViewerUITests;
 			sourceTree = "<group>";
 		};
+		FB15C4842807D127009E4BCE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FBFFCF8527ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift */,
+				FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FB15C4852807D149009E4BCE /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */,
+				FB530F3227F2E09A00298116 /* TransferAssetView.swift */,
+				FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		FB15C4862807D16F009E4BCE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */,
+				FB7F86E027F430F2006E8611 /* HelperViews.swift */,
+				FB23EEF828049AD90093E4A6 /* UITextView.swift */,
+				FBE0A85F2800426700661B1F /* PopUpView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		FBE7452F27FF01B2002680A3 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
-				FB7F86E027F430F2006E8611 /* HelperViews.swift */,
-				FB530F3227F2E09A00298116 /* TransferAssetView.swift */,
-				FBFFCF8527ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift */,
+				FB15C4842807D127009E4BCE /* Login */,
+				FB15C4852807D149009E4BCE /* Transaction */,
+				FB15C4862807D16F009E4BCE /* Helper */,
 				FB0811C627F1B4E400F20BDD /* HomeView.swift */,
-				FBE0A85F2800426700661B1F /* PopUpView.swift */,
-				FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -321,7 +360,6 @@
 			children = (
 				FBE74534280005FF002680A3 /* NetworkHelper.swift */,
 				FBE7453928000DF2002680A3 /* NetworkingClient.swift */,
-				FB29477927FEDA8400E717E4 /* EthManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -377,6 +415,7 @@
 				E44B3ADB278812580017646F /* Frameworks */,
 				E44B3ADC278812580017646F /* Resources */,
 				978EBD7FF0FB5A56B2E0B617 /* [CP] Embed Pods Frameworks */,
+				FB23EEFC28049E020093E4A6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -387,6 +426,7 @@
 				FBFD6D9C27F2D60F00FD7288 /* Web3Auth */,
 				FB530F3727F3036C00298116 /* web3.swift */,
 				FB530F3D27F305EE00298116 /* KeychainSwift */,
+				FB1BDF4828056860003509B6 /* CodeScanner */,
 			);
 			productName = OpenLoginKeyViewer;
 			productReference = E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */;
@@ -464,6 +504,7 @@
 				FBFD6D9B27F2D60F00FD7288 /* XCRemoteSwiftPackageReference "web3auth-swift-sdk" */,
 				FB530F3627F3036C00298116 /* XCRemoteSwiftPackageReference "web3" */,
 				FB530F3C27F305EE00298116 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = E44B3ADF278812580017646F /* Products */;
 			projectDirPath = "";
@@ -620,6 +661,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FB23EEFC28049E020093E4A6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -631,13 +690,17 @@
 				FBFFCF8627ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift in Sources */,
 				E44B3AE4278812580017646F /* ContentView.swift in Sources */,
 				FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */,
+				FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */,
 				FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */,
 				E44B3AE2278812580017646F /* OpenLoginKeyViewerApp.swift in Sources */,
+				FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */,
 				FB530F3527F2FFA600298116 /* Constants.swift in Sources */,
 				FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */,
+				FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */,
 				FB7F86E127F430F2006E8611 /* HelperViews.swift in Sources */,
 				FBE0A8602800426700661B1F /* PopUpView.swift in Sources */,
 				FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */,
+				FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */,
 				FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */,
 				FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */,
 				FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */,
@@ -807,10 +870,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OpenLoginKeyViewer/Preview Content\"";
-				DEVELOPMENT_TEAM = 846HRR7U4U;
+				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenLoginKeyViewer/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "need camera to scan the qr code";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "need library access for the qr code image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -842,10 +907,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OpenLoginKeyViewer/Preview Content\"";
-				DEVELOPMENT_TEAM = 846HRR7U4U;
+				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenLoginKeyViewer/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "need camera to scan the qr code";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "need library access for the qr code image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1009,6 +1076,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		FB530F3627F3036C00298116 /* XCRemoteSwiftPackageReference "web3" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argentlabs/web3.swift";
@@ -1036,6 +1111,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB1BDF4828056860003509B6 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		FB530F3727F3036C00298116 /* web3.swift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB530F3627F3036C00298116 /* XCRemoteSwiftPackageReference "web3" */;

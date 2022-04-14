@@ -14,7 +14,7 @@ import CoreImage.CIFilterBuiltins
 
 struct HomeView: View {
     @EnvironmentObject var authManager: AuthManager
-    @StateObject var ethManager: EthManager
+    @EnvironmentObject var ethManager:EthManager
     @State var balance:Double = 0
     @State var showTransferScreen = false
     @ObservedObject var keyboardResponder = KeyboardResponder()
@@ -26,7 +26,9 @@ struct HomeView: View {
     @State var showPopup = false
     @State var signedMessageHashString:String = ""
     @State var signedMessageResult:Bool = false
+    @Environment(\.openURL) private var openURL
     @State var showQRCode:Bool = false
+    
     var body: some View {
         ZStack{
         ScrollView{
@@ -91,7 +93,7 @@ struct HomeView: View {
                         copyPublicKey()
                     } label: {
                         Image("Shape")
-                        Text(ethManager.account.address.value)
+                        Text(ethManager.address.value)
                             .lineLimit(1)
                             .frame(width:63)
                             .font(.custom(DMSANSFONTLIST.Bold, size: 12))
@@ -171,7 +173,7 @@ struct HomeView: View {
                     }
                     .padding([.bottom],10)
                     Button {
-                        pasTransOnEtherScan()
+                        pastTransactionOnEtherScan()
                     } label: {
                        Text("View past transaction’s status on Etherscan")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 14))
@@ -366,8 +368,10 @@ struct HomeView: View {
         
     }
     
-    func pasTransOnEtherScan(){
-        
+    func pastTransactionOnEtherScan(){
+        guard let url = URL(string: "https://ropsten.etherscan.io/address/\(ethManager.address.value)")
+        else {return}
+        openURL(url)
     }
     
     
@@ -381,7 +385,7 @@ struct HomeView: View {
             if let signedMessage = ethManager.signMessage(message: message){
                 signedMessageHashString = signedMessage
                 signedMessageResult = true
-             
+
                 withAnimation {
                     showPopup = true
                 }
@@ -391,7 +395,7 @@ struct HomeView: View {
             }
         }
          else{
-             
+
          }
     }
     
@@ -416,11 +420,14 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(ethManager: EthManager(authManager: AuthManager()))
-            .environmentObject(AuthManager())
-        
+        if let ethManager = EthManager(authManager: AuthManager()){
+            HomeView()
+                .environmentObject(AuthManager())
+                .environmentObject(ethManager)
+            }
+        }
     }
-}
+
 
 
 

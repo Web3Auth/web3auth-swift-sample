@@ -13,31 +13,43 @@ import BigInt
 public typealias Ether = Double
 public typealias Wei = BigUInt
 
-public final class Converter {
+public final class TorusUtil {
+    
+    
+    public static func timeMinToSec(val:Double) -> Double{
+        return val * 60
+    }
     
     // NOTE: calculate wei by 10^18
     private static let etherInWei = pow(Double(10), 18)
+    private static let etherInGwei = pow(Double(10), 9)
     
     /// Convert Wei(BInt) unit to Ether(Decimal) unit
-    public static func toEther(wei: Wei) throws -> Ether {
+    public static func toEther(wei: Wei) -> Ether {
         guard let decimalWei = Double(wei.description) else {
-            throw ConverterError.failed
+           return 0
         }
         return decimalWei / etherInWei
     }
     
-    /// Convert Ether(Decimal) unit to Wei(BInt) unit
-    public static func toWei(ether: Ether) throws -> Wei {
-        guard let wei = Wei((ether * etherInWei).description) else {
-            throw ConverterError.failed
+    public static func toEther(Gwie: BigUInt) -> Ether {
+        guard let decimalWei = Double(Gwie.description) else {
+            return 0
         }
+        return decimalWei / etherInGwei
+    }
+    
+    
+    /// Convert Ether(Decimal) unit to Wei(BInt) unit
+    public static func toWei(ether: Ether) -> Wei {
+         let wei = Wei(ether * etherInWei)
         return wei
     }
     
     /// Convert Ether(String) unit to Wei(BInt) unit
-    public static func toWei(ether: String) throws -> Wei {
+    public static func toWei(ether: String) -> Wei {
         guard let decimalEther = Double(ether) else {
-            throw ConverterError.failed
+            return 0
         }
         return try toWei(ether: decimalEther)
     }

@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "codescanner",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twostraws/CodeScanner.git",
+      "state" : {
+        "revision" : "c27a66149b7483fe42e2ec6aad61d5c3fffe522d",
+        "version" : "2.1.1"
+      }
+    },
+    {
       "identity" : "generic-json-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zoul/generic-json-swift",
@@ -41,7 +50,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/argentlabs/web3.swift",
       "state" : {
-        "revision" : "23246805707db1ff2b65e651eac1e2904957a569",
+        "revision" : "0474eb5e883bc4800b3909833207a1d35e72b808",
         "version" : "0.9.3"
       }
     },
