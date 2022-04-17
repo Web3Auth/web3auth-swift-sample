@@ -28,6 +28,7 @@
 		FB530F3827F3036C00298116 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB530F3727F3036C00298116 /* web3.swift */; };
 		FB530F3A27F3044E00298116 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3927F3044E00298116 /* AuthManager.swift */; };
 		FB530F3E27F305EE00298116 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FB530F3D27F305EE00298116 /* KeychainSwift */; };
+		FB797F93280B89FF0033255E /* TransactionDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB797F92280B89FF0033255E /* TransactionDoneView.swift */; };
 		FB7F86E127F430F2006E8611 /* HelperViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7F86E027F430F2006E8611 /* HelperViews.swift */; };
 		FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */; };
 		FBB23EE627EC483C00370ECE /* LoginHomePageview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */; };
@@ -158,6 +159,7 @@
 		FB530F3227F2E09A00298116 /* TransferAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAssetView.swift; sourceTree = "<group>"; };
 		FB530F3427F2FFA600298116 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB530F3927F3044E00298116 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		FB797F92280B89FF0033255E /* TransactionDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDoneView.swift; sourceTree = "<group>"; };
 		FB7F86E027F430F2006E8611 /* HelperViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViews.swift; sourceTree = "<group>"; };
 		FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3AuthManager.swift; sourceTree = "<group>"; };
 		FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHomePageview.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 			children = (
 				FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */,
 				FB530F3227F2E09A00298116 /* TransferAssetView.swift */,
+				FB797F92280B89FF0033255E /* TransactionDoneView.swift */,
 				FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */,
 			);
 			path = Transaction;
@@ -697,6 +700,7 @@
 				FB530F3527F2FFA600298116 /* Constants.swift in Sources */,
 				FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */,
 				FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */,
+				FB797F93280B89FF0033255E /* TransactionDoneView.swift in Sources */,
 				FB7F86E127F430F2006E8611 /* HelperViews.swift in Sources */,
 				FBE0A8602800426700661B1F /* PopUpView.swift in Sources */,
 				FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */,

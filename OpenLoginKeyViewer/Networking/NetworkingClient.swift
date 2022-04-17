@@ -43,18 +43,23 @@ class NetworkingClient{
     }
     
     
-    func getSuggestedGasFees() async throws -> ETHGasAPIModel{
+    func getSuggestedGasFees() async throws -> MaxTransactionModel{
         let urlStr = "https://ethgasstation.info/api/ethgasAPI.json"
         let url = URL(string: urlStr)!
         do{
             let (data,_ ) = try await URLSession.shared.data(from: url)
             
-            let val = try JSONDecoder().decode(ETHGasAPIModel.self, from: data)
-            print(val)
-            return val
+            let val = try JSONDecoder().decode(ETHGasAPIResponseModel.self, from: data)
+            let fast = MaxTransactionDataModel.init(time: val.fastestWait, amt: val.fastest/10)
+            let avg =  MaxTransactionDataModel.init(time: val.fastWait, amt: val.fast/10)
+            let slow = MaxTransactionDataModel.init(time: val.avgWait, amt: val.average/10)
+
+            
+            let model = MaxTransactionModel(fast: fast, avg: avg, slow: slow)
+            return model
         }
         catch{
-            throw CustomError.decodingError
+            throw NetworkingError.decodingError
         }
     }
     
@@ -83,59 +88,59 @@ enum TorusSupportedCyrptoCurrencies:String,CaseIterable{
     case ETH
 }
 
+enum MaxTransactionModelEnum:Int{
+    case fast
+    case avg
+    case slow
+}
 
-struct ETHGasAPIModel:Codable {
+struct MaxTransactionDataModel{
+    var time:Double
+    var amt:Double
+    
+    var maxTransAmtInEth:Double{
+        TorusUtil.toEther(Gwie: BigUInt(amt) * 21000)
+    }
+    
+    var timeInSec:Double{
+        TorusUtil.timeMinToSec(val: time)
+    }
+    
+    
+}
+struct MaxTransactionModel{
+   
+
+    
+    var fast:MaxTransactionDataModel
+    var avg:MaxTransactionDataModel
+    var slow:MaxTransactionDataModel
+    
+    func valFromType(type:MaxTransactionModelEnum) -> MaxTransactionDataModel{
+        switch type {
+        case .fast:
+            return fast
+        case .avg:
+            return avg
+        case .slow:
+            return slow
+        }
+    }
+    
+    
+}
+
+
+
+
+struct ETHGasAPIResponseModel:Codable {
     let fast, fastest, safeLow, average: Double
     let speed, safeLowWait: Double
     let avgWait: Double
     let fastWait, fastestWait: Double
     
-
-    
-    var fastEstInEth:Double{
-        return TorusUtil.toEther(Gwie: BigUInt(fastest/10) * 21000)
-    }
-    
-    var averageInEth:Double{
-        return TorusUtil.toEther(Gwie: BigUInt(fast/10) * 21000)
-    }
-    
-    var slowInEth:Double{
-        return  TorusUtil.toEther(Gwie: BigUInt(fast/10) * 21000)
-    }
-    
-    var fastTimeInSec:Double{
-        return TorusUtil.timeMinToSec(val: fastestWait)
-    }
-    
-    var avgTimeInSec:Double{
-        return TorusUtil.timeMinToSec(val: fastWait)
-    }
-    
-    var slowTimeInSec:Double{
-        return TorusUtil.timeMinToSec(val: Double(avgWait))
-    }
 }
 
-extension ETHGasAPIModel{
-   mutating func valueBasedOnIndex(val:Int) -> [Double]{
-        var amt:Double = 0
-        var time:Double = 0
-        if val == 0{
-           amt = fastEstInEth
-            time = fastTimeInSec
-        }
-        else if val == 1{
-            amt = averageInEth
-            time = avgTimeInSec
-        }
-        else{
-           amt = slowInEth
-          time = slowTimeInSec
-        }
-        return [amt,time]
-    }
-}
 
 
 

@@ -12,7 +12,7 @@ struct MaxTransactionFeeView: View {
     @EnvironmentObject var ethManager:EthManager
     @Binding var show:Bool
     @Binding var selectedId:Int
-    var dataModel:ETHGasAPIModel
+    var dataModel:MaxTransactionModel
     var body: some View {
         ZStack{
         PopUpView()
@@ -31,9 +31,9 @@ struct MaxTransactionFeeView: View {
                     .font(.custom(POPPINSFONTLIST.Regular, size: 12))
             }
             VStack{
-                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:0,title: "High", amt: "\(dataModel.fastEstInEth)", processInTime: "\(dataModel.fastTimeInSec)")
-                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:1,title: "Average", amt: "\(dataModel.averageInEth)", processInTime: "\(dataModel.avgTimeInSec)")
-                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:2,title: "Low", amt: "\(dataModel.slowInEth)", processInTime: "\(dataModel.slowTimeInSec)")
+                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:0,title: "High", amt: "\(dataModel.fast.maxTransAmtInEth)", processInTime: "\(dataModel.fast.timeInSec)")
+                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:1,title: "Average", amt: "\(dataModel.avg.maxTransAmtInEth)", processInTime: "\(dataModel.avg.timeInSec)")
+                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:2,title: "Low", amt: "\(dataModel.slow.maxTransAmtInEth)", processInTime: "\(dataModel.slow.timeInSec)")
             }
             .padding()
             HStack{
@@ -75,7 +75,7 @@ struct MaxTransactionFeeView: View {
 
 struct MaxTransactionFeeView_Previews: PreviewProvider {
     static var previews: some View {
-        MaxTransactionFeeView(show: .constant(true), selectedId: .constant(1), dataModel: ETHGasAPIModel(fast: 390, fastest: 360, safeLow: 250, average: 200, speed: 10, safeLowWait: 0.5, avgWait: 2, fastWait: 0.1, fastestWait: 0.5))
+        MaxTransactionFeeView(show: .constant(true), selectedId: .constant(1), dataModel:.init(fast: .init(time: 1, amt: 1), avg: .init(time: 2, amt: 2), slow: .init(time: 3, amt: 3)))
         MaxTransactionFeeOptionView(selectedItem: .constant(1), id:0,title: "High", amt: "5", processInTime: "5")
     }
 }
@@ -113,11 +113,14 @@ struct MaxTransactionFeeOptionView: View {
         .onTapGesture {
             selectedItem = id
         }
-        .background(selectedItem == id ? .blue.opacity(0.3) : .clear)
+       
         .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(selectedItem == id ? Color.blue : .clear, lineWidth: selectedItem == id ? 1:0)
+            RoundedRectangle(cornerRadius: 8)
+            .stroke(selectedItem == id ? Color.blue : .clear, lineWidth: selectedItem == id ? 1:0)
+                .background(RoundedRectangle(cornerRadius: 8)
+                    .fill(selectedItem == id ? .blue.opacity(0.3) : .clear)    )
             )
+  
         .frame(height: 58, alignment: .center)
         .frame(width: 290)
 

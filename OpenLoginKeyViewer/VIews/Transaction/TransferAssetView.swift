@@ -22,16 +22,24 @@ struct TransferAssetView: View {
     @State var showScanner = false
     @State var isPresentingScanner = false
     @State var selectedTransactionFee = 1
+    @State var showTransactionPopup:Bool = false
     @State var selectedBlockChain:BlockchainEnum = .ethereum
-   var currentTransactionFeeSelected:[Double]{
-       maxTranscFeeDataModel?.valueBasedOnIndex(val: selectedTransactionFee) ?? [0,0]
+   @State var currentUSDRate:Double = 0
+
+    var totalAmt:Double{
+        return (Double(amt) ?? 0) + currentMaxTransSelection.maxTransAmtInEth
     }
+    
     @State var showMaxTransactionPopUp = false
-   @State var maxTranscFeeDataModel:ETHGasAPIModel?
+    @State var maxTranscFeeDataModel:MaxTransactionModel?
     @State var transactionModel:TransactionModel?
+    var currentMaxTransSelection:MaxTransactionDataModel{
+        return maxTranscFeeDataModel?.valFromType(type: .init(rawValue: selectedTransactionFee) ?? .fast) ?? .init(time: 0, amt: 0)
+    }
     let blockChainArr:[BlockchainEnum] = [.ethereum]
     let currencyInArr:[TorusSupportedCurrencies] = [.ETH,.USD]
     @State var currentCurrency:TorusSupportedCurrencies = .ETH
+   
     
     var body: some View {
         ZStack{
@@ -113,7 +121,7 @@ struct TransferAssetView: View {
                     }
                     .padding([.leading,.trailing],40)
                     HStack{
-                        Text("\(currentTransactionFeeSelected[0])")
+                        Text("\(currentMaxTransSelection.maxTransAmtInEth)")
                         Spacer()
                     Text("ETH")
                 }
@@ -125,14 +133,15 @@ struct TransferAssetView: View {
                 }
                 HStack{
                     Spacer()
-                    VStack(spacing: 5){
+                    VStack(alignment:.trailing,spacing: 5){
                         Text("Total cost")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
-                        Text(" 0 ETH")
+                        Text("\(String(format: "%.6f", totalAmt)) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 24))
-                        Text("= 0.012 USD")
+                        Text("= \(totalAmt * currentUSDRate) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                     }
+                    .padding(.trailing,20)
                     .padding()
                 }
                 Button {
@@ -149,6 +158,8 @@ struct TransferAssetView: View {
                                                 .stroke(Color(uiColor: .grayColor()), lineWidth: 1)
                                         )
                 }
+            .disabled(sendTo.isEmpty || amt.isEmpty)
+            
             
           
                 
@@ -190,7 +201,9 @@ struct TransferAssetView: View {
                             .fill(.black)
                             .opacity(0.5)
                             .ignoresSafeArea()
-                        ConfirmTransactionView(showPopUp: $showPopup, dataModel: transactionModel)
+                        ConfirmTransactionView(showPopUp: $showPopup, usdRate: $currentUSDRate, dataModel: transactionModel,confirmTap: {
+                            transferAsset()
+                        })
                             .environmentObject(ethManager)
                     }
             }
@@ -204,10 +217,32 @@ struct TransferAssetView: View {
                     }
               
             }
+            
+                if showTransactionPopup{
+                        ZStack{
+                            Rectangle()
+                                .fill(.black)
+                                .opacity(0.5)
+                                .ignoresSafeArea()
+                            TransactionDoneView(success: .constant(true))
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                showTransactionPopup.toggle()
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            
+                        }
+                  
+                }
+
 
         }
         .onAppear{
             getMaxtransAPIModel()
+            Task{
+            currentUSDRate =  await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
+            }
         }
     }
     
@@ -226,6 +261,7 @@ struct TransferAssetView: View {
         }
     }
     
+    
     func editTransacationFee(){
         showMaxTransactionPopUp.toggle()
     }
@@ -241,12 +277,30 @@ struct TransferAssetView: View {
     
     func transfer(){
         guard !amt.isEmpty,!sendTo.isEmpty else{return}
-        let maxFee = BigUInt(currentTransactionFeeSelected[0])
+        let maxFee = TorusUtil.toWei(GWei: (currentMaxTransSelection.amt))
         let conAmt = TorusUtil.toWei(ether: amt)
         showPopup.toggle()
-        transactionModel = .init(amount: conAmt, maxTransactionFee: BigUInt(currentTransactionFeeSelected[0]), totalCost: conAmt + maxFee , senderAddress: ethManager.address, reciepientAddress: EthereumAddress(sendTo), network: .Mainnet)
+        transactionModel = .init(amount: conAmt, maxTransactionFee:maxFee, totalCost: conAmt + maxFee , senderAddress: ethManager.address, reciepientAddress: EthereumAddress(sendTo), network: .Mainnet)
     }
     
+    func transferAsset(){
+        guard let dataModel = transactionModel else {
+            return
+        }
+        Task{
+            do{
+           let val = try await ethManager.transferAsset(sendTo:dataModel.reciepientAddress,amount:dataModel.amount,maxTip:dataModel.maxTransactionFee)
+                print(val)
+                showTransactionPopup.toggle()
+            }
+            catch{
+                print(error)
+                showTransactionPopup.toggle()
+            }
+            
+        }
+    }
+
     func amtToEth(){
         
     }

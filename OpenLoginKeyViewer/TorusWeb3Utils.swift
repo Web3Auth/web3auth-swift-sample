@@ -15,6 +15,12 @@ public typealias Wei = BigUInt
 
 public final class TorusUtil {
     
+    public var currentUSDRate:Double = 0
+    
+    private func getUSDConvRate() async{
+        currentUSDRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
+    }
+    
     
     public static func timeMinToSec(val:Double) -> Double{
         return val * 60
@@ -55,8 +61,8 @@ public final class TorusUtil {
     }
     
     // Only used for calcurating gas price and gas limit.
-    public static func toWei(GWei: Int) -> Int {
-        return GWei * 1000000000
+    public static func toWei(GWei: Double) -> Wei {
+        return Wei(GWei * 1000000000)
     }
 }
 

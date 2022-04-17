@@ -9,34 +9,7 @@ import Foundation
 import MobileCoreServices
 import SystemConfiguration
 
-public enum HTTPMethod: String{
-    case get
-    case post
-    case delete
-    case put
-}
-
-public protocol URLType {
-
-    /// The target's base `URL`.
-    var baseURL: String { get }
-
-    /// The path to be appended to `baseURL` to form the full `URL`.
-    var path: String { get }
-
-    /// The HTTP method used in the request.
-    var method: HTTPMethod { get }
-
-    /// The headers to be used in the request.
-    var headers: [String: String]{get}
-    
-    
-    func requestCreator<T:Codable>(param:T) -> URLRequest
-    func requestCreator() -> URLRequest
-}
-
-
-public enum CustomError:Error{
+public enum NetworkingError:Error{
     
     case noInternetConnection
     case decodingError
@@ -44,7 +17,7 @@ public enum CustomError:Error{
     case customErr(String)
 }
 
-extension CustomError: LocalizedError {
+extension NetworkingError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .noInternetConnection:

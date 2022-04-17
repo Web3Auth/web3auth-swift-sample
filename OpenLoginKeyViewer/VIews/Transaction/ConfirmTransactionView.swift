@@ -12,7 +12,9 @@ import web3
 struct ConfirmTransactionView: View {
     @EnvironmentObject var ethManager:EthManager
     @Binding var showPopUp:Bool
+    @Binding var usdRate:Double
     var dataModel:TransactionModel
+    var confirmTap:(() -> Void)?
     var body: some View {
         ScrollView(){
             ZStack(alignment: .center){
@@ -36,7 +38,7 @@ struct ConfirmTransactionView: View {
                         .foregroundColor(Color(uiColor: .lightGray))
                                   .frame(height: 1)
                         Button {
-                          //  changeNetwork()
+                         
                         } label: {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
@@ -73,10 +75,11 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("0.0096 ETH")
+                        Text("\(TorusUtil.toEther(wei: dataModel.amount)) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
 
-                        Text("~2.61356 USD")
+                        Text("~\(TorusUtil.toEther(wei: dataModel.amount) * usdRate) USD")
+
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
                 }
@@ -86,7 +89,7 @@ struct ConfirmTransactionView: View {
 
                     Spacer()
                     VStack{
-                        Text("2.35 USD")
+                        Text("\(TorusUtil.toEther(wei: dataModel.maxTransactionFee))")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
                         Text("(In < 30 Seconds)")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
@@ -104,9 +107,9 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("0.0026457689 ETH")
+                        Text("\(TorusUtil.toEther(wei: dataModel.totalCost)) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
-                        Text("~5.34 USD")
+                        Text("~\(TorusUtil.toEther(wei: dataModel.totalCost) * usdRate) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     }
                 }
@@ -114,7 +117,8 @@ struct ConfirmTransactionView: View {
                 VStack
                 {
                     Button {
-                      transferAsset()
+                      confirmTap?()
+                        showPopUp.toggle()
                     } label: {
                         Text("Confirm")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 16))
@@ -125,7 +129,7 @@ struct ConfirmTransactionView: View {
                         
                     }
                     Button {
-                       // showNext.toggle()
+                        showPopUp.toggle()
                     } label: {
                         Text("Cancel")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 16))
@@ -146,26 +150,12 @@ struct ConfirmTransactionView: View {
     }
     }
     
-    func transferAsset(){
-        Task{
-            do{
-           let val = try await ethManager.transferAsset(sendTo:dataModel.reciepientAddress,amount:dataModel.amount,maxTip:dataModel.maxTransactionFee)
-                showPopUp.toggle()
-                print(val)
-            }
-            catch{
-                print(error)
-                showPopUp.toggle()
-            }
-            
-        }
-    }
 
 }
 
 struct ConfirmTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmTransactionView(showPopUp: .constant(true), dataModel: .init(amount: 0, maxTransactionFee: 0, totalCost: 0, senderAddress: .init("Test"), reciepientAddress: .init("Test"), network: .Ropsten))
+        ConfirmTransactionView(showPopUp: .constant(true), usdRate: .constant(0), dataModel: .init(amount: 2, maxTransactionFee: 2, totalCost: 2, senderAddress: .init("Test"), reciepientAddress: .init("Test"), network: .Ropsten))
     }
 }
 
