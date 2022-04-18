@@ -16,8 +16,9 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
     }
     
     func loadPrivateKey() throws -> Data {
-        currentUser?.privKey.web3.hexData ?? Data()
+        currentUser?.privKey.web3.hexData ?? String("1e5ea0e87281f8cfeac1d3cfcfa0372808cb8fb6dff828e2cf908f01ddf84cca").web3.hexData!
     }
+    
     var privatekeyInfoString = "privateKey"
     var userInfoString = "userInfo"
     var isUserLoggedIn = false
@@ -57,6 +58,7 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
         currentUser = nil
     }
 }
+
 
 public struct User: Codable {
     public let privKey: String

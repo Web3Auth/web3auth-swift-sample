@@ -43,20 +43,17 @@ class NetworkingClient{
     }
     
     
-    func getSuggestedGasFees() async throws -> MaxTransactionModel{
+    func getSuggestedGasFees() async throws -> [MaxTransactionDataModel]{
         let urlStr = "https://ethgasstation.info/api/ethgasAPI.json"
         let url = URL(string: urlStr)!
         do{
             let (data,_ ) = try await URLSession.shared.data(from: url)
             
             let val = try JSONDecoder().decode(ETHGasAPIResponseModel.self, from: data)
-            let fast = MaxTransactionDataModel.init(time: val.fastestWait, amt: val.fastest/10)
-            let avg =  MaxTransactionDataModel.init(time: val.fastWait, amt: val.fast/10)
-            let slow = MaxTransactionDataModel.init(time: val.avgWait, amt: val.average/10)
-
-            
-            let model = MaxTransactionModel(fast: fast, avg: avg, slow: slow)
-            return model
+            let fast = MaxTransactionDataModel.init(id: 0, title: "Fast", time: val.fastestWait, amt: val.fastest/10)
+            let avg =  MaxTransactionDataModel.init(id:1, title: "Average",time:val.fastWait, amt: val.fast/10)
+            let slow = MaxTransactionDataModel.init(id: 2, title: "Slow", time: val.avgWait, amt: val.average/10)
+            return [fast,avg,slow]
         }
         catch{
             throw NetworkingError.decodingError
@@ -94,7 +91,9 @@ enum MaxTransactionModelEnum:Int{
     case slow
 }
 
-struct MaxTransactionDataModel{
+struct MaxTransactionDataModel:Hashable,Identifiable{
+    var id:Int
+    var title:String
     var time:Double
     var amt:Double
     
@@ -108,27 +107,7 @@ struct MaxTransactionDataModel{
     
     
 }
-struct MaxTransactionModel{
-   
 
-    
-    var fast:MaxTransactionDataModel
-    var avg:MaxTransactionDataModel
-    var slow:MaxTransactionDataModel
-    
-    func valFromType(type:MaxTransactionModelEnum) -> MaxTransactionDataModel{
-        switch type {
-        case .fast:
-            return fast
-        case .avg:
-            return avg
-        case .slow:
-            return slow
-        }
-    }
-    
-    
-}
 
 
 

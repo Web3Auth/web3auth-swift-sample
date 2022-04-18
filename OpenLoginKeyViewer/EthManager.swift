@@ -62,9 +62,7 @@ class EthManager:ObservableObject{
         }
 
     }
-    
-    
-    
+
     func transferAsset(sendTo:EthereumAddress,amount:BigUInt,maxTip:BigUInt,gasLimit:BigUInt = 21000) async throws -> String {
         let gasPrice = try await client.eth_gasPrice()
         let totalGas = gasPrice + maxTip
@@ -75,9 +73,3 @@ class EthManager:ObservableObject{
         return val
     }
 }
-
-
-
-
-
-

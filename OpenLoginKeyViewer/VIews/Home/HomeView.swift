@@ -15,19 +15,18 @@ import CoreImage.CIFilterBuiltins
 struct HomeView: View {
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var ethManager:EthManager
-    @State var balance:Double = 0
     @State var showTransferScreen = false
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var currentRate:Double = 0
     @State var didStartEditing = false
     @State var showPublicAddressQR: Bool = false
-    @State var currentCurrency:TorusSupportedCurrencies = .ETH
     @State var message:String = ""
     @State var showPopup = false
     @State var signedMessageHashString:String = ""
     @State var signedMessageResult:Bool = false
     @Environment(\.openURL) private var openURL
     @State var showQRCode:Bool = false
+    @StateObject var vm:HomeViewModel
     
     var body: some View {
         ZStack{
@@ -119,7 +118,7 @@ struct HomeView: View {
                             .padding(.leading ,-10)
                         Spacer()
                         Button {
-                            changeNetwork()
+                            
                         } label: {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
@@ -143,20 +142,20 @@ struct HomeView: View {
                     HStack(alignment:.center){
                         VStack(alignment: .leading){
                             HStack(alignment:.lastTextBaseline){
-                                Text("\(String(format: "%.4f",balance))")
+                                Text("\(String(format: "%.4f",vm.balance))")
                                     .font(.custom(POPPINSFONTLIST.Bold, size: 32))
                         Menu {
                             ForEach(TorusSupportedCurrencies.allCases ,id:\.self) { category in
                                 Button {
-                                    currentCurrency = category
-                                    getConversionRate()
+                                    vm.currentCurrency = category
+                                    vm.getConversionRate()
                                 } label: {
                                     Text(category.rawValue)
                                 }
 
                             }
                         } label: {
-                            Text(currentCurrency.rawValue)
+                            Text(  vm.currentCurrency.rawValue)
                           .font(.custom(POPPINSFONTLIST.Bold, size: 12))
                                 .foregroundColor(.black)
                             Image("dropDown")
@@ -164,12 +163,11 @@ struct HomeView: View {
                         }
 
                     }
-                            Text("1 ETH = \(String(format: "%.2f",currentRate)) \(currentCurrency.rawValue)")
+                          
+                            Text("1 ETH = \(String(format: "%.2f",vm.currentRate)) \(  vm.currentCurrency.rawValue)")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                         }
                         Spacer()
-//                        Text("= 0.012 USD")
-//                            .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                     }
                     .padding([.bottom],10)
                     Button {
@@ -183,7 +181,7 @@ struct HomeView: View {
                     }
                     .padding(.bottom,5)
                     Button {
-                        transferAsset()
+                        showTransferScreen.toggle()
                     } label: {
                         Text("Transfer assets")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 16))
@@ -200,7 +198,7 @@ struct HomeView: View {
                   
                     
                     .fullScreenCover(isPresented: $showTransferScreen, content: {
-                        TransferAssetView()
+                        TransferAssetView( vm: .init(ethManager: ethManager))
                             .environmentObject(ethManager)
                     })
                     .padding()
@@ -270,12 +268,6 @@ struct HomeView: View {
             self.endEditing()
         }
         .offset(y: -keyboardResponder.currentHeight * 0.9)
-
-                 
-                  
-        .onAppear(perform: {
-            initialSetup()
-        })
         .ignoresSafeArea()
         .frame(maxWidth:.infinity,maxHeight: .infinity)
         .background(Color(uiColor: .bkgColor()))
@@ -297,7 +289,6 @@ struct HomeView: View {
                   
                 }
             
-            
                 if showPublicAddressQR{
                         ZStack{
                             Rectangle()
@@ -313,60 +304,12 @@ struct HomeView: View {
                             withAnimation {
                                 showPopup.toggle()
                             }
-                            
                         }
-                  
                 }
-            
 
-          
-            
-
-
-        }
-
-      
-
-    }
-    
-    
-    func initialSetup(){
-        
-        Task(priority: .userInitiated){
-        do{
-            let userBalance = try await ethManager.getBalance()
-            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
-            balance = userBalance * currentRate
-
-        }
-        catch{
-            print(error)
-        }
-        }
-
-    }
-    
-    func getConversionRate(){
-        Task(priority: .userInitiated){
-        do{
-            let userBalance = try await ethManager.getBalance()
-            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
-            balance = userBalance * currentRate
-
-        }
-        catch{
-            print(error)
-        }
         }
     }
     
-    func transferAsset(){
-        showTransferScreen = true
-    }
-    
-    func getCurrentPrice(){
-        
-    }
     
     func pastTransactionOnEtherScan(){
         guard let url = URL(string: "https://ropsten.etherscan.io/address/\(ethManager.address.value)")
@@ -375,29 +318,14 @@ struct HomeView: View {
     }
     
     
-    func changeNetwork(){
-        
-    }
-    
      func signMessage(){
         endEditing()
-        if !message.isEmpty{
-            if let signedMessage = ethManager.signMessage(message: message){
-                signedMessageHashString = signedMessage
+         signedMessageHashString = vm.signMessage(message: message)
                 signedMessageResult = true
-
                 withAnimation {
                     showPopup = true
                 }
             }
-            else{
-                signedMessageResult = false
-            }
-        }
-         else{
-
-         }
-    }
     
     func logout(){
         
@@ -421,7 +349,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         if let ethManager = EthManager(authManager: AuthManager()){
-            HomeView()
+            HomeView( vm: .init(ethManager: ethManager))
                 .environmentObject(AuthManager())
                 .environmentObject(ethManager)
             }

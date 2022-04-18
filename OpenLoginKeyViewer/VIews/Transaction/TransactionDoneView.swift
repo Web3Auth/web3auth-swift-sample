@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TransactionDoneView: View {
     @Binding var success:Bool
+    var infoText:String
     @State var successMessage:String = "Transaction Successful"
     @State var errorMessage:String = "Transaction Failed"
     var body: some View {
@@ -20,6 +21,7 @@ struct TransactionDoneView: View {
                     .frame(width: 88, height: 88, alignment: .center)
                 Text(success ? successMessage : errorMessage)
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
+                    .padding()
                 if success{
                     HStack{
                         Text("View transaction’s status on")
@@ -40,6 +42,9 @@ struct TransactionDoneView: View {
                     .padding(.top,5)
                 }
                 else{
+                    VStack{
+                        Text(infoText)
+                            .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                     HStack{
                         Button {
                             
@@ -52,6 +57,7 @@ struct TransactionDoneView: View {
                     }
                     .padding([.leading,.trailing],10)
                     .padding(.top,5)
+                    }
                 }
             }
         }
@@ -63,8 +69,8 @@ struct TransactionDoneView: View {
 
 struct TransactionDoneView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionDoneView(success: .constant(true))
-        TransactionDoneView(success: .constant(false))
+        TransactionDoneView(success: .constant(true), infoText: "")
+        TransactionDoneView(success: .constant(false), infoText: "")
     }
 }
 

@@ -10,14 +10,14 @@ import BigInt
 import web3
 
 struct ConfirmTransactionView: View {
-    @EnvironmentObject var ethManager:EthManager
+    @EnvironmentObject var vm:TransferAssetViewModel
     @Binding var showPopUp:Bool
     @Binding var usdRate:Double
-    var dataModel:TransactionModel
     var confirmTap:(() -> Void)?
+    
     var body: some View {
         ScrollView(){
-            ZStack(alignment: .center){
+        ZStack(alignment: .center){
         PopUpView()
             VStack{
         Text("Confirm Transaction")
@@ -75,10 +75,10 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("\(TorusUtil.toEther(wei: dataModel.amount)) ETH")
+                        Text("\(vm.amount) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
 
-                        Text("~\(TorusUtil.toEther(wei: dataModel.amount) * usdRate) USD")
+                        Text("~\(vm.amount) USD")
 
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
@@ -89,7 +89,7 @@ struct ConfirmTransactionView: View {
 
                     Spacer()
                     VStack{
-                        Text("\(TorusUtil.toEther(wei: dataModel.maxTransactionFee))")
+                        Text("\(vm.selectedMaxTransactionDataModel.maxTransAmtInEth)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
                         Text("(In < 30 Seconds)")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
@@ -107,9 +107,9 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("\(TorusUtil.toEther(wei: dataModel.totalCost)) ETH")
+                        Text("\(vm.totalAmountInEth) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
-                        Text("~\(TorusUtil.toEther(wei: dataModel.totalCost) * usdRate) USD")
+                        Text("~\(vm.totalAmountInUSD) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     }
                 }
@@ -117,8 +117,9 @@ struct ConfirmTransactionView: View {
                 VStack
                 {
                     Button {
-                      confirmTap?()
                         showPopUp.toggle()
+                      confirmTap?()
+         
                     } label: {
                         Text("Confirm")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 16))
@@ -144,10 +145,12 @@ struct ConfirmTransactionView: View {
                 
             }
         }
-        .frame(width: UIScreen.screenWidth - 32, height: 590, alignment: .center)
+        .frame(width: UIScreen.screenWidth - 32, height: 520, alignment: .center)
         .background(.white)
         .cornerRadius(20)
+        .padding(.top,UIScreen.screenWidth - 520/2)
     }
+    
     }
     
 
@@ -155,7 +158,8 @@ struct ConfirmTransactionView: View {
 
 struct ConfirmTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmTransactionView(showPopUp: .constant(true), usdRate: .constant(0), dataModel: .init(amount: 2, maxTransactionFee: 2, totalCost: 2, senderAddress: .init("Test"), reciepientAddress: .init("Test"), network: .Ropsten))
+        ConfirmTransactionView(showPopUp: .constant(true), usdRate: .constant(75))
+            .environmentObject(TransferAssetViewModel(ethManager: EthManager( authManager: AuthManager())!))
     }
 }
 

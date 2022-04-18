@@ -12,34 +12,20 @@ import CodeScanner
 
 struct TransferAssetView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var ethManager: EthManager
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var scannedCode:String = ""
-    @State var sendTo:String = ""
-    @State var amt:String = ""
     @State var showPopup = false
     @State var maxTranscFee:String = ""
     @State var showScanner = false
     @State var isPresentingScanner = false
-    @State var selectedTransactionFee = 1
     @State var showTransactionPopup:Bool = false
     @State var selectedBlockChain:BlockchainEnum = .ethereum
-   @State var currentUSDRate:Double = 0
-
-    var totalAmt:Double{
-        return (Double(amt) ?? 0) + currentMaxTransSelection.maxTransAmtInEth
-    }
-    
+    @StateObject var vm:TransferAssetViewModel
     @State var showMaxTransactionPopUp = false
-    @State var maxTranscFeeDataModel:MaxTransactionModel?
-    @State var transactionModel:TransactionModel?
-    var currentMaxTransSelection:MaxTransactionDataModel{
-        return maxTranscFeeDataModel?.valFromType(type: .init(rawValue: selectedTransactionFee) ?? .fast) ?? .init(time: 0, amt: 0)
-    }
     let blockChainArr:[BlockchainEnum] = [.ethereum]
     let currencyInArr:[TorusSupportedCurrencies] = [.ETH,.USD]
     @State var currentCurrency:TorusSupportedCurrencies = .ETH
-   
+   @State var transactionInfo = ""
     
     var body: some View {
         ZStack{
@@ -48,7 +34,7 @@ struct TransferAssetView: View {
             HStack(){
                 HStack(alignment: .center,spacing:24){
                 Button {
-                    dismissView()
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image("arrow-left")
                 }
@@ -77,7 +63,7 @@ struct TransferAssetView: View {
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                     Spacer()
                     Button {
-                        openScanner()
+                        showScanner.toggle()
                     } label: {
                         Image("scan")
                             .frame(width: 13, height: 13, alignment: .center)
@@ -85,7 +71,7 @@ struct TransferAssetView: View {
 
                 }
                 .padding([.leading,.trailing],40)
-                    TextRoundedFieldView(text: $sendTo,placeHolder: "0xC951C5A85BE62F1Fe9337e698349bD7")
+                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: "0xC951C5A85BE62F1Fe9337e698349bD7")
                         .truncationMode(.middle)
                     MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "")
             }
@@ -103,7 +89,7 @@ struct TransferAssetView: View {
                         .frame(width: 110, height:24)
                     }
                     .padding([.leading,.trailing],40)
-                    TextRoundedFieldView(text: $amt,placeHolder: "0.00")
+                    TextRoundedFieldView(text: $vm.amount,placeHolder: "0.00")
                         .truncationMode(.middle)
                 }
                 VStack(alignment:.center){
@@ -112,7 +98,7 @@ struct TransferAssetView: View {
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                         Spacer()
                         Button {
-                            editTransacationFee()
+                            showMaxTransactionPopUp.toggle()
                         } label: {
                             Text("Edit")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 14))
@@ -121,7 +107,7 @@ struct TransferAssetView: View {
                     }
                     .padding([.leading,.trailing],40)
                     HStack{
-                        Text("\(currentMaxTransSelection.maxTransAmtInEth)")
+                        Text("\(vm.selectedMaxTransactionDataModel.maxTransAmtInEth)")
                         Spacer()
                     Text("ETH")
                 }
@@ -136,9 +122,9 @@ struct TransferAssetView: View {
                     VStack(alignment:.trailing,spacing: 5){
                         Text("Total cost")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
-                        Text("\(String(format: "%.6f", totalAmt)) ETH")
+                        Text("\(vm.totalAmountInEth) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 24))
-                        Text("= \(totalAmt * currentUSDRate) USD")
+                        Text("= \(vm.totalAmountInUSD) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                     }
                     .padding(.trailing,20)
@@ -158,13 +144,7 @@ struct TransferAssetView: View {
                                                 .stroke(Color(uiColor: .grayColor()), lineWidth: 1)
                                         )
                 }
-            .disabled(sendTo.isEmpty || amt.isEmpty)
-            
-            
-          
-                
-               
-                
+            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty)
 
 
         }
@@ -187,7 +167,7 @@ struct TransferAssetView: View {
         .sheet(isPresented: $showScanner) {
             CodeScannerView(codeTypes: [.qr]) { response in
                 if case let .success(result) = response {
-                    sendTo = result.string
+                    vm.sendingAddress = result.string
                     isPresentingScanner = false
                     showScanner.toggle()
                 }
@@ -195,25 +175,25 @@ struct TransferAssetView: View {
         }
      
         .offset(y: -keyboardResponder.currentHeight * 0.9)
-            if showPopup,let transactionModel = transactionModel{
+            if showPopup{
                     ZStack{
                         Rectangle()
                             .fill(.black)
                             .opacity(0.5)
                             .ignoresSafeArea()
-                        ConfirmTransactionView(showPopUp: $showPopup, usdRate: $currentUSDRate, dataModel: transactionModel,confirmTap: {
-                            transferAsset()
+                        ConfirmTransactionView(showPopUp: $showPopup, usdRate: $vm.currentUSDRate,confirmTap: {
+                      transfer()
                         })
-                            .environmentObject(ethManager)
+                            .environmentObject(vm)
                     }
             }
-            if showMaxTransactionPopUp,let maxTranscFeeDataModel = maxTranscFeeDataModel{
+            if showMaxTransactionPopUp{
                     ZStack{
                         Rectangle()
                             .fill(.black)
                             .opacity(0.5)
                             .ignoresSafeArea()
-                        MaxTransactionFeeView(show: $showMaxTransactionPopUp, selectedId: $selectedTransactionFee,dataModel: maxTranscFeeDataModel)
+                        MaxTransactionFeeView(show: $showMaxTransactionPopUp, selectedId: $vm.selectedTransactionFee,dataModel: vm.maxTransactionDataModel)
                     }
               
             }
@@ -224,12 +204,14 @@ struct TransferAssetView: View {
                                 .fill(.black)
                                 .opacity(0.5)
                                 .ignoresSafeArea()
-                            TransactionDoneView(success: .constant(true))
+                            TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo)
                         }
                         .onTapGesture {
                             withAnimation {
                                 showTransactionPopup.toggle()
+                                if vm.transactionSuccess{
                                 presentationMode.wrappedValue.dismiss()
+                                }
                             }
                             
                         }
@@ -238,89 +220,24 @@ struct TransferAssetView: View {
 
 
         }
-        .onAppear{
-            getMaxtransAPIModel()
-            Task{
-            currentUSDRate =  await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
-            }
-        }
     }
-    
-    func getConversionRate(val:String){
-//        guard let amt = BigUInt(val) else{return}
-        Task(priority: .userInitiated){
-//        do{
-//            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
-//            balance = userBalance * currentRate
-//
-//        }
-//        catch{
-//            print(error)
-//        }
-
-        }
-    }
-    
-    
-    func editTransacationFee(){
-        showMaxTransactionPopUp.toggle()
-    }
-    
-     func getMaxtransAPIModel(){
-        Task{
-          maxTranscFeeDataModel = try await NetworkingClient.shared.getSuggestedGasFees()
-        
-        }
-    }
-    
     
     
     func transfer(){
-        guard !amt.isEmpty,!sendTo.isEmpty else{return}
-        let maxFee = TorusUtil.toWei(GWei: (currentMaxTransSelection.amt))
-        let conAmt = TorusUtil.toWei(ether: amt)
-        showPopup.toggle()
-        transactionModel = .init(amount: conAmt, maxTransactionFee:maxFee, totalCost: conAmt + maxFee , senderAddress: ethManager.address, reciepientAddress: EthereumAddress(sendTo), network: .Mainnet)
-    }
-    
-    func transferAsset(){
-        guard let dataModel = transactionModel else {
-            return
-        }
         Task{
             do{
-           let val = try await ethManager.transferAsset(sendTo:dataModel.reciepientAddress,amount:dataModel.amount,maxTip:dataModel.maxTransactionFee)
-                print(val)
+             try await vm.transferAsset()
                 showTransactionPopup.toggle()
             }
-            catch{
-                print(error)
+            catch(let error){
+                transactionInfo = error.localizedDescription
                 showTransactionPopup.toggle()
             }
-            
         }
     }
+    
 
-    func amtToEth(){
-        
-    }
-    
-    func amtToUSD(){
-        
-    }
-    
-    
-    func openScanner(){
-        showScanner.toggle()
-    }
-    
-    func dismissView(){
-        presentationMode.wrappedValue.dismiss()
-    }
-    
-    func changeBlockChain(val:BlockchainEnum){
-        
-    }
+ 
     func endEditing() {
             UIApplication.shared.endEditing()
         }
@@ -328,7 +245,7 @@ struct TransferAssetView: View {
 
 struct TransferAssetView_Previews: PreviewProvider {
     static var previews: some View {
-        TransferAssetView()
+        TransferAssetView( vm: .init(ethManager: EthManager(authManager: AuthManager())!))
         TextRoundedFieldView(text: .constant("Hello"), placeHolder: "xs")
     }
 }

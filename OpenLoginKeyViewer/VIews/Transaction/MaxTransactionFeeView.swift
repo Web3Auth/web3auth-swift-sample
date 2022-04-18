@@ -7,12 +7,12 @@
 
 import SwiftUI
 import BigInt
+import CoreMedia
 
 struct MaxTransactionFeeView: View {
-    @EnvironmentObject var ethManager:EthManager
     @Binding var show:Bool
     @Binding var selectedId:Int
-    var dataModel:MaxTransactionModel
+    var dataModel:[MaxTransactionDataModel]
     var body: some View {
         ZStack{
         PopUpView()
@@ -31,9 +31,10 @@ struct MaxTransactionFeeView: View {
                     .font(.custom(POPPINSFONTLIST.Regular, size: 12))
             }
             VStack{
-                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:0,title: "High", amt: "\(dataModel.fast.maxTransAmtInEth)", processInTime: "\(dataModel.fast.timeInSec)")
-                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:1,title: "Average", amt: "\(dataModel.avg.maxTransAmtInEth)", processInTime: "\(dataModel.avg.timeInSec)")
-                MaxTransactionFeeOptionView(selectedItem: $selectedId, id:2,title: "Low", amt: "\(dataModel.slow.maxTransAmtInEth)", processInTime: "\(dataModel.slow.timeInSec)")
+                ForEach(dataModel) { val in
+                    MaxTransactionFeeOptionView(selectedItem: $selectedId, id:val.id,title: val.title, amt: "\(val.maxTransAmtInEth)", processInTime: "\(val.timeInSec)")
+                }
+              
             }
             .padding()
             HStack{
@@ -75,7 +76,7 @@ struct MaxTransactionFeeView: View {
 
 struct MaxTransactionFeeView_Previews: PreviewProvider {
     static var previews: some View {
-        MaxTransactionFeeView(show: .constant(true), selectedId: .constant(1), dataModel:.init(fast: .init(time: 1, amt: 1), avg: .init(time: 2, amt: 2), slow: .init(time: 3, amt: 3)))
+        MaxTransactionFeeView(show: .constant(true), selectedId: .constant(0), dataModel: [])
         MaxTransactionFeeOptionView(selectedItem: .constant(1), id:0,title: "High", amt: "5", processInTime: "5")
     }
 }

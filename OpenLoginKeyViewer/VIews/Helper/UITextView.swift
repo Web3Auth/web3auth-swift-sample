@@ -24,7 +24,8 @@ struct TextView: UIViewRepresentable {
                textView.layer.cornerRadius = 24
                textView.clipsToBounds = true
                textView.font = .init(name: DMSANSFONTLIST.Regular, size: 16)
-               textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+               textView.contentInset = .init(top: 10, left: 24, bottom: 10, right: 24)
+
           textView.textContainer.lineFragmentPadding = 0
           textView.textContainerInset = .zero
           textView.text = placeholderText
@@ -43,10 +44,6 @@ struct TextView: UIViewRepresentable {
           uiView.delegate = context.coordinator
       }
       
-      func frame(numLines: CGFloat) -> some View {
-          let height = UIFont.systemFont(ofSize: 17).lineHeight * numLines
-          return self.frame(height: height)
-      }
       
       func makeCoordinator() -> TextView.Coordinator {
           Coordinator(self)
@@ -61,7 +58,6 @@ struct TextView: UIViewRepresentable {
           
           func textViewDidChange(_ textView: UITextView) {
               parent.text = textView.text
-              textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
           }
           
           func textViewDidBeginEditing(_ textView: UITextView) {
@@ -69,7 +65,6 @@ struct TextView: UIViewRepresentable {
                   textView.text = ""
                   textView.textColor = .label
               }
-              textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
           }
           
           func textViewDidEndEditing(_ textView: UITextView) {
@@ -77,7 +72,6 @@ struct TextView: UIViewRepresentable {
                   textView.text = parent.placeholderText
                   textView.textColor = .placeholderText
               }
-              textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
           }
       }
 }
