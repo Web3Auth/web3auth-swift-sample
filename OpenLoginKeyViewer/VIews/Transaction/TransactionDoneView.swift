@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+protocol TransactionDoneViewDelegate{
+    func viewOnEtherscan()
+}
+
 struct TransactionDoneView: View {
     @Binding var success:Bool
     var infoText:String
     @State var successMessage:String = "Transaction Successful"
     @State var errorMessage:String = "Transaction Failed"
+    var delegate:TransactionDoneViewDelegate?
     var body: some View {
         ZStack(alignment:.center){
             PopUpView()
@@ -29,7 +34,7 @@ struct TransactionDoneView: View {
                             .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                         HStack{
                             Button {
-                                
+                                delegate?.viewOnEtherscan()
                             } label: {
                                 Text("Etherscan")
                                     .font(.custom(DMSANSFONTLIST.Regular, size: 16))

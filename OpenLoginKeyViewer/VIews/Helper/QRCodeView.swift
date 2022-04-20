@@ -8,7 +8,7 @@
 import SwiftUI
 import CodeScanner
 struct QRCodeAlert: View {
-    var message: String
+    var publicAddres: String
     @Binding var isPresenting: Bool
 
     var body: some View {
@@ -23,13 +23,23 @@ struct QRCodeAlert: View {
                     VStack{
                         Text("Your Public Address")
                             .font(.custom(POPPINSFONTLIST.Bold, size: 18))
-                        Text(message)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .font(.custom(POPPINSFONTLIST.Regular, size: 14))
-                            .lineLimit(nil)
-                            .foregroundColor(.gray)
-                        Image(uiImage: generateQRCode(message: message))
+                        Button {
+                            UIPasteboard.general.string = publicAddres
+                        } label: {
+                            HStack(alignment: .firstTextBaseline){
+                            Text(publicAddres)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .font(.custom(POPPINSFONTLIST.Regular, size: 14))
+                                .lineLimit(nil)
+                                .foregroundColor(.gray)
+                                Image("copy")
+                                    .frame(width: 16, height: 16, alignment: .center)
+                            }
+                        }
+
+                        
+                        Image(uiImage: generateQRCode(message: publicAddres))
                             .interpolation(.none)
                             .resizable()
                             .frame(width: 200, height: 200, alignment: .center)
@@ -45,7 +55,7 @@ struct QRCodeAlert: View {
                     }
                 }
                 .padding()
-                .frame(minWidth: 300, idealWidth: 300, maxWidth: 300, minHeight: 250, idealHeight: 250, maxHeight: 600, alignment: .top).scaledToFit()
+                .frame(width: 300, height: 350, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 27).fill(Color.white.opacity(1)))
                 Spacer()
             }
@@ -101,7 +111,7 @@ func generateQRCode(message: String) -> UIImage {
 
 struct QRCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        QRCodeAlert(message: "key", isPresenting: .constant(true))
+        QRCodeAlert(publicAddres: "0x1776e71Bb1956c46D9bBA247cd979B1c887dE633", isPresenting: .constant(true))
         QRCodeScannerExampleView()
     }
 }

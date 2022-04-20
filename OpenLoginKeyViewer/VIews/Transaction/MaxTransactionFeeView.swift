@@ -42,17 +42,21 @@ struct MaxTransactionFeeView: View {
                     save()
                 } label: {
                     Text("Cancel")
+                        .frame(width: 142, height: 45, alignment: .center)
                 }
-                .frame(width: 142, height: 45, alignment: .center)
+             
                 Button {
                     save()
                 } label: {
                     Text("Save")
                         .foregroundColor(.white)
+                        .frame(width: 142, height: 45, alignment: .center)
+                        .background(Color(uiColor: .themeColor()))
+                        .cornerRadius(5)
+                       
+                        
                 }
-                .frame(width: 142, height: 45, alignment: .center)
-                .background(Color(uiColor: .themeColor()))
-                .cornerRadius(5)
+               
            
              
             }

@@ -11,6 +11,7 @@ import BigInt
 import CodeScanner
 
 struct TransferAssetView: View {
+    @Environment(\.openURL) private var openURL
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var scannedCode:String = ""
@@ -24,14 +25,14 @@ struct TransferAssetView: View {
     @State var showMaxTransactionPopUp = false
     let blockChainArr:[BlockchainEnum] = [.ethereum]
     let currencyInArr:[TorusSupportedCurrencies] = [.ETH,.USD]
-    @State var currentCurrency:TorusSupportedCurrencies = .ETH
+   
    @State var transactionInfo = ""
     
     var body: some View {
         ZStack{
         ScrollView{
         VStack{
-            HStack(){
+            HStack(alignment: .center){
                 HStack(alignment: .center,spacing:24){
                 Button {
                     presentationMode.wrappedValue.dismiss()
@@ -71,7 +72,11 @@ struct TransferAssetView: View {
 
                 }
                 .padding([.leading,.trailing],40)
-                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: "0xC951C5A85BE62F1Fe9337e698349bD7")
+                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: "0xC951C5A85BE62F1Fe9337e698349bD7", error: $vm.ethAddressError,errorInfoString: "Invalid ETH Address")
+                        .onChange(of: vm.sendingAddress) { newValue in
+                            vm.checkRecipentAddressError()
+                        }
+
                         .truncationMode(.middle)
                     MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "")
             }
@@ -80,17 +85,24 @@ struct TransferAssetView: View {
                     Text("Amount")
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                         Spacer()
-                        Picker("", selection: $currentCurrency) {
+                        Picker("", selection: $vm.currentCurrency) {
                             ForEach(currencyInArr,id:\.self){
                                 Text($0.rawValue)
                             }
                         }
+                        .onChange(of: vm.currentCurrency, perform: { newValue in
+                            vm.checkBalanceError()
+                        })
                         .pickerStyle(.segmented)
                         .frame(width: 110, height:24)
                     }
                     .padding([.leading,.trailing],40)
-                    TextRoundedFieldView(text: $vm.amount,placeHolder: "0.00")
+                    TextRoundedFieldView(text: $vm.amount,placeHolder: "0.00", error: $vm.balanceError,errorInfoString: "Insufficient balance for transaction")
+                        .keyboardType(.decimalPad)
                         .truncationMode(.middle)
+                        .onChange(of: vm.amount) { newValue in
+                            vm.checkBalanceError()
+                        }
                 }
                 VStack(alignment:.center){
                     HStack{
@@ -131,22 +143,21 @@ struct TransferAssetView: View {
                     .padding()
                 }
                 Button {
-                    transfer()
+                    if !vm.loading{
+                    showPopup.toggle()
+                    }
                 }
             label: {
-                    Text("Transfer")
-                        .foregroundColor(.gray)
-                        .frame(width: 308, height: 48, alignment: .center)
-                        .background(.white)
-                        .cornerRadius(24)
-                        .overlay(
-                                            RoundedRectangle(cornerRadius: 40)
-                                                .stroke(Color(uiColor: .grayColor()), lineWidth: 1)
-                                        )
+                CustomButtonUIKit(showloader: $vm.loading, title: "Transfer")
+                    .foregroundColor(.gray)
+                    .frame(width: 300, height: 48, alignment: .center)
+                    .cornerRadius(24)
+                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: 40)
+                                                                .stroke(Color(uiColor: .grayColor()), lineWidth: 1))
                 }
-            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty)
-
-
+            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.sendingAddress.isValidEthAddress())
+            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.sendingAddress.isValidEthAddress() ? 0.5 : 1)
         }
         }
             if showScanner{
@@ -181,10 +192,8 @@ struct TransferAssetView: View {
                             .fill(.black)
                             .opacity(0.5)
                             .ignoresSafeArea()
-                        ConfirmTransactionView(showPopUp: $showPopup, usdRate: $vm.currentUSDRate,confirmTap: {
-                      transfer()
-                        })
-                            .environmentObject(vm)
+                        ConfirmTransactionView(showPopUp: $showPopup, usdRate: $vm.currentUSDRate,delegate: self)
+                        .environmentObject(vm)
                     }
             }
             if showMaxTransactionPopUp{
@@ -204,7 +213,7 @@ struct TransferAssetView: View {
                                 .fill(.black)
                                 .opacity(0.5)
                                 .ignoresSafeArea()
-                            TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo)
+                            TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo,delegate: self)
                         }
                         .onTapGesture {
                             withAnimation {
@@ -217,6 +226,17 @@ struct TransferAssetView: View {
                         }
                   
                 }
+            
+//            if vm.loading{
+//                ZStack{
+//                    Rectangle()
+//                        .fill(.black.opacity(0.1))
+//                        .ignoresSafeArea()
+//                    LottieView()
+//                        .frame(width: 200, height: 200, alignment: .center)
+//                }
+//          
+//            }
 
 
         }
@@ -243,10 +263,24 @@ struct TransferAssetView: View {
         }
 }
 
+extension TransferAssetView:ConfirmTransactionViewDelegate{
+    func confirmBtnTap() {
+        transfer()
+    }
+}
+
+extension TransferAssetView:TransactionDoneViewDelegate{
+    func viewOnEtherscan() {
+        openURL(URL(string: "https://ropsten.etherscan.io/tx/\(        vm.lastTransactionHash)")!)
+    }
+    
+   
+}
+
 struct TransferAssetView_Previews: PreviewProvider {
     static var previews: some View {
-        TransferAssetView( vm: .init(ethManager: EthManager(authManager: AuthManager())!))
-        TextRoundedFieldView(text: .constant("Hello"), placeHolder: "xs")
+        TransferAssetView( vm: .init(ethManager: EthManager(authManager: AuthManager(), network: .constant(.mainnet))!))
+        TextRoundedFieldView(text: .constant("Hello"), placeHolder: "xs", error: .constant(false))
     }
 }
 

@@ -15,7 +15,7 @@ struct LoginHomePageview: View {
     @State var selectedBlockChain:BlockchainEnum = .ethereum
     @State var selectedNetwork:Network = .mainnet
     var networkArr:[Network] = [.mainnet,.testnet,.cyan]
-    let blockChainArr = BlockchainEnum.allCases.map{return $0}
+    let blockChainArr:[BlockchainEnum] = [.ethereum] 
     var body: some View {
         VStack(){
         VStack{

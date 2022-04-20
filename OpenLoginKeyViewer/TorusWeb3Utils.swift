@@ -15,6 +15,9 @@ public typealias Wei = BigUInt
 
 public final class TorusUtil {
     
+
+    
+    
     public var currentUSDRate:Double = 0
     
     private func getUSDConvRate() async{
@@ -69,4 +72,14 @@ public final class TorusUtil {
 
 enum ConverterError:Error{
     case failed
+}
+
+
+extension String{
+        func isValidEthAddress() -> Bool {
+            let ethAddressRegex = "^0x[a-fA-F0-9]{40}$"
+            let pred = NSPredicate(format:"SELF MATCHES %@", ethAddressRegex)
+            return pred.evaluate(with: self)
+        }
+    
 }

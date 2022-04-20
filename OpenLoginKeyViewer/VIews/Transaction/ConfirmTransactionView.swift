@@ -9,14 +9,18 @@ import SwiftUI
 import BigInt
 import web3
 
+
+protocol ConfirmTransactionViewDelegate{
+    func confirmBtnTap()
+}
+
 struct ConfirmTransactionView: View {
     @EnvironmentObject var vm:TransferAssetViewModel
     @Binding var showPopUp:Bool
     @Binding var usdRate:Double
-    var confirmTap:(() -> Void)?
-    
+  var delegate:ConfirmTransactionViewDelegate?
     var body: some View {
-        ScrollView(){
+        ScrollView{
         ZStack(alignment: .center){
         PopUpView()
             VStack{
@@ -24,12 +28,11 @@ struct ConfirmTransactionView: View {
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
                 HStack{
                     VStack{
-                        Image("Facebook")
+                        Image("\(vm.ethManager.authManager.currentUser?.typeOfDisabledImage ?? "")")
                             .resizable()
                             .frame(width: 49, height: 49, alignment: .center)
-                        Text("nattchireddi@...")
-                            .font(.custom(DMSANSFONTLIST.Regular, size: 10))
-                        Text("0xC95C..2Aa11")
+                        Text("\(vm.ethManager.address.value)")
+                            .multilineTextAlignment(.center)
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
                     VStack{
@@ -43,7 +46,7 @@ struct ConfirmTransactionView: View {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
-                            Text("Ethereum Testnet")
+                            Text(vm.ethManager.networkName)
                                 .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 10))
                         }
@@ -53,14 +56,14 @@ struct ConfirmTransactionView: View {
                                     .foregroundColor(Color(uiColor: .bkgColor()))
 
                         )
+                        .frame(width: 109, height: 16, alignment: .center)
                     }
                 VStack{
                     Image("Google")
                         .resizable()
                         .frame(width: 49, height: 49, alignment: .center)
-                    Text("nattchireddi@...")
-                        .font(.custom(DMSANSFONTLIST.Regular, size: 10))
-                    Text("0xC95C..2Aa11")
+                    Text("\(vm.sendingAddress)")
+                        .multilineTextAlignment(.center)
                         .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                 }
                 }
@@ -75,10 +78,10 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("\(vm.amount) ETH")
+                        Text("\(String(format: "%.6f", vm.convertAmountToETH())) ETH")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
 
-                        Text("~\(vm.amount) USD")
+                        Text("~\(vm.convertAmountToETH() * vm.currentUSDRate) USD")
 
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
@@ -91,7 +94,7 @@ struct ConfirmTransactionView: View {
                     VStack{
                         Text("\(vm.selectedMaxTransactionDataModel.maxTransAmtInEth)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
-                        Text("(In < 30 Seconds)")
+                        Text(" In \(String(format: "%.0f", vm.selectedMaxTransactionDataModel.timeInSec)) seconds")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                         
                     }
@@ -118,7 +121,7 @@ struct ConfirmTransactionView: View {
                 {
                     Button {
                         showPopUp.toggle()
-                      confirmTap?()
+                        delegate?.confirmBtnTap()
          
                     } label: {
                         Text("Confirm")
@@ -145,10 +148,10 @@ struct ConfirmTransactionView: View {
                 
             }
         }
-        .frame(width: UIScreen.screenWidth - 32, height: 520, alignment: .center)
+        .frame(width: UIScreen.screenWidth - 32, height: 590, alignment: .center)
         .background(.white)
         .cornerRadius(20)
-        .padding(.top,UIScreen.screenWidth - 520/2)
+        .padding(.top,UIScreen.screenWidth - 590/2)
     }
     
     }
@@ -159,7 +162,7 @@ struct ConfirmTransactionView: View {
 struct ConfirmTransactionView_Previews: PreviewProvider {
     static var previews: some View {
         ConfirmTransactionView(showPopUp: .constant(true), usdRate: .constant(75))
-            .environmentObject(TransferAssetViewModel(ethManager: EthManager( authManager: AuthManager())!))
+            .environmentObject(TransferAssetViewModel(ethManager: EthManager( authManager: AuthManager(), network: .constant(.mainnet))!))
     }
 }
 

@@ -9,8 +9,10 @@ import Foundation
 import KeychainSwift
 import Web3Auth
 import web3
-
+import SwiftUI
 class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
+    
+    
     func storePrivateKey(key: Data) throws {
         
     }
@@ -71,6 +73,12 @@ public struct User: Codable {
     public var typeOfImage:String{
         let typeOflogin = userInfo.typeOfLogin
         let img = Web3AuthProvider(rawValue: typeOflogin)?.img ?? ""
+        return img
+    }
+    
+    public var typeOfDisabledImage:String{
+        let typeOflogin = userInfo.typeOfLogin
+        let img = "\(Web3AuthProvider(rawValue: typeOflogin)?.img ?? "")Disabled"
         return img
     }
     

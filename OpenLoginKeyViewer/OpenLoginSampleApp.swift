@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct OpenLoginKeyViewerApp: App {
+struct OpenLoginSampleApp: App {
     @StateObject var authManager = AuthManager()
     @StateObject var web3AuthManager = Web3AuthManager(network: .mainnet)
     var body: some Scene {

@@ -14,7 +14,11 @@ class Web3AuthManager:ObservableObject{
     @Published var network:Network{
         didSet{
             auth = Web3Auth(.init(clientId: clientID, network: network))
+            
         }
+    }
+    var networkName:String{
+        return "Ethereum \(network.rawValue)"
     }
     var auth:Web3Auth
     

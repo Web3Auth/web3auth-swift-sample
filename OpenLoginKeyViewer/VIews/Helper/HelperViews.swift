@@ -16,7 +16,7 @@ struct HelperViews: View {
 
 struct HelperViews_Previews: PreviewProvider {
     static var previews: some View {
-        TextRoundedFieldView(text: .constant("Hello"), placeHolder: "Hello")
+        TextRoundedFieldView(text: .constant("Hello"),placeHolder: "Hello", error:.constant(true),errorInfoString: "Hello")
         let arr:[Network] = [.mainnet,.testnet,.cyan]
         MenuPickerView(currentSelection: .constant(arr[0]), arr: arr, title: "web3Auth Network")
         
@@ -26,14 +26,28 @@ struct HelperViews_Previews: PreviewProvider {
 struct TextRoundedFieldView:View{
     @Binding var text:String
     var placeHolder:String
+    @Binding var error:Bool
+    var errorInfoString:String?
     var body: some View{
         VStack{
         TextField(placeHolder, text: $text)
                  .padding([.leading,.trailing],20)
-         .foregroundColor(.gray)
-         .frame(width: 308, height: 48, alignment: .center)
+                 .foregroundColor(.gray)
+      .frame(width: 308, height: 48, alignment: .center)
          .background(Color.white)
          .cornerRadius(36)
+         .background(RoundedRectangle(cornerRadius: 36)
+            .stroke(error ? .red : .clear))
+            if error{
+                HStack{
+                Text(errorInfoString ?? "")
+                .font(.custom(POPPINSFONTLIST.Regular, size: 12))
+                .foregroundColor(.red)
+                .padding(.leading,10)
+                    Spacer()
+                }
+                .frame(width: 308,alignment: .leading)
+            }
         }
         .frame(alignment: .center)
         .frame(maxWidth:.infinity,maxHeight: .infinity)

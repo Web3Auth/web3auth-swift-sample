@@ -24,8 +24,7 @@ struct TextView: UIViewRepresentable {
                textView.layer.cornerRadius = 24
                textView.clipsToBounds = true
                textView.font = .init(name: DMSANSFONTLIST.Regular, size: 16)
-               textView.contentInset = .init(top: 10, left: 24, bottom: 10, right: 24)
-
+               textView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
           textView.textContainer.lineFragmentPadding = 0
           textView.textContainerInset = .zero
           textView.text = placeholderText
@@ -35,7 +34,6 @@ struct TextView: UIViewRepresentable {
       }
  
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<TextView>) {
-          
           if text != "" || uiView.textColor == .label {
               uiView.text = text
               uiView.textColor = .label
@@ -69,7 +67,8 @@ struct TextView: UIViewRepresentable {
           
           func textViewDidEndEditing(_ textView: UITextView) {
               if textView.text == "" {
-                  textView.text = parent.placeholderText
+                  textView.layoutIfNeeded()
+                  textView.text = "   \(parent.placeholderText)"
                   textView.textColor = .placeholderText
               }
           }
@@ -78,6 +77,10 @@ struct TextView: UIViewRepresentable {
 
 struct UITextView_Previews: PreviewProvider {
     static var previews: some View {
+        ZStack{
         TextView(text: .constant("TextView"), placeholderText: "Placeholder")
+        }
+        .background(.gray)
+        
     }
 }

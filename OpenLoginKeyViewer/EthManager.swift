@@ -6,25 +6,30 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 import web3
 import BigInt
 import Web3Auth
 
 class EthManager:ObservableObject{
-    
+    var userbalance:Double = 0
     var authManager:AuthManager
     var client: EthereumClientProtocol
     var address : EthereumAddress
-    var network:EthereumNetwork = .Mainnet
+   @Binding var network:Network
     var projectID:String = "7f287687b3d049e2bea7b64869ee30a3"
     var urlSession : URLSession
     var updated = false
     var account:EthereumAccount
     
+    var networkName:String{
+        return "Ethereum \(network.name)"
+    }
     
-    init?(urlSession:URLSession = URLSession.shared,authManager:AuthManager){
+    init?(urlSession:URLSession = URLSession.shared,authManager:AuthManager,network:Binding<Network>){
         do{
+            self._network = network
         self.authManager = authManager
         self.urlSession = urlSession
             let clientUrl = URL(string: "https://ropsten.infura.io/v3/\(projectID)")!
@@ -40,12 +45,13 @@ class EthManager:ObservableObject{
     
     func getBalance() async throws -> Double{
         try await withCheckedThrowingContinuation{ continuation in
-            client.eth_getBalance(address: self.address, block: .Latest) { error, balance in
+            client.eth_getBalance(address: self.address, block: .Latest) {[unowned self] error, balance in
                 if let error = error{
                     continuation.resume(throwing: error)
                 }
                 if let balance = balance {
                     let newBalance = TorusUtil.toEther(wei: Wei(balance))
+                   userbalance = newBalance
                         continuation.resume(returning: newBalance)
                     }
             }

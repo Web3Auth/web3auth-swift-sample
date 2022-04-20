@@ -13,6 +13,7 @@ import CoreImage.CIFilterBuiltins
 
 
 struct HomeView: View {
+    @EnvironmentObject var web3authManager:Web3AuthManager
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var ethManager:EthManager
     @State var showTransferScreen = false
@@ -27,6 +28,8 @@ struct HomeView: View {
     @Environment(\.openURL) private var openURL
     @State var showQRCode:Bool = false
     @StateObject var vm:HomeViewModel
+    
+   
     
     var body: some View {
         ZStack{
@@ -64,13 +67,14 @@ struct HomeView: View {
 
                 }
                 .padding(.top,37)
-        }
+            }
+
             .ignoresSafeArea()
             .frame(height: 115)
             .frame(maxWidth:.infinity)
             .padding()
             .background(.white)
-                
+    
                 HStack(alignment: .center){
                     Text("Account Details")
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 16))
@@ -123,7 +127,7 @@ struct HomeView: View {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
-                            Text("Ethereum Testnet")
+                            Text(vm.ethManager.networkName)
                                 .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 12))
                         }
@@ -297,7 +301,7 @@ struct HomeView: View {
                                 .ignoresSafeArea()
                             
                             if showPublicAddressQR, let key = ethManager.address.value{
-                                                QRCodeAlert(message: key, isPresenting: $showPublicAddressQR)
+                                                QRCodeAlert(publicAddres: key, isPresenting: $showPublicAddressQR)
                                             }
                         }
                         .onTapGesture {
@@ -348,7 +352,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        if let ethManager = EthManager(authManager: AuthManager()){
+        if let ethManager = EthManager(authManager: AuthManager(), network: .constant(.mainnet)){
             HomeView( vm: .init(ethManager: ethManager))
                 .environmentObject(AuthManager())
                 .environmentObject(ethManager)
