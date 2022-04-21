@@ -91,6 +91,7 @@ struct TransferAssetView: View {
                             }
                         }
                         .onChange(of: vm.currentCurrency, perform: { newValue in
+                            HapticGenerator.shared.hapticFeedbackOnTap(style: .light)
                             vm.checkBalanceError()
                         })
                         .pickerStyle(.segmented)
@@ -145,6 +146,7 @@ struct TransferAssetView: View {
                 Button {
                     if !vm.loading{
                     showPopup.toggle()
+                        HapticGenerator.shared.hapticFeedbackOnTap(style: .medium)
                     }
                 }
             label: {
@@ -226,17 +228,7 @@ struct TransferAssetView: View {
                         }
                   
                 }
-            
-//            if vm.loading{
-//                ZStack{
-//                    Rectangle()
-//                        .fill(.black.opacity(0.1))
-//                        .ignoresSafeArea()
-//                    LottieView()
-//                        .frame(width: 200, height: 200, alignment: .center)
-//                }
-//          
-//            }
+
 
 
         }

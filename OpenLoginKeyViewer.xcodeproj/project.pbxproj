@@ -34,6 +34,9 @@
 		FB797F93280B89FF0033255E /* TransactionDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB797F92280B89FF0033255E /* TransactionDoneView.swift */; };
 		FB7F86E127F430F2006E8611 /* HelperViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7F86E027F430F2006E8611 /* HelperViews.swift */; };
 		FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */; };
+		FB9F6CFD281128E000AFCCED /* LoginMethodSelectionPageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */; };
+		FB9F6D0028112F7000AFCCED /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */; };
+		FB9F6D05281131C600AFCCED /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6D04281131C600AFCCED /* CustomButton.swift */; };
 		FBB23EE627EC483C00370ECE /* LoginHomePageview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */; };
 		FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */; };
 		FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE927EC491200370ECE /* Color.xcassets */; };
@@ -45,8 +48,6 @@
 		FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */; };
 		FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE74534280005FF002680A3 /* NetworkHelper.swift */; };
 		FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453928000DF2002680A3 /* NetworkingClient.swift */; };
-		FBF18B15280E931F0074ED7A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF18B14280E931F0074ED7A /* LoadingView.swift */; };
-		FBF9CE4A28109B7D00B18AF4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF9CE4928109B7D00B18AF4 /* CustomButton.swift */; };
 		FBFD6D3527F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3627F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3727F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
@@ -173,6 +174,9 @@
 		FB797F92280B89FF0033255E /* TransactionDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDoneView.swift; sourceTree = "<group>"; };
 		FB7F86E027F430F2006E8611 /* HelperViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViews.swift; sourceTree = "<group>"; };
 		FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3AuthManager.swift; sourceTree = "<group>"; };
+		FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMethodSelectionPageVM.swift; sourceTree = "<group>"; };
+		FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		FB9F6D04281131C600AFCCED /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHomePageview.swift; sourceTree = "<group>"; };
 		FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBB23EE927EC491200370ECE /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -183,8 +187,6 @@
 		FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusWeb3Utils.swift; sourceTree = "<group>"; };
 		FBE74534280005FF002680A3 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		FBE7453928000DF2002680A3 /* NetworkingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
-		FBF18B14280E931F0074ED7A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		FBF9CE4928109B7D00B18AF4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = /Volumes/Dhruv/OpenLoginKeyViewer/OpenLoginKeyViewer/VIews/Helper/CustomButton.swift; sourceTree = "<absolute>"; };
 		FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		FBFD6D2327F2CED100FD7288 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		FBFD6D2427F2CED100FD7288 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -288,18 +290,14 @@
 			children = (
 				FBFD6D6E27F2CEE800FD7288 /* DM_Sans */,
 				FBFD6D2127F2CED100FD7288 /* Poppins */,
+				FB9F6D01281130FC00AFCCED /* JSON */,
+				FBE7453828000A83002680A3 /* Networking */,
+				FB9F6CFE28112F5E00AFCCED /* Models */,
+				FB9F6D022811311500AFCCED /* Managers */,
+				FBE7452F27FF01B2002680A3 /* VIews */,
+				FB9F6D032811315000AFCCED /* Helper */,
 				E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */,
 				E44B3AE3278812580017646F /* ContentView.swift */,
-				FBE7453828000A83002680A3 /* Networking */,
-				FBE7452F27FF01B2002680A3 /* VIews */,
-				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
-				FB530F3927F3044E00298116 /* AuthManager.swift */,
-				FB29477927FEDA8400E717E4 /* EthManager.swift */,
-				FBB23EEB27EC4A3600370ECE /* Extensions.swift */,
-				FBE1DF88280FE75A00EBF87C /* loading.json */,
-				FBF18B14280E931F0074ED7A /* LoadingView.swift */,
-				FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */,
-				FB530F3427F2FFA600298116 /* Constants.swift */,
 				FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */,
 				E44B3AE5278812590017646F /* Assets.xcassets */,
 				FBB23EE927EC491200370ECE /* Color.xcassets */,
@@ -338,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				FBFFCF8527ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift */,
+				FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */,
 				FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */,
 			);
 			path = Login;
@@ -355,10 +354,10 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
-		FB15C4862807D16F009E4BCE /* Helper */ = {
+		FB15C4862807D16F009E4BCE /* HelperViews */ = {
 			isa = PBXGroup;
 			children = (
-				FBF9CE4928109B7D00B18AF4 /* CustomButton.swift */,
+				FB9F6D04281131C600AFCCED /* CustomButton.swift */,
 				FBE1DF86280FE72A00EBF87C /* LottieView.swift */,
 				FB32153F280E6AAA004712A1 /* HapticGenerator.swift */,
 				FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */,
@@ -366,7 +365,7 @@
 				FB23EEF828049AD90093E4A6 /* UITextView.swift */,
 				FBE0A85F2800426700661B1F /* PopUpView.swift */,
 			);
-			path = Helper;
+			path = HelperViews;
 			sourceTree = "<group>";
 		};
 		FB184C0D280D829700654847 /* Home */ = {
@@ -378,12 +377,49 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		FB9F6CFE28112F5E00AFCCED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FB9F6D01281130FC00AFCCED /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				FBE1DF88280FE75A00EBF87C /* loading.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		FB9F6D022811311500AFCCED /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FB29477927FEDA8400E717E4 /* EthManager.swift */,
+				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
+				FB530F3927F3044E00298116 /* AuthManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FB9F6D032811315000AFCCED /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FB530F3427F2FFA600298116 /* Constants.swift */,
+				FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */,
+				FBB23EEB27EC4A3600370ECE /* Extensions.swift */,
+			);
+			name = Helper;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		FBE7452F27FF01B2002680A3 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
 				FB15C4842807D127009E4BCE /* Login */,
 				FB15C4852807D149009E4BCE /* Transaction */,
-				FB15C4862807D16F009E4BCE /* Helper */,
+				FB15C4862807D16F009E4BCE /* HelperViews */,
 				FB184C0D280D829700654847 /* Home */,
 			);
 			path = VIews;
@@ -725,12 +761,14 @@
 			files = (
 				FBB23EE627EC483C00370ECE /* LoginHomePageview.swift in Sources */,
 				FBFFCF8627ED6E4E00A5B7AF /* LoginMethodSelectionPage.swift in Sources */,
-				FBF9CE4A28109B7D00B18AF4 /* CustomButton.swift in Sources */,
+				FB9F6CFD281128E000AFCCED /* LoginMethodSelectionPageVM.swift in Sources */,
 				E44B3AE4278812580017646F /* ContentView.swift in Sources */,
+				FB9F6D05281131C600AFCCED /* CustomButton.swift in Sources */,
 				FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */,
 				FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */,
 				FB184C0C280D7ABD00654847 /* HomeViewModel.swift in Sources */,
 				FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */,
+				FB9F6D0028112F7000AFCCED /* TransactionModel.swift in Sources */,
 				E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */,
 				FB321540280E6AAA004712A1 /* HapticGenerator.swift in Sources */,
 				FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */,
@@ -742,7 +780,6 @@
 				FBE0A8602800426700661B1F /* PopUpView.swift in Sources */,
 				FB184C0A280D1ABC00654847 /* TransferAssetViewModel.swift in Sources */,
 				FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */,
-				FBF18B15280E931F0074ED7A /* LoadingView.swift in Sources */,
 				FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */,
 				FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */,
 				FBE1DF87280FE72A00EBF87C /* LottieView.swift in Sources */,

@@ -27,4 +27,10 @@ class HapticGenerator{
             generator.notificationOccurred(.success)
         }
     }
+    
+    
+    func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .light) {
+        let impact = UIImpactFeedbackGenerator(style: style)
+        impact.impactOccurred()
+      }
 }

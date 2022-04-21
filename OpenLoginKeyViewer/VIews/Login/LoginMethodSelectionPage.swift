@@ -15,22 +15,18 @@ struct LoginMethodSelectionPage: View {
     @EnvironmentObject var web3AuthManager:Web3AuthManager
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var isExpanded = false
-    @State var showError = false
-    @State var showSuccess = false
-    @State var isLoggedIn = false
+    @StateObject var vm:LoginMethodSelectionPageVM      
     @State var userInfo:Web3AuthState?{
         didSet{
             guard let safeuser = userInfo else{return}
             authManager.saveUser(user: .init(privKey: safeuser.privKey, ed25519PrivKey: safeuser.ed25519PrivKey, userInfo: .init(name: safeuser.userInfo.name, profileImage: safeuser.userInfo.profileImage, typeOfLogin: safeuser.userInfo.typeOfLogin, aggregateVerifier: safeuser.userInfo.aggregateVerifier, verifier: safeuser.userInfo.verifier, verifierId: safeuser.userInfo.verifierId, email: safeuser.userInfo.email)))
-            isLoggedIn.toggle()
         }
     }
-    @State var errorMessage = ""
+  
     var arr1: [Web3AuthProvider] = [
         .GOOGLE,.FACEBOOK,.TWITTER,.DISCORD]
     var arr2: [Web3AuthProvider] = [.LINE,.REDDIT,.APPLE,.FACEBOOK,.TWITCH]
     var arr3 : [Web3AuthProvider] = [.GITHUB,.LINKEDIN,.KAKAO]
-    @State var userEmail:String = ""
     var body: some View {
         ScrollView{
         VStack{
@@ -71,7 +67,7 @@ struct LoginMethodSelectionPage: View {
                 HStack{
                     ForEach(arr1, id: \.self) { category in
                             Button(action: {
-                                login(category)
+                                vm.login(category)
                             }, label: {
                                 Image(category.img)
                                     .frame(width: 48, height: 48, alignment: .center)
@@ -97,7 +93,7 @@ struct LoginMethodSelectionPage: View {
                     ForEach(arr2, id: \.self) { category in
     
                             Button(action: {
-                                login(category)
+                                vm.login(category)
                             }, label: {
                                 Image(category.img)
                                     .frame(width: 48, height: 48, alignment: .center)
@@ -113,7 +109,7 @@ struct LoginMethodSelectionPage: View {
                 HStack{
                     ForEach(arr3, id: \.self) { category in
                             Button(action: {
-                                login(category)
+                                vm.login(category)
                             }, label: {
                                 Image(category.img)
                                     .frame(width: 48, height: 48, alignment: .center)
@@ -138,7 +134,7 @@ struct LoginMethodSelectionPage: View {
                 .foregroundColor(.init(.labelColor()))
                 .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                 
-            TextField("Email", text: $userEmail)
+                    TextField("Email", text: $vm.userEmail)
                     .autocapitalization(.none)
                     .padding(.leading,10)
                     .padding(.trailing,10)
@@ -151,7 +147,7 @@ struct LoginMethodSelectionPage: View {
                     
                 }
                 Button(action: {
-                    loginWithEmail()
+                    vm.loginWithEmail()
                 }, label: {
                     Text("Continue with Email")
                         .frame(width: 308, height: 48, alignment: .center)
@@ -170,13 +166,13 @@ struct LoginMethodSelectionPage: View {
            
         }
         .offset(y: -keyboardResponder.currentHeight * 0.9)
-        .alert(isPresented: self.$showSuccess) {
+        .alert(isPresented: $vm.showSuccess) {
             Alert(
                            title: Text("Username: \(userInfo?.userInfo.name ?? "")"),message: Text("PrivKey: \(userInfo?.privKey ?? "")")
                        )
                }
-        .toast(isPresenting: $showError, duration: 2, tapToDismiss: true) {
-            AlertToast(displayMode: .alert, type: .error(.red), title: errorMessage, style: .style(backgroundColor: .white))
+        .toast(isPresenting: $vm.showError, duration: 2, tapToDismiss: true) {
+            AlertToast(displayMode: .alert, type: .error(.red), title: vm.errorMessage, style: .style(backgroundColor: .white))
         }
         }
         .frame(maxWidth:.infinity,maxHeight: .infinity)
@@ -193,27 +189,7 @@ struct LoginMethodSelectionPage: View {
         isExpanded.toggle()
     }
     
-     func loginWithEmail(){
-         if userEmail.invalidEmail(){
-            errorMessage = "Invalid Email"
-             showError.toggle()
-        }
-        else{
-            let extraOptions = ExtraLoginOptions(display: nil, prompt: nil, max_age: nil, ui_locales: nil, id_token_hint: nil, login_hint: userEmail, acr_values: nil, scope: nil, audience: nil, connection: nil, domain: nil, client_id: nil, redirect_uri: nil, leeway: nil, verifierIdField: nil, isVerifierIdCaseSensitive: nil)
-            web3AuthManager.auth.login(.init(loginProvider: Web3AuthProvider.EMAIL_PASSWORDLESS.rawValue, extraLoginOptions:extraOptions)) { result in
-                switch result{
-                case .success(let model):
-                    print(model)
-                    userInfo = model
-                case .failure(let error):
-                    print(error)
-                    errorMessage = error.localizedDescription
-                    showError.toggle()
-                }
-            }
-        }
-        
-    }
+
     
     func dismissBtn(){
         
@@ -221,23 +197,11 @@ struct LoginMethodSelectionPage: View {
        
    
     
-    func login(_ provider: Web3AuthProvider?) {
-        web3AuthManager.auth.login(.init(loginProvider: provider?.rawValue)) {
-            result in
-                switch result{
-                case .success(let model):
-                    userInfo = model
-                case .failure(let error):
-                    print(error)
-                    errorMessage = error.localizedDescription
-                    showError.toggle()
-                }
-        }
-    }
+   
 }
 
 struct LoginMethodSelectionPage_Previews: PreviewProvider {
     static var previews: some View {
-        LoginMethodSelectionPage()
+        LoginMethodSelectionPage( vm: .init(web3AuthManager: .init(network: .mainnet), authManager: AuthManager()))
     }
 }

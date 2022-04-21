@@ -60,7 +60,7 @@ public final class TorusUtil {
         guard let decimalEther = Double(ether) else {
             return 0
         }
-        return try toWei(ether: decimalEther)
+        return toWei(ether: decimalEther)
     }
     
     // Only used for calcurating gas price and gas limit.

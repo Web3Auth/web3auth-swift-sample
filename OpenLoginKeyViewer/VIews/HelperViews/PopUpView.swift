@@ -30,6 +30,7 @@ struct MessageSignedView: View {
             HStack{
                 Button {
                     UIPasteboard.general.string = info
+                    HapticGenerator.shared.hapticFeedbackOnTap(style: .light)
                 } label: {
                     Image("copy")
                         .frame(width: 16, height: 16, alignment: .center)

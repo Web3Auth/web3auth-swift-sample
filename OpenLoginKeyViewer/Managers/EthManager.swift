@@ -73,7 +73,7 @@ class EthManager:ObservableObject{
         let gasPrice = try await client.eth_gasPrice()
         let totalGas = gasPrice + maxTip
         let nonce = try await client.eth_getTransactionCount(address: address, block: .Latest)
-        let transaction = EthereumTransaction(from: address, to: sendTo, value: amount, data: Data(), nonce: nonce + 1, gasPrice: totalGas, gasLimit: gasLimit,chainId: 3)        
+        let transaction = EthereumTransaction(from: address, to: sendTo, value: amount, data: Data(), nonce: nonce + 1, gasPrice: totalGas, gasLimit: gasLimit,chainId: 3)
         let signed = try account.sign(transaction: transaction)
         let val = try await client.eth_sendRawTransaction(signed.transaction, withAccount: self.account)
         return val

@@ -25,6 +25,7 @@ struct QRCodeAlert: View {
                             .font(.custom(POPPINSFONTLIST.Bold, size: 18))
                         Button {
                             UIPasteboard.general.string = publicAddres
+                            HapticGenerator.shared.hapticFeedbackOnTap(style: .light)
                         } label: {
                             HStack(alignment: .firstTextBaseline){
                             Text(publicAddres)

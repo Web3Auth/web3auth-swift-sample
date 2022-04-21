@@ -39,7 +39,7 @@ struct CustomButtonUIKit: UIViewRepresentable {
         config.imagePlacement = .trailing
         config.imagePadding = 10
         config.showsActivityIndicator = showloader
-        var button = UIButton(configuration: config)
+        let button = UIButton(configuration: config)
         button.titleLabel?.font = UIFont(name: DMSANSFONTLIST.Medium, size: 16)
         button.layer.borderColor = UIColor.grayColor().cgColor
       return button

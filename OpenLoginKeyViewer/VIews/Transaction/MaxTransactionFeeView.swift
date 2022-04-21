@@ -117,6 +117,7 @@ struct MaxTransactionFeeOptionView: View {
         }
         .onTapGesture {
             selectedItem = id
+            HapticGenerator.shared.hapticFeedbackOnTap(style: .light)
         }
        
         .overlay(

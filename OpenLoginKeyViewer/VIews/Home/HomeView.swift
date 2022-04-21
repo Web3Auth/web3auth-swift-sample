@@ -84,6 +84,7 @@ struct HomeView: View {
                 HStack{
                     Button {
                         openQRCode()
+                        HapticGenerator.shared.hapticFeedbackOnTap()
                     } label: {
                         Image("qr-code")
                             .frame(width: 24, height: 24, alignment: .center)
@@ -94,6 +95,8 @@ struct HomeView: View {
                   
                     Button {
                         copyPublicKey()
+                        HapticGenerator.shared.hapticFeedbackOnTap()
+                       
                     } label: {
                         Image("Shape")
                         Text(ethManager.address.value)
@@ -153,6 +156,7 @@ struct HomeView: View {
                                 Button {
                                     vm.currentCurrency = category
                                     vm.getConversionRate()
+                                    HapticGenerator.shared.hapticFeedbackOnTap(style: .light)
                                 } label: {
                                     Text(category.rawValue)
                                 }
@@ -164,6 +168,9 @@ struct HomeView: View {
                                 .foregroundColor(.black)
                             Image("dropDown")
                                 .frame(width: 16, height: 16, alignment: .center)
+                        }
+                        .onTapGesture {
+                            HapticGenerator.shared.hapticFeedbackOnTap(style: .light)
                         }
 
                     }
@@ -237,6 +244,7 @@ struct HomeView: View {
                         .padding()
                     Button {
                         signMessage()
+                        HapticGenerator.shared.hapticFeedbackOnTap(style: .medium)
                     } label: {
                         Text("Sign Message")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 16))

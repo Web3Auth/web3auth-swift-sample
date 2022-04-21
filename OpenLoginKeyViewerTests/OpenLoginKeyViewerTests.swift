@@ -29,10 +29,6 @@ class OpenLoginKeyViewerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    func testLoginFromGoogleProvider(){
-        let obj = LoginMethodSelectionPage()
-        
-    }
+
 
 }

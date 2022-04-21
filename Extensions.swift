@@ -10,6 +10,8 @@ import SwiftUI
 import Web3Auth
 
 
+
+
 protocol MenuPickerProtocol:Hashable{
     var name:String { get }
 }
@@ -20,34 +22,8 @@ extension UIApplication {
     }
 }
 
-
-
-enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
-    case ethereum, solana, binance, polygon
-    
-    var name:String{
-        switch self {
-        case .ethereum:
-            return "Ethereum"
-        case .solana:
-            return "Solana"
-        case .binance:
-            return "Binance"
-        case .polygon:
-            return "Polygon"
-        }
-    }
-}
-
-
-
-
-
 extension Network:MenuPickerProtocol{
-    
 
-    
-    
     var networkURL:String{
         switch self {
         case .mainnet:

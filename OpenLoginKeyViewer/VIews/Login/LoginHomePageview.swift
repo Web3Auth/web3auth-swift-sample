@@ -50,8 +50,8 @@ struct LoginHomePageview: View {
                 
             }
             .fullScreenCover(isPresented: $showNext) {
-                
-                LoginMethodSelectionPage()
+
+                LoginMethodSelectionPage(vm: .init(web3AuthManager: web3authManager, authManager: auth))
             }
             
             Spacer()
