@@ -24,6 +24,7 @@ struct TransferAssetView: View {
     @StateObject var vm:TransferAssetViewModel
     @State var showMaxTransactionPopUp = false
     let blockChainArr:[BlockchainEnum] = [.ethereum]
+    let addressType:[AddressType] = [.ethAddress]
     let currencyInArr:[TorusSupportedCurrencies] = [.ETH,.USD]
    
    @State var transactionInfo = ""
@@ -56,7 +57,7 @@ struct TransferAssetView: View {
             .padding(.leading,-20)
             VStack(alignment: .center, spacing: 24){
                 VStack(alignment: .leading){
-                    MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "Send to")
+                    MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "Select item to transfer",color: .black)
                 }
                 VStack(alignment:.center,spacing: 8){
                 HStack{
@@ -78,7 +79,7 @@ struct TransferAssetView: View {
                         }
 
                         .truncationMode(.middle)
-                    MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "")
+                    MenuPickerView(currentSelection: .constant(addressType[0]), arr: addressType, title: "")
             }
                 VStack(alignment:.center,spacing: 16){
                     HStack{
@@ -273,6 +274,17 @@ struct TransferAssetView_Previews: PreviewProvider {
     static var previews: some View {
         TransferAssetView( vm: .init(ethManager: EthManager(authManager: AuthManager(), network: .constant(.mainnet))!))
         TextRoundedFieldView(text: .constant("Hello"), placeHolder: "xs", error: .constant(false))
+    }
+}
+
+enum AddressType:MenuPickerProtocol{
+    case ethAddress
+    
+    var name:String{
+        switch self {
+        case .ethAddress:
+            return "ETH Address"
+        }
     }
 }
 

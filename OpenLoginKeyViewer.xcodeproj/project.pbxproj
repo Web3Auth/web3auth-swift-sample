@@ -288,8 +288,7 @@
 		E44B3AE0278812580017646F /* OpenLoginKeyViewer */ = {
 			isa = PBXGroup;
 			children = (
-				FBFD6D6E27F2CEE800FD7288 /* DM_Sans */,
-				FBFD6D2127F2CED100FD7288 /* Poppins */,
+				FB0F137328165E8E006E50EA /* Fonts */,
 				FB9F6D01281130FC00AFCCED /* JSON */,
 				FBE7453828000A83002680A3 /* Networking */,
 				FB9F6CFE28112F5E00AFCCED /* Models */,
@@ -330,6 +329,15 @@
 				E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */,
 			);
 			path = OpenLoginKeyViewerUITests;
+			sourceTree = "<group>";
+		};
+		FB0F137328165E8E006E50EA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FBFD6D2127F2CED100FD7288 /* Poppins */,
+				FBFD6D6E27F2CEE800FD7288 /* DM_Sans */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		FB15C4842807D127009E4BCE /* Login */ = {

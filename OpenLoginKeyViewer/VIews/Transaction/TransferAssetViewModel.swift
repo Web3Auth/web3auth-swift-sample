@@ -93,8 +93,8 @@ class TransferAssetViewModel:ObservableObject{
             await getMaxtransAPIModel()
             
             let val  = await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
-            DispatchQueue.main.async { [unowned self] in
-                currentUSDRate = val
+            DispatchQueue.main.async { [weak self] in
+                self?.currentUSDRate = val
             }
         }
     }
@@ -108,8 +108,8 @@ class TransferAssetViewModel:ObservableObject{
     func getMaxtransAPIModel() async{
             do{
                 let val = try await NetworkingClient.shared.getSuggestedGasFees()
-                DispatchQueue.main.async { [unowned self] in
-                    maxTransactionDataModel = val
+                DispatchQueue.main.async { [weak self] in
+                    self?.maxTransactionDataModel = val
                 }
             }catch{
               print(error)

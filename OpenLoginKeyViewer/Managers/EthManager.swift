@@ -66,7 +66,6 @@ class EthManager:ObservableObject{
         catch{
             return nil
         }
-
     }
 
     func transferAsset(sendTo:EthereumAddress,amount:BigUInt,maxTip:BigUInt,gasLimit:BigUInt = 21000) async throws -> String {

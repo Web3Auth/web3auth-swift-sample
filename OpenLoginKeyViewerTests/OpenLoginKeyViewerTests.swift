@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import web3
 @testable import OpenLoginKeyViewer
 
 class OpenLoginKeyViewerTests: XCTestCase {
@@ -44,17 +45,98 @@ class OpenLoginKeyViewerTests: XCTestCase {
         }
     }
     
-    func test_getSuggestedGasPrice_API(){
-        Task{
-        let vm = TransferAssetViewModel(ethManager: ethManager)
-            vm.maxTransactionDataModel.publisher.sink { arr in
-                XCTAssertEqual(, <#T##expression2: Equatable##Equatable#>)
-            }
+     func test_transfer_pass(){
+
+            let exp = XCTestExpectation(description: "Should pass transfer")
+                defer{
+                    wait(for: [exp], timeout: 10)
+                }
+            Task{
+                do{
+                _ = try await ethManager.transferAsset(sendTo: EthereumAddress("0x1776e71Bb1956c46D9bBA247cd979B1c887dE633"), amount: 100000, maxTip: 20)
+                    exp.fulfill()
+                }
+                catch{
+                    XCTFail()
+                }
+            
         }
         
     }
     
+    func test_sign_message() {
+            let val = ethManager.signMessage(message: "Hello")
+            XCTAssertEqual(val, "0x379ce172e46791d5869a5cbda990737c6b10484ececa1b27bb90efbf5d3b0ede013bd627310fda9c3d727b3d8d1dd83fe0b9c423f405b88862d234727dd474b101")
+        
+    }
     
+    func test_get_balance(){
+        let exp = XCTestExpectation(description: "Should get balance")
+            defer{
+                wait(for: [exp], timeout: 10)
+            }
+        Task{
+            do{
+            _ = try await ethManager.getBalance()
+                exp.fulfill()
+            }
+            catch{
+                XCTFail()
+              
+            }
+        }
+    }
+    
+     func test_transfer_fail(){
+         let exp = XCTestExpectation(description: "Should fail transfer")
+            defer{
+                wait(for: [exp], timeout: 10)
+            }
+        Task{
+            do{
+            _ = try await ethManager.transferAsset(sendTo: EthereumAddress(""), amount: 100, maxTip: 20)
+                XCTFail()
+            }
+            catch{
+                exp.fulfill()
+            }
+        
+        }
+    }
+    
+    func test_suggestedGasFeeAPI(){
+        let exp = XCTestExpectation(description: "Should get suggestedGas price")
+            defer{
+                wait(for: [exp], timeout: 10)
+            }
+        Task{
+            do{
+            let val = try await NetworkingClient.shared.getSuggestedGasFees()
+                XCTAssertEqual(val.count, 3)
+                exp.fulfill()
+            }
+            catch{
+             XCTFail()
+            }
+        }
+    }
+    
+    
+    func test_get_current_price(){
+        let exp = XCTestExpectation(description: "Should get Current price")
+            defer{
+                wait(for: [exp], timeout: 10)
+            }
+        Task{
+                let val = await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
+                XCTAssertNotEqual(0, val)
+                exp.fulfill()
+
+        }
+    }
+    
+
+
     @MainActor func test_transfer_USD_conversion(){
         let vm = TransferAssetViewModel(ethManager: ethManager)
         vm.amount = "100"
@@ -65,15 +147,7 @@ class OpenLoginKeyViewerTests: XCTestCase {
         XCTAssertEqual(exp1, vm.convertAmountToETH())
     }
     
-    @MainActor func test(){
-        let vm = TransferAssetViewModel(ethManager: ethManager)
-        vm.amount = "100"
-        vm.currentCurrency = .USD
-        vm.currentUSDRate = 75
-        let exp1 = Double(vm.amount)! / vm.currentUSDRate
-        print(vm.convertAmountToETH())
-        XCTAssertEqual(exp1, vm.convertAmountToETH())
-    }
+ 
     
     
 

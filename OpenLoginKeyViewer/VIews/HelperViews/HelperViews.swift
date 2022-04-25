@@ -60,11 +60,13 @@ struct MenuPickerView<T:MenuPickerProtocol>:View{
     @Binding var currentSelection:T
     var arr = [T]()
     var title:String
+    var font:Font?
+    var color:Color?
     var body:some View{
         VStack(alignment: .leading){
         Text(title)
-            .foregroundColor(.init(.labelColor()))
-            .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
+            .foregroundColor(color ?? .init(.labelColor()))
+            .font(font ?? .custom(POPPINSFONTLIST.SemiBold, size: 14))
             Menu(content: {
                 ForEach(arr,id:\.self){ category in
                     Button {

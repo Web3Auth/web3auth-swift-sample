@@ -149,7 +149,7 @@ struct HomeView: View {
                     HStack(alignment:.center){
                         VStack(alignment: .leading){
                             HStack(alignment:.lastTextBaseline){
-                                Text("\(String(format: "%.4f",vm.balance))")
+                                Text("\(String(format: "%.4f",vm.convertedBalance))")
                                     .font(.custom(POPPINSFONTLIST.Bold, size: 32))
                         Menu {
                             ForEach(TorusSupportedCurrencies.allCases ,id:\.self) { category in

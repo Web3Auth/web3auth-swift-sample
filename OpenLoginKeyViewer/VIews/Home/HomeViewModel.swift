@@ -13,7 +13,7 @@ import Web3Auth
 @MainActor
 class HomeViewModel:ObservableObject{
     
-    @Published var balance:Double = 0
+    @Published var convertedBalance:Double = 0
     @Published var currentCurrency:TorusSupportedCurrencies = .ETH
     @Published var currentRate:Double = 0
     var ethManager:EthManager
@@ -24,14 +24,14 @@ class HomeViewModel:ObservableObject{
         getBalance()
     }
     
+    
+    
     func getBalance(){
-        
         Task(priority: .userInitiated){
         do{
             let userBalance = try await ethManager.getBalance()
             currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
-            balance = userBalance * currentRate
-
+            convertedBalance = userBalance * currentRate
         }
         catch{
             print(error)
@@ -44,7 +44,7 @@ class HomeViewModel:ObservableObject{
         do{
             let userBalance = try await ethManager.getBalance()
             currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
-            balance = userBalance * currentRate
+            convertedBalance = userBalance * currentRate
 
         }
         catch{
