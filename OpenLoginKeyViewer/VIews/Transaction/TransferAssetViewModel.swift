@@ -24,6 +24,8 @@ class TransferAssetViewModel:ObservableObject{
     @Published var currentCurrency:TorusSupportedCurrencies = .ETH
     @Published var loading = false
     var lastTransactionHash:String = ""
+    
+    
     var totalAmountInEth:String{
         let doubleAmt = convertAmountToETH()
          guard doubleAmt != 0 else{return "0"}
@@ -58,6 +60,7 @@ class TransferAssetViewModel:ObservableObject{
 
     
     func checkBalanceError(){
+        validate()
         if Double(convertAmountToETH()) > ethManager.userbalance{
             balanceError = true
             HapticGenerator.shared.generateHaptic(val: .error)
@@ -66,6 +69,9 @@ class TransferAssetViewModel:ObservableObject{
             balanceError = false
         }
     }
+    
+    
+
     
     func checkRecipentAddressError(){
             if sendingAddress.isValidEthAddress(){
@@ -78,10 +84,11 @@ class TransferAssetViewModel:ObservableObject{
     
     
     
-
+  
     
     init(ethManager:EthManager){
         self.ethManager = ethManager
+
         Task{
             await getMaxtransAPIModel()
             
@@ -89,6 +96,12 @@ class TransferAssetViewModel:ObservableObject{
             DispatchQueue.main.async { [unowned self] in
                 currentUSDRate = val
             }
+        }
+    }
+    
+    func validate(){
+        if amount.numberOfOccurrencesOf(string: ".") > 1{
+            amount.removeLast()
         }
     }
     
@@ -116,11 +129,16 @@ class TransferAssetViewModel:ObservableObject{
             }
             catch{
                 print(error)
+                loading.toggle()
+
                 throw error
             }
         loading.toggle()
-        
     }
-
 }
 
+extension String {
+    func numberOfOccurrencesOf(string: String) -> Int {
+        return self.components(separatedBy:string).count - 1
+    }
+}

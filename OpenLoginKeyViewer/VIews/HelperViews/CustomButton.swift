@@ -26,6 +26,7 @@ struct CustomButton_Previews: PreviewProvider {
 
 struct CustomButtonUIKit: UIViewRepresentable {
     func updateUIView(_ uiView: UIButton, context: Context) {
+   
         uiView.configuration?.showsActivityIndicator = showloader
     }
     
@@ -37,9 +38,11 @@ struct CustomButtonUIKit: UIViewRepresentable {
         config.baseBackgroundColor = .white
         config.baseForegroundColor = .gray
         config.imagePlacement = .trailing
+      
         config.imagePadding = 10
         config.showsActivityIndicator = showloader
         let button = UIButton(configuration: config)
+        button.tintColor = .themeColor()
         button.titleLabel?.font = UIFont(name: DMSANSFONTLIST.Medium, size: 16)
         button.layer.borderColor = UIColor.grayColor().cgColor
       return button

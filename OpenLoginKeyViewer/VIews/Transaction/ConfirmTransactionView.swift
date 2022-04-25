@@ -27,14 +27,15 @@ struct ConfirmTransactionView: View {
         Text("Confirm Transaction")
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
                 HStack{
-                    VStack{
+                    VStack(spacing:10){
                         Image("\(vm.ethManager.authManager.currentUser?.typeOfDisabledImage ?? "")")
                             .resizable()
-                            .frame(width: 49, height: 49, alignment: .center)
+                            .frame(width: 40, height: 40, alignment: .center)
                         Text("\(vm.ethManager.address.value)")
                             .multilineTextAlignment(.center)
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
+                    .frame(width:60)
                     VStack{
                     Line()
                         .stroke(style: StrokeStyle(lineWidth: 1))
@@ -56,16 +57,17 @@ struct ConfirmTransactionView: View {
                                     .foregroundColor(Color(uiColor: .bkgColor()))
 
                         )
-                        .frame(width: 109, height: 16, alignment: .center)
+                        .frame(width: 120, height: 16, alignment: .center)
                     }
-                VStack{
-                    Image("Google")
+                    VStack(spacing:10){
+                    Image("ethAddress")
                         .resizable()
-                        .frame(width: 49, height: 49, alignment: .center)
+                        .frame(width: 40, height: 40, alignment: .center)
                     Text("\(vm.sendingAddress)")
                         .multilineTextAlignment(.center)
                         .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                 }
+                .frame(width:60)
                 }
                 .padding()
                 Line()
