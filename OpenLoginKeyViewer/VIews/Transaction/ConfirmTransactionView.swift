@@ -28,10 +28,10 @@ struct ConfirmTransactionView: View {
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
                 HStack{
                     VStack(spacing:10){
-                        Image("\(vm.ethManager.authManager.currentUser?.typeOfDisabledImage ?? "")")
+                        Image("(vm.ethManager.authManager.currentUser?.typeOfDisabledImage ?? ")
                             .resizable()
                             .frame(width: 40, height: 40, alignment: .center)
-                        Text("\(vm.ethManager.address.value)")
+                        Text("\(vm.manager.addressString)")
                             .multilineTextAlignment(.center)
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
@@ -47,7 +47,7 @@ struct ConfirmTransactionView: View {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
-                            Text(vm.ethManager.networkName)
+                            Text("vm.manager.networkName")
                                 .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 10))
                         }
@@ -164,7 +164,7 @@ struct ConfirmTransactionView: View {
 struct ConfirmTransactionView_Previews: PreviewProvider {
     static var previews: some View {
         ConfirmTransactionView(showPopUp: .constant(true), usdRate: .constant(75))
-            .environmentObject(TransferAssetViewModel(ethManager: EthManager( authManager: AuthManager(), network: .constant(.mainnet))!))
+            .environmentObject(TransferAssetViewModel(manager: EthManager( authManager: AuthManager(), network: .constant(.mainnet))!))
     }
 }
 

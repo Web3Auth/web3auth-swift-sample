@@ -26,6 +26,7 @@ enum TorusSupportedCurrencies:String,CaseIterable,MenuPickerProtocol{
     case ETH
     case USD
     case INR
+    case SOL
     
     var name: String{
         return self.rawValue
@@ -34,10 +35,11 @@ enum TorusSupportedCurrencies:String,CaseIterable,MenuPickerProtocol{
 
 enum TorusSupportedCyrptoCurrencies:String,CaseIterable{
     case ETH
+    case SOL
 }
 
-enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
-    case ethereum, solana, binance, polygon
+enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
+    case ethereum, solana
     
     var name:String{
         switch self {
@@ -45,10 +47,17 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol{
             return "Ethereum"
         case .solana:
             return "Solana"
-        case .binance:
-            return "Binance"
-        case .polygon:
-            return "Polygon"
-        }
     }
+    
+}
+    
+    var shortName:String{
+        switch self {
+        case .ethereum:
+            return "ETH"
+        case .solana:
+            return "SOL"
+    }
+    
+}
 }

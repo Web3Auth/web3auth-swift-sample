@@ -20,13 +20,11 @@ struct TransferAssetView: View {
     @State var showScanner = false
     @State var isPresentingScanner = false
     @State var showTransactionPopup:Bool = false
-    @State var selectedBlockChain:BlockchainEnum = .ethereum
     @StateObject var vm:TransferAssetViewModel
     @State var showMaxTransactionPopUp = false
-    let blockChainArr:[BlockchainEnum] = [.ethereum]
-    let addressType:[AddressType] = [.ethAddress]
-    let currencyInArr:[TorusSupportedCurrencies] = [.ETH,.USD]
-   
+    let blockChainArr:[BlockchainEnum] = [.ethereum,.solana]
+
+    
    @State var transactionInfo = ""
     
     var body: some View {
@@ -57,7 +55,7 @@ struct TransferAssetView: View {
             .padding(.leading,-20)
             VStack(alignment: .center, spacing: 24){
                 VStack(alignment: .leading){
-                    MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "Select item to transfer",color: .black)
+                    MenuPickerView(currentSelection: $vm.selectItemToTransfer, arr: blockChainArr, title: "Select item to transfer",color: .black)
                 }
                 VStack(alignment:.center,spacing: 8){
                 HStack{
@@ -73,13 +71,13 @@ struct TransferAssetView: View {
 
                 }
                 .padding([.leading,.trailing],40)
-                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: "0xC951C5A85BE62F1Fe9337e698349bD7", error: $vm.ethAddressError,errorInfoString: "Invalid ETH Address")
+                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: vm.manager.type == .ethereum ?  "0xC951C5A85BE62F1Fe9337e698349bD7" : "Bu7kgguFArj5qhQY8xGk1dEyRWpoeSaU9XT1FYUCkHom", error: $vm.recipientAddressError,errorInfoString: "Invalid ETH Address")
                         .onChange(of: vm.sendingAddress) { newValue in
                             vm.checkRecipentAddressError()
                         }
 
                         .truncationMode(.middle)
-                    MenuPickerView(currentSelection: .constant(addressType[0]), arr: addressType, title: "")
+                    MenuPickerView(currentSelection: .constant(vm.addressType[0]), arr: vm.addressType, title: "")
             }
                 VStack(alignment:.center,spacing: 16){
                     HStack{
@@ -87,7 +85,7 @@ struct TransferAssetView: View {
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
                         Spacer()
                         Picker("", selection: $vm.currentCurrency) {
-                            ForEach(currencyInArr,id:\.self){
+                            ForEach(vm.currencyInArr,id:\.self){
                                 Text($0.rawValue)
                             }
                         }
@@ -106,6 +104,7 @@ struct TransferAssetView: View {
                             vm.checkBalanceError()
                         }
                 }
+                if vm.manager.type != .solana{
                 VStack(alignment:.center){
                     HStack{
                 Text("Max Transaction Fee*")
@@ -116,6 +115,7 @@ struct TransferAssetView: View {
                         } label: {
                             Text("Edit")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 14))
+                                .opacity(vm.showEditBtn ? 1 : 0)
                         }
 
                     }
@@ -131,12 +131,13 @@ struct TransferAssetView: View {
                     .background(Color.white)
                     .cornerRadius(36)
                 }
+            }
                 HStack{
                     Spacer()
                     VStack(alignment:.trailing,spacing: 5){
                         Text("Total cost")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
-                        Text("\(vm.totalAmountInEth) ETH")
+                        Text("\(vm.totalAmountInEth) \(vm.manager.type.shortName)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 24))
                         Text("= \(vm.totalAmountInUSD) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 12))
@@ -272,18 +273,21 @@ extension TransferAssetView:TransactionDoneViewDelegate{
 
 struct TransferAssetView_Previews: PreviewProvider {
     static var previews: some View {
-        TransferAssetView( vm: .init(ethManager: EthManager(authManager: AuthManager(), network: .constant(.mainnet))!))
+        TransferAssetView( vm: .init(manager: EthManager(authManager: AuthManager(), network: .constant(.mainnet))!))
         TextRoundedFieldView(text: .constant("Hello"), placeHolder: "xs", error: .constant(false))
     }
 }
 
-enum AddressType:MenuPickerProtocol{
+enum AddressType:Int,MenuPickerProtocol{
     case ethAddress
+    case solAddress
     
     var name:String{
         switch self {
         case .ethAddress:
             return "ETH Address"
+        case .solAddress:
+            return "SOL Address"
         }
     }
 }

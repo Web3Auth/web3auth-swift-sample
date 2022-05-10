@@ -16,12 +16,6 @@ struct LoginMethodSelectionPage: View {
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var isExpanded = false
     @StateObject var vm:LoginMethodSelectionPageVM      
-    @State var userInfo:Web3AuthState?{
-        didSet{
-            guard let safeuser = userInfo else{return}
-            authManager.saveUser(user: .init(privKey: safeuser.privKey, ed25519PrivKey: safeuser.ed25519PrivKey, userInfo: .init(name: safeuser.userInfo.name, profileImage: safeuser.userInfo.profileImage, typeOfLogin: safeuser.userInfo.typeOfLogin, aggregateVerifier: safeuser.userInfo.aggregateVerifier, verifier: safeuser.userInfo.verifier, verifierId: safeuser.userInfo.verifierId, email: safeuser.userInfo.email)))
-        }
-    }
   
     var arr1: [Web3AuthProvider] = [
         .GOOGLE,.FACEBOOK,.TWITTER,.DISCORD]
@@ -166,11 +160,6 @@ struct LoginMethodSelectionPage: View {
            
         }
         .offset(y: -keyboardResponder.currentHeight * 0.9)
-        .alert(isPresented: $vm.showSuccess) {
-            Alert(
-                           title: Text("Username: \(userInfo?.userInfo.name ?? "")"),message: Text("PrivKey: \(userInfo?.privKey ?? "")")
-                       )
-               }
         .toast(isPresenting: $vm.showError, duration: 2, tapToDismiss: true) {
             AlertToast(displayMode: .alert, type: .error(.red), title: vm.errorMessage, style: .style(backgroundColor: .white))
         }

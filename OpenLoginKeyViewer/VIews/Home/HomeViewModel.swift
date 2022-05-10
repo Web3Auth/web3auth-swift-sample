@@ -10,17 +10,26 @@ import Combine
 import web3
 import Web3Auth
 
+
+
+
 @MainActor
 class HomeViewModel:ObservableObject{
     
     @Published var convertedBalance:Double = 0
     @Published var currentCurrency:TorusSupportedCurrencies = .ETH
     @Published var currentRate:Double = 0
-    var ethManager:EthManager
+    
+    var publicAddress:String{
+        return manager.addressString
+    }
+    
+    var manager:BlockChainManagerProtocol
     
     
-    init(ethManager:EthManager){
-        self.ethManager = ethManager
+    init(manager:BlockChainManagerProtocol){
+        self.manager = manager
+        currentCurrency = manager.type == .ethereum ? .ETH : .SOL
         getBalance()
     }
     
@@ -29,8 +38,8 @@ class HomeViewModel:ObservableObject{
     func getBalance(){
         Task(priority: .userInitiated){
         do{
-            let userBalance = try await ethManager.getBalance()
-            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
+            let userBalance = try await manager.getBalance()
+            currentRate = await NetworkingClient.shared.getCurrentPrice(blockChain:manager.type,forCurrency: currentCurrency)
             convertedBalance = userBalance * currentRate
         }
         catch{
@@ -42,8 +51,8 @@ class HomeViewModel:ObservableObject{
     func getConversionRate(){
         Task(priority: .userInitiated){
         do{
-            let userBalance = try await ethManager.getBalance()
-            currentRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: currentCurrency)
+            let userBalance = try await manager.getBalance()
+            currentRate = await NetworkingClient.shared.getCurrentPrice(blockChain:manager.type,forCurrency: currentCurrency)
             convertedBalance = userBalance * currentRate
 
         }
@@ -54,7 +63,7 @@ class HomeViewModel:ObservableObject{
     }
     
     func signMessage(message:String) -> String{
-           if let signedMessage = ethManager.signMessage(message: message){
+           if let signedMessage = manager.signMessage(message: message){
                return signedMessage
            }
            else{

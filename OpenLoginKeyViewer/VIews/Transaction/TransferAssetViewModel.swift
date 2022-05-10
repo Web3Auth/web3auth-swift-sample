@@ -12,18 +12,41 @@ import web3
 import BigInt
 @MainActor
 class TransferAssetViewModel:ObservableObject{
-    var ethManager:EthManager
-    @Published var maxTransactionDataModel = [MaxTransactionDataModel]()
+    var manager:BlockChainManagerProtocol
     @Published var amount:String = ""
-    @Published var selectedTransactionFee = 1
+    @Published var selectedTransactionFee = 0
     @Published var sendingAddress:String = ""
     @Published var currentUSDRate:Double = 0
     @Published var transactionSuccess:Bool = false
     @Published var balanceError:Bool = false
-    @Published var ethAddressError:Bool = false
-    @Published var currentCurrency:TorusSupportedCurrencies = .ETH
+    @Published var recipientAddressError:Bool = false
+    @Published var currentCurrency:TorusSupportedCurrencies
     @Published var loading = false
     var lastTransactionHash:String = ""
+    var addressType:[AddressType] = []
+    @Published var selectItemToTransfer:BlockchainEnum
+    @Published var showEditBtn = false
+    
+    var currencyInArr:[TorusSupportedCurrencies] = []
+    var maxTransactionDataModel:[MaxTransactionDataModel]{
+        return manager.maxTransactionDataModel
+    }
+    
+     var selectedMaxTransactionDataModel:MaxTransactionDataModel{
+         if  maxTransactionDataModel.count > 0 {
+              return maxTransactionDataModel[selectedTransactionFee]
+         }
+         else{
+             return .init(id: 0, title: "Loading", time: 0, amt: 0)
+         }
+    }
+    
+    func convertAmountToETH() -> Double{
+        guard let amt = Double(amount)  else{return 0}
+        let convCurr = amt / (currentCurrency == .ETH || currentCurrency == .SOL ? 1:currentUSDRate)
+      return convCurr
+    }
+   
     
     
     var totalAmountInEth:String{
@@ -33,6 +56,7 @@ class TransferAssetViewModel:ObservableObject{
         return "\(String(format: "%.6f", val))"
          }
     
+    
     var totalAmountInUSD:String{
         let doubleAmt = convertAmountToETH()
         guard doubleAmt != 0 else{return "0"}
@@ -41,32 +65,24 @@ class TransferAssetViewModel:ObservableObject{
        return "\(String(format: "%.6f", usdAmt))"
    }
     
-    func convertAmountToETH() -> Double{
+    func convertAmtToUSD(amount:String) -> Double{
         guard let amt = Double(amount)  else{return 0}
-        let convCurr = amt / (currentCurrency == .ETH ? 1:currentUSDRate)
-      return convCurr
+        let convCurr = amt * currentUSDRate
+        return convCurr
     }
     
-    
-     var selectedMaxTransactionDataModel:MaxTransactionDataModel{
-          if maxTransactionDataModel.count > 0 {
-              return maxTransactionDataModel[selectedTransactionFee]
-         }
-         else{
-             return .init(id: 0, title: "Loading", time: 0, amt: 0)
-         }
-    }
+  
     
 
     
     func checkBalanceError(){
         validate()
-        if Double(convertAmountToETH()) > ethManager.userbalance{
+        if Double(convertAmountToETH()) > manager.userBalance{
             balanceError = true
             HapticGenerator.shared.generateHaptic(val: .error)
         }
         else{
-            balanceError = false
+            
         }
     }
     
@@ -74,11 +90,11 @@ class TransferAssetViewModel:ObservableObject{
 
     
     func checkRecipentAddressError(){
-            if sendingAddress.isValidEthAddress(){
-            ethAddressError = false
+        if manager.checkRecipentAddressError(address: sendingAddress){
+            recipientAddressError = false
             }
             else{
-            ethAddressError = true
+            recipientAddressError = true
             }
     }
     
@@ -86,13 +102,17 @@ class TransferAssetViewModel:ObservableObject{
     
   
     
-    init(ethManager:EthManager){
-        self.ethManager = ethManager
-
+    init(manager:BlockChainManagerProtocol){
+        self.manager = manager
+        currencyInArr.append(manager.type == .ethereum ? .ETH : .SOL)
+        currencyInArr.append(.USD)
+        currentCurrency = currencyInArr[0]
+        addressType.append(AddressType(rawValue: manager.type.rawValue) ?? .ethAddress)
+   
+        selectItemToTransfer = manager.type
         Task{
-            await getMaxtransAPIModel()
-            
-            let val  = await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
+            await manager.getMaxtransAPIModel()
+            let val  = await NetworkingClient.shared.getCurrentPrice(blockChain: manager.type,forCurrency: .USD)
             DispatchQueue.main.async { [weak self] in
                 self?.currentUSDRate = val
             }
@@ -104,26 +124,12 @@ class TransferAssetViewModel:ObservableObject{
             amount.removeLast()
         }
     }
-    
-    func getMaxtransAPIModel() async{
-            do{
-                let val = try await NetworkingClient.shared.getSuggestedGasFees()
-                DispatchQueue.main.async { [weak self] in
-                    self?.maxTransactionDataModel = val
-                }
-            }catch{
-              print(error)
-            }
-    }
-    
-    
-    
+
     func transferAsset() async throws{
-        let sendTo = EthereumAddress(sendingAddress)
         let ethAmount = TorusUtil.toWei(ether: convertAmountToETH())
             do{
                 loading.toggle()
-                let val = try await ethManager.transferAsset(sendTo: sendTo, amount:ethAmount, maxTip: BigUInt(TorusUtil.toEther(Gwie: BigUInt(selectedMaxTransactionDataModel.amt))))
+                let val = try await manager.transferAsset(sendTo: sendingAddress, amount:ethAmount, maxTip: BigUInt(TorusUtil.toEther(Gwie: BigUInt(selectedMaxTransactionDataModel.amt))), gasLimit: 21000)
                 transactionSuccess.toggle()
                 lastTransactionHash = val
             }
@@ -137,8 +143,4 @@ class TransferAssetViewModel:ObservableObject{
     }
 }
 
-extension String {
-    func numberOfOccurrencesOf(string: String) -> Int {
-        return self.components(separatedBy:string).count - 1
-    }
-}
+

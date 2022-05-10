@@ -41,6 +41,8 @@
 		FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */; };
 		FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE927EC491200370ECE /* Color.xcassets */; };
 		FBB23EEC27EC4A3600370ECE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EEB27EC4A3600370ECE /* Extensions.swift */; };
+		FBBD001828292CDC00554EBB /* Solana in Frameworks */ = {isa = PBXBuildFile; productRef = FBBD001728292CDC00554EBB /* Solana */; };
+		FBBD001A28292D0D00554EBB /* SolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD001928292D0D00554EBB /* SolManager.swift */; };
 		FBE0A8602800426700661B1F /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0A85F2800426700661B1F /* PopUpView.swift */; };
 		FBE1DF85280FE6DF00EBF87C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FBE1DF84280FE6DF00EBF87C /* Lottie */; };
 		FBE1DF87280FE72A00EBF87C /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE1DF86280FE72A00EBF87C /* LottieView.swift */; };
@@ -181,6 +183,7 @@
 		FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBB23EE927EC491200370ECE /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		FBB23EEB27EC4A3600370ECE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FBBD001928292D0D00554EBB /* SolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolManager.swift; sourceTree = "<group>"; };
 		FBE0A85F2800426700661B1F /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		FBE1DF86280FE72A00EBF87C /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		FBE1DF88280FE75A00EBF87C /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 				FB530F3E27F305EE00298116 /* KeychainSwift in Frameworks */,
 				FBFD6D9D27F2D60F00FD7288 /* Web3Auth in Frameworks */,
 				FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */,
+				FBBD001828292CDC00554EBB /* Solana in Frameworks */,
 				FBE1DF85280FE6DF00EBF87C /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +411,7 @@
 				FB29477927FEDA8400E717E4 /* EthManager.swift */,
 				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
 				FB530F3927F3044E00298116 /* AuthManager.swift */,
+				FBBD001928292D0D00554EBB /* SolManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				FB530F3D27F305EE00298116 /* KeychainSwift */,
 				FB1BDF4828056860003509B6 /* CodeScanner */,
 				FBE1DF84280FE6DF00EBF87C /* Lottie */,
+				FBBD001728292CDC00554EBB /* Solana */,
 			);
 			productName = OpenLoginKeyViewer;
 			productReference = E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */;
@@ -585,6 +591,7 @@
 				FB530F3C27F305EE00298116 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */,
 			);
 			productRefGroup = E44B3ADF278812580017646F /* Products */;
 			projectDirPath = "";
@@ -775,6 +782,7 @@
 				FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */,
 				FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */,
 				FB184C0C280D7ABD00654847 /* HomeViewModel.swift in Sources */,
+				FBBD001A28292D0D00554EBB /* SolManager.swift in Sources */,
 				FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */,
 				FB9F6D0028112F7000AFCCED /* TransactionModel.swift in Sources */,
 				E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */,
@@ -1189,6 +1197,14 @@
 				kind = branch;
 			};
 		};
+		FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ajamaica/Solana.Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1222,6 +1238,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB530F3C27F305EE00298116 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		FBBD001728292CDC00554EBB /* Solana */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */;
+			productName = Solana;
 		};
 		FBE1DF84280FE6DF00EBF87C /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

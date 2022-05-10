@@ -15,7 +15,6 @@ import CoreImage.CIFilterBuiltins
 struct HomeView: View {
     @EnvironmentObject var web3authManager:Web3AuthManager
     @EnvironmentObject var authManager: AuthManager
-    @EnvironmentObject var ethManager:EthManager
     @State var showTransferScreen = false
     @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var currentRate:Double = 0
@@ -28,8 +27,7 @@ struct HomeView: View {
     @Environment(\.openURL) private var openURL
     @State var showQRCode:Bool = false
     @StateObject var vm:HomeViewModel
-    
-   
+
     
     var body: some View {
         ZStack{
@@ -99,7 +97,7 @@ struct HomeView: View {
                        
                     } label: {
                         Image("Shape")
-                        Text(ethManager.address.value)
+                        Text(vm.publicAddress)
                             .lineLimit(1)
                             .frame(width:63)
                             .font(.custom(DMSANSFONTLIST.Bold, size: 12))
@@ -130,7 +128,7 @@ struct HomeView: View {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
-                            Text(vm.ethManager.networkName)
+                            Text("$vm.networkName")
                                 .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 12))
                         }
@@ -209,8 +207,7 @@ struct HomeView: View {
                   
                     
                     .fullScreenCover(isPresented: $showTransferScreen, content: {
-                        TransferAssetView( vm: .init(ethManager: ethManager))
-                            .environmentObject(ethManager)
+                        TransferAssetView( vm: TransferAssetViewModel(manager: vm.manager))
                     })
                     .padding()
                     Spacer()
@@ -308,7 +305,7 @@ struct HomeView: View {
                                 .opacity(0.5)
                                 .ignoresSafeArea()
                             
-                            if showPublicAddressQR, let key = ethManager.address.value{
+                            if showPublicAddressQR, let key = vm.publicAddress{
                                                 QRCodeAlert(publicAddres: key, isPresenting: $showPublicAddressQR)
                                             }
                         }
@@ -324,7 +321,7 @@ struct HomeView: View {
     
     
     func pastTransactionOnEtherScan(){
-        guard let url = URL(string: "https://ropsten.etherscan.io/address/\(ethManager.address.value)")
+        guard let url = URL(string: "https://ropsten.etherscan.io/address/\(vm.publicAddress)")
         else {return}
         openURL(url)
     }
@@ -349,7 +346,7 @@ struct HomeView: View {
     }
     
     func copyPublicKey(){
-        UIPasteboard.general.string = ethManager.account.address.value
+        UIPasteboard.general.string = vm.publicAddress
         
     }
     
@@ -361,9 +358,9 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         if let ethManager = EthManager(authManager: AuthManager(), network: .constant(.mainnet)){
-            HomeView( vm: .init(ethManager: ethManager))
-                .environmentObject(AuthManager())
-                .environmentObject(ethManager)
+            HomeView(vm: HomeViewModel(manager: ethManager))
+                //.environmentObject(AuthManager())
+               // .environmentObject(ethManager)
             }
         }
     }

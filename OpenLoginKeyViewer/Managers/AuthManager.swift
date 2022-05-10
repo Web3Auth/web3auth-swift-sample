@@ -10,8 +10,11 @@ import KeychainSwift
 import Web3Auth
 import web3
 import SwiftUI
+import Solana
+
 class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
     
+    var currentBlockChain:BlockchainEnum = .ethereum
     
     func storePrivateKey(key: Data) throws {
         
@@ -37,6 +40,7 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
             guard let data = keychain.getData(userInfoString) else{return}
             let user = try JSONDecoder().decode(User.self, from: data)
             currentUser = user
+            currentBlockChain = user.currentBlockchain
         }
         catch{
             print(error)
@@ -48,7 +52,7 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
         do{
         let data = try JSONEncoder().encode(user)
         keychain.set(data, forKey: userInfoString)
-            currentUser = user
+        currentUser = user
         }
         catch{
             print(error)
@@ -61,11 +65,35 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
     }
 }
 
+extension AuthManager:SolanaAccountStorage{
+    func save(_ account: Account) ->Swift.Result<Void, Error> {
+        return .success(())
+    }
+    
+    var account:Swift.Result<Account, Error> {
+      //  getCurrentUser()
+        if currentUser != nil, let account = Account(secretKey: currentUser!.ed25519PrivKey.web3.hexData ?? Data()) {
+            return .success(account)
+        }
+        else{
+            return .failure(SolanaError.accountFailed)
+        }
+    }
+    
+    func clear() -> Swift.Result<Void, Error> {
+        removeUser()
+        return .success(())
+    }
+    
+    
+}
+
 
 public struct User: Codable {
     public let privKey: String
     public let ed25519PrivKey: String
     public let userInfo: UserInfo
+    var currentBlockchain:BlockchainEnum
     public var firstName:String{
         return String(userInfo.name.split(separator: " ").first ?? "")
     }

@@ -13,7 +13,8 @@ import BigInt
 
 class NetworkingClient{
     var session:URLSession
-    var currentPriceCacheDict = [TorusSupportedCurrencies:Double]()
+    var currentPriceETHCacheDict = [TorusSupportedCurrencies:Double]()
+    var currentPriceSOLCacheDict = [TorusSupportedCurrencies:Double]()
     static let shared = NetworkingClient()
     
     private init(){
@@ -21,25 +22,31 @@ class NetworkingClient{
     }
     
     
-    func getCurrentPrice(forCurrency:TorusSupportedCurrencies)async -> Double{
-        if let cachedValue = currentPriceCacheDict[forCurrency] {
-            return cachedValue
+    func getCurrentPrice(blockChain:BlockchainEnum = .ethereum,forCurrency:TorusSupportedCurrencies)async -> Double{
+        if blockChain == .solana{
+            if let cachedValue = currentPriceSOLCacheDict[forCurrency] {
+                return cachedValue
         }
-        else{
-            let urlStr = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH&tsyms=\(forCurrency.rawValue)"
+        }
+        else if blockChain == .ethereum{
+            if let cachedValue = currentPriceETHCacheDict[forCurrency] {
+                return cachedValue
+        }
+        }
+        let urlStr = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=\(blockChain.shortName)&tsyms=\(forCurrency.rawValue)"
             let url = URL(string: urlStr)!
             do{
                 let (data,_ ) = try await URLSession.shared.data(from: url)
                 guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
-                      let val = json[TorusSupportedCyrptoCurrencies.ETH.rawValue] as? [String:Any],
+                      let val = json[blockChain.shortName] as? [String:Any],
                       let curr = val[forCurrency.rawValue] as? Double else{return 0}
-                currentPriceCacheDict[forCurrency] = curr
+                currentPriceETHCacheDict[forCurrency] = curr
                 return curr
             }
             catch{
                 return 0
             }
-        }
+    
     }
     
     

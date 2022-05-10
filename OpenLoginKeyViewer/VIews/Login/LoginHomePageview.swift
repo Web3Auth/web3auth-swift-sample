@@ -12,10 +12,11 @@ struct LoginHomePageview: View {
     @EnvironmentObject var auth:AuthManager
     @EnvironmentObject var web3authManager:Web3AuthManager
     @State var showNext = false
+    @StateObject var vm:LoginMethodSelectionPageVM
     @State var selectedBlockChain:BlockchainEnum = .ethereum
     @State var selectedNetwork:Network = .mainnet
     var networkArr:[Network] = [.mainnet,.testnet,.cyan]
-    let blockChainArr:[BlockchainEnum] = [.ethereum] 
+    let blockChainArr:[BlockchainEnum] = [.ethereum,.solana] 
     var body: some View {
         VStack(){
         VStack{
@@ -31,7 +32,7 @@ struct LoginHomePageview: View {
             VStack(spacing:24){
                 VStack(spacing:24){
                     MenuPickerView(currentSelection: $web3authManager.network, arr: networkArr, title: "Web3Auth Network")
-                MenuPickerView(currentSelection: $selectedBlockChain, arr: blockChainArr, title: "BlockChain")
+                    MenuPickerView(currentSelection: $vm.selectedBlockchain, arr: blockChainArr, title: "BlockChain")
         }
             .padding(.bottom,48)
                 Button {
@@ -51,7 +52,7 @@ struct LoginHomePageview: View {
             }
             .fullScreenCover(isPresented: $showNext) {
 
-                LoginMethodSelectionPage(vm: .init(web3AuthManager: web3authManager, authManager: auth))
+                LoginMethodSelectionPage(vm: vm)
             }
             
             Spacer()
@@ -80,7 +81,7 @@ struct LoginHomePageview: View {
 struct HomePageview_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LoginHomePageview()
+            LoginHomePageview( vm: .init(web3AuthManager: .init(network: .mainnet), authManager: AuthManager()))
                 .environmentObject(Web3AuthManager(network: .mainnet))
             let arr:[Network] = [.mainnet,.testnet,.cyan]
             MenuPickerView(currentSelection: .constant(arr[0]), arr: arr, title: "web3Auth Network")

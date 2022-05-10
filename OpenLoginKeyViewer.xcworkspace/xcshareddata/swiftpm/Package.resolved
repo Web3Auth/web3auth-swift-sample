@@ -42,7 +42,7 @@
       "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
         "branch" : "master",
-        "revision" : "b4f9b2ea44fcc47628a27c1fb876314608f1736b"
+        "revision" : "e4811e864395f44a056616c0159524c622145af4"
       }
     },
     {
@@ -52,6 +52,33 @@
       "state" : {
         "revision" : "45e458ec3be46cf0a6eb68bc947f797852dc65d8",
         "version" : "0.1.6"
+      }
+    },
+    {
+      "identity" : "solana.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ajamaica/Solana.Swift.git",
+      "state" : {
+        "revision" : "d9f6bc2e9878f476b3bc06685cadc8cc14e578e4",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/Starscream.git",
+      "state" : {
+        "revision" : "df8d82047f6654d8e4b655d1b1525c64e1059d21",
+        "version" : "4.0.4"
+      }
+    },
+    {
+      "identity" : "tweetnacl-swiftwrap",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bitmark-inc/tweetnacl-swiftwrap.git",
+      "state" : {
+        "revision" : "f8fd111642bf2336b11ef9ea828510693106e954",
+        "version" : "1.1.0"
       }
     },
     {
@@ -69,7 +96,7 @@
       "location" : "https://github.com/web3auth/web3auth-swift-sdk",
       "state" : {
         "branch" : "master",
-        "revision" : "e699f11175c8aaecb6a2da4ae1a85fa9c297aa3d"
+        "revision" : "5154aaeb10a6eed1bc69472b8db25ff45922024c"
       }
     }
   ],
