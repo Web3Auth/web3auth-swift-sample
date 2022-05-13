@@ -11,8 +11,6 @@ import web3
 import Web3Auth
 
 
-
-
 @MainActor
 class HomeViewModel:ObservableObject{
     

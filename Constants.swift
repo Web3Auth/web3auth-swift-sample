@@ -57,7 +57,60 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return "ETH"
         case .solana:
             return "SOL"
+        }
+    }
+        
+    var addressStr:String{
+            switch self {
+            case .ethereum:
+                return "ETH Address"
+            case .solana:
+                return "SOL Address"
+            }
+    }
+    
+    var sampleAddress:String{
+        switch self {
+        case .ethereum:
+            return "0xC951C5A85BE62F1Fe9337e698349bD7"
+        case .solana:
+            return "Bu7kgguFArj5qhQY8xGk1dEyRWpoeSaU9XT1FYUCkHom"
+        }
+    }
+    
+    var currencyValue:TorusSupportedCurrencies{
+        switch self {
+        case .ethereum:
+            return .ETH
+        case .solana:
+            return .SOL
+        }
+    }
+    
+    func allTransactionURL(address:String) -> URL?{
+        switch self {
+        case .ethereum:
+            return URL(string: "https://ropsten.etherscan.io/address/\(address)")
+        case .solana:
+            return URL(string: "https://explorer.solana.com/address/\(address)?cluster=devnet")
+        }
+    }
+    
+    var urlLinkName:String{
+        switch self {
+        case .ethereum:
+            return "Etherscan"
+        case .solana:
+            return "Solana Explorer"
+        }
     }
     
 }
+
+extension String:MenuPickerProtocol{
+    var name: String {
+        return self
+    }
+    
+    
 }

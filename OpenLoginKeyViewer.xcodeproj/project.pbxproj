@@ -37,6 +37,7 @@
 		FB9F6CFD281128E000AFCCED /* LoginMethodSelectionPageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */; };
 		FB9F6D0028112F7000AFCCED /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */; };
 		FB9F6D05281131C600AFCCED /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6D04281131C600AFCCED /* CustomButton.swift */; };
+		FBAE5CA8282E654300415AB0 /* BlockchainManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE5CA7282E654300415AB0 /* BlockchainManagerProtocol.swift */; };
 		FBB23EE627EC483C00370ECE /* LoginHomePageview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */; };
 		FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */; };
 		FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE927EC491200370ECE /* Color.xcassets */; };
@@ -179,6 +180,7 @@
 		FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMethodSelectionPageVM.swift; sourceTree = "<group>"; };
 		FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		FB9F6D04281131C600AFCCED /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		FBAE5CA7282E654300415AB0 /* BlockchainManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainManagerProtocol.swift; sourceTree = "<group>"; };
 		FBB23EE527EC483C00370ECE /* LoginHomePageview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHomePageview.swift; sourceTree = "<group>"; };
 		FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FBB23EE927EC491200370ECE /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */,
+				FBAE5CA7282E654300415AB0 /* BlockchainManagerProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,9 +412,9 @@
 			isa = PBXGroup;
 			children = (
 				FB29477927FEDA8400E717E4 /* EthManager.swift */,
+				FBBD001928292D0D00554EBB /* SolManager.swift */,
 				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
 				FB530F3927F3044E00298116 /* AuthManager.swift */,
-				FBBD001928292D0D00554EBB /* SolManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				FB9F6D05281131C600AFCCED /* CustomButton.swift in Sources */,
 				FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */,
 				FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */,
+				FBAE5CA8282E654300415AB0 /* BlockchainManagerProtocol.swift in Sources */,
 				FB184C0C280D7ABD00654847 /* HomeViewModel.swift in Sources */,
 				FBBD001A28292D0D00554EBB /* SolManager.swift in Sources */,
 				FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */,

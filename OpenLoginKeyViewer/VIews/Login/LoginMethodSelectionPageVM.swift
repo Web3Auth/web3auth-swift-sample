@@ -45,7 +45,7 @@ class LoginMethodSelectionPageVM:ObservableObject{
     }
     
     func login(_ provider: Web3AuthProvider?) {
-        web3AuthManager.auth.login(.init(loginProvider: provider?.rawValue)) {[unowned self]
+        web3AuthManager.auth.login(.init(loginProvider: provider?.rawValue,mfaLevel: .MANDATORY)) {[unowned self]
             result in
                 switch result{
                 case .success(let model):

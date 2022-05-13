@@ -15,9 +15,7 @@ struct MaxTransactionDataModel:Hashable,Identifiable{
     var time:Double
     var amt:Double
     
-    var maxTransAmtInEth:Double{
-        TorusUtil.toEther(Gwie: BigUInt(amt) * 21000)
-    }
+   
     
     var timeInSec:Double{
         TorusUtil.timeMinToSec(val: time)

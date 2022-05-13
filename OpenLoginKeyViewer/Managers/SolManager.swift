@@ -10,43 +10,44 @@ enum SolanaError: Error {
 }
  
 class SolanaManager:BlockChainManagerProtocol {
+    func getMaxtransactionFee(amount: Double) -> Double {
+        return amount
+    }
+    
+    
+    var type: BlockchainEnum = .solana
+    
+    var showTransactionFeeOption: Bool = false
+    
     
     
     func checkRecipentAddressError(address: String) -> Bool {
-        return true
+        return false
     }
     
     
     
     
     func getMaxtransAPIModel() async {
-        print("err")
+        solana.api.getFees{[weak self] result in
+            switch result{
+            case .success(let fee):
+                let fees = Double(fee.feeCalculator?.lamportsPerSignature ?? 0) / 1000000000
+                self?.maxTransactionDataModel = [.init(id: 0, title: "Fast", time: 30, amt: Double(fees))]
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
- var maxTransactionDataModel: [MaxTransactionDataModel] = []
+ @Published var maxTransactionDataModel: [MaxTransactionDataModel] = []
     
    @Published var userBalance: Double = 0
-    
-    func transferAsset(sendTo: String, amount: BigUInt, maxTip: BigUInt = 0, gasLimit: BigUInt = 0) async throws -> String {
-        return try await withCheckedThrowingContinuation({(continuation : CheckedContinuation<String, Error>) in
-            solana.action.sendSOL(to: sendTo, amount: UInt64(amount)){ result in
-                    switch result{
-                    case .success(let val):
-                        continuation.resume(returning: val)
-                    case .failure(let error):
-                        continuation.resume(throwing: error)
-                    }
-            }
-        })
-    }
-    
-    var type: BlockchainEnum = .solana
     
     var addressString: String{
         return account.publicKey.base58EncodedString
     }
-    
-    
+
     private let solana: Solana
     var authManager:AuthManager
     private let endpoint: RPCEndpoint = .devnetSolana
@@ -64,7 +65,6 @@ class SolanaManager:BlockChainManagerProtocol {
         switch result{
         case .success(let account):
             self.account = account
-          //  getGasfee()
         case .failure(_):
             return nil
         }
@@ -77,18 +77,6 @@ class SolanaManager:BlockChainManagerProtocol {
    }
     
     
-    func getGasfee(){
-        solana.api.getFeeRateGovernor { result in
-            switch result{
-            case .success(let fee):
-                print(fee)
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     
     
     func getBalance() async throws -> Double {
@@ -99,6 +87,21 @@ class SolanaManager:BlockChainManagerProtocol {
                         let curr = Double(val) / pow(10, 9)
                         self?.userBalance = curr
                         continuation.resume(returning: curr)
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+            }
+        })
+    }
+    
+    
+    func transferAsset(sendTo: String, amount: Double, maxTip: Double = 0, gasLimit: BigUInt = 0) async throws -> String {
+        return try await withCheckedThrowingContinuation({(continuation : CheckedContinuation<String, Error>) in
+            let amountInLamport = amount * 1000000000
+            solana.action.sendSOL(to: sendTo, amount: UInt64(amountInLamport)){ result in
+                    switch result{
+                    case .success(let val):
+                        continuation.resume(returning: val)
                     case .failure(let error):
                         continuation.resume(throwing: error)
                     }

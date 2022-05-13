@@ -41,27 +41,28 @@ class TransferAssetViewModel:ObservableObject{
          }
     }
     
-    func convertAmountToETH() -> Double{
+    func convertAmountToNative() -> Double{
         guard let amt = Double(amount)  else{return 0}
-        let convCurr = amt / (currentCurrency == .ETH || currentCurrency == .SOL ? 1:currentUSDRate)
+        let convCurr = amt / (currentCurrency == .USD ? currentUSDRate : 1)
       return convCurr
     }
+    
    
     
     
-    var totalAmountInEth:String{
-        let doubleAmt = convertAmountToETH()
+    var totalAmountInNative:String{
+        let doubleAmt = convertAmountToNative()
          guard doubleAmt != 0 else{return "0"}
-         let val = doubleAmt + selectedMaxTransactionDataModel.maxTransAmtInEth
+        let val = doubleAmt + manager.getMaxtransactionFee(amount: selectedMaxTransactionDataModel.amt)
         return "\(String(format: "%.6f", val))"
          }
     
     
     var totalAmountInUSD:String{
-        let doubleAmt = convertAmountToETH()
+        let doubleAmt = convertAmountToNative()
         guard doubleAmt != 0 else{return "0"}
-        let ethAmt = doubleAmt + selectedMaxTransactionDataModel.maxTransAmtInEth
-        let usdAmt = currentUSDRate * ethAmt
+        let amt = doubleAmt + manager.getMaxtransactionFee(amount: selectedMaxTransactionDataModel.amt)
+        let usdAmt = currentUSDRate * amt
        return "\(String(format: "%.6f", usdAmt))"
    }
     
@@ -77,24 +78,24 @@ class TransferAssetViewModel:ObservableObject{
     
     func checkBalanceError(){
         validate()
-        if Double(convertAmountToETH()) > manager.userBalance{
+        if Double(convertAmountToNative()) > manager.userBalance{
             balanceError = true
             HapticGenerator.shared.generateHaptic(val: .error)
         }
         else{
-            
+            balanceError = false
         }
     }
     
     
 
     
-    func checkRecipentAddressError(){
+    func checkRecipentAddressError() -> Bool{
         if manager.checkRecipentAddressError(address: sendingAddress){
-            recipientAddressError = false
+            return false
             }
             else{
-            recipientAddressError = true
+                return true
             }
     }
     
@@ -104,7 +105,7 @@ class TransferAssetViewModel:ObservableObject{
     
     init(manager:BlockChainManagerProtocol){
         self.manager = manager
-        currencyInArr.append(manager.type == .ethereum ? .ETH : .SOL)
+        currencyInArr.append(manager.type.currencyValue)
         currencyInArr.append(.USD)
         currentCurrency = currencyInArr[0]
         addressType.append(AddressType(rawValue: manager.type.rawValue) ?? .ethAddress)
@@ -126,10 +127,11 @@ class TransferAssetViewModel:ObservableObject{
     }
 
     func transferAsset() async throws{
-        let ethAmount = TorusUtil.toWei(ether: convertAmountToETH())
+      
+        let amountInNative = convertAmountToNative()
             do{
                 loading.toggle()
-                let val = try await manager.transferAsset(sendTo: sendingAddress, amount:ethAmount, maxTip: BigUInt(TorusUtil.toEther(Gwie: BigUInt(selectedMaxTransactionDataModel.amt))), gasLimit: 21000)
+                let val = try await manager.transferAsset(sendTo: sendingAddress, amount:amountInNative, maxTip: Double(selectedMaxTransactionDataModel.amt), gasLimit: 21000)
                 transactionSuccess.toggle()
                 lastTransactionHash = val
             }

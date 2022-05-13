@@ -63,6 +63,8 @@ public final class TorusUtil {
         return toWei(ether: decimalEther)
     }
     
+    
+    
     // Only used for calcurating gas price and gas limit.
     public static func toWei(GWei: Double) -> Wei {
         return Wei(GWei * 1000000000)

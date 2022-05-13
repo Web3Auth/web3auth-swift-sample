@@ -22,7 +22,6 @@ struct TransferAssetView: View {
     @State var showTransactionPopup:Bool = false
     @StateObject var vm:TransferAssetViewModel
     @State var showMaxTransactionPopUp = false
-    let blockChainArr:[BlockchainEnum] = [.ethereum,.solana]
 
     
    @State var transactionInfo = ""
@@ -55,7 +54,7 @@ struct TransferAssetView: View {
             .padding(.leading,-20)
             VStack(alignment: .center, spacing: 24){
                 VStack(alignment: .leading){
-                    MenuPickerView(currentSelection: $vm.selectItemToTransfer, arr: blockChainArr, title: "Select item to transfer",color: .black)
+                    MenuPickerView(currentSelection: .constant([vm.manager.type][0]), arr: [vm.manager.type], title: "Select item to transfer",color: .black)
                 }
                 VStack(alignment:.center,spacing: 8){
                 HStack{
@@ -71,13 +70,13 @@ struct TransferAssetView: View {
 
                 }
                 .padding([.leading,.trailing],40)
-                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: vm.manager.type == .ethereum ?  "0xC951C5A85BE62F1Fe9337e698349bD7" : "Bu7kgguFArj5qhQY8xGk1dEyRWpoeSaU9XT1FYUCkHom", error: $vm.recipientAddressError,errorInfoString: "Invalid ETH Address")
+                    TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: vm.manager.type.sampleAddress, error: $vm.recipientAddressError,errorInfoString: "Invalid Address")
                         .onChange(of: vm.sendingAddress) { newValue in
                             vm.checkRecipentAddressError()
                         }
 
                         .truncationMode(.middle)
-                    MenuPickerView(currentSelection: .constant(vm.addressType[0]), arr: vm.addressType, title: "")
+                    MenuPickerView(currentSelection: .constant([vm.manager.type.addressStr][0]), arr: [vm.manager.type.addressStr], title: "")
             }
                 VStack(alignment:.center,spacing: 16){
                     HStack{
@@ -104,7 +103,7 @@ struct TransferAssetView: View {
                             vm.checkBalanceError()
                         }
                 }
-                if vm.manager.type != .solana{
+                if vm.manager.showTransactionFeeOption == true{
                 VStack(alignment:.center){
                     HStack{
                 Text("Max Transaction Fee*")
@@ -121,9 +120,9 @@ struct TransferAssetView: View {
                     }
                     .padding([.leading,.trailing],40)
                     HStack{
-                        Text("\(vm.selectedMaxTransactionDataModel.maxTransAmtInEth)")
+                        Text("\(vm.manager.getMaxtransactionFee(amount: vm.selectedMaxTransactionDataModel.amt) )Eth")
                         Spacer()
-                    Text("ETH")
+                        Text("\(vm.manager.type.shortName)")
                 }
                     .padding()
                     .foregroundColor(.gray)
@@ -137,7 +136,7 @@ struct TransferAssetView: View {
                     VStack(alignment:.trailing,spacing: 5){
                         Text("Total cost")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
-                        Text("\(vm.totalAmountInEth) \(vm.manager.type.shortName)")
+                        Text("\(vm.totalAmountInNative) \(vm.manager.type.shortName)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 24))
                         Text("= \(vm.totalAmountInUSD) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 12))
@@ -160,8 +159,8 @@ struct TransferAssetView: View {
                                                             RoundedRectangle(cornerRadius: 40)
                                                                 .stroke(Color(uiColor: .grayColor()), lineWidth: 1))
                 }
-            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.sendingAddress.isValidEthAddress())
-            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.sendingAddress.isValidEthAddress() ? 0.5 : 1)
+            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.checkRecipentAddressError())
+            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.checkRecipentAddressError() ? 0.5 : 1)
         }
         }
             if showScanner{
@@ -206,7 +205,7 @@ struct TransferAssetView: View {
                             .fill(.black)
                             .opacity(0.5)
                             .ignoresSafeArea()
-                        MaxTransactionFeeView(show: $showMaxTransactionPopUp, selectedId: $vm.selectedTransactionFee,dataModel: vm.maxTransactionDataModel)
+                        MaxTransactionFeeView(show: $showMaxTransactionPopUp, selectedId: $vm.selectedTransactionFee,dataModel: vm.maxTransactionDataModel, vm: vm)
                     }
               
             }
@@ -217,7 +216,7 @@ struct TransferAssetView: View {
                                 .fill(.black)
                                 .opacity(0.5)
                                 .ignoresSafeArea()
-                            TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo,delegate: self)
+                            TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo,urlLinkName: vm.manager.type.urlLinkName, delegate: self)
                         }
                         .onTapGesture {
                             withAnimation {

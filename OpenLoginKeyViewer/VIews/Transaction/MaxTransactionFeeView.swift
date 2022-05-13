@@ -13,6 +13,7 @@ struct MaxTransactionFeeView: View {
     @Binding var show:Bool
     @Binding var selectedId:Int
     var dataModel:[MaxTransactionDataModel]
+    var vm:TransferAssetViewModel
     var body: some View {
         ZStack{
         PopUpView()
@@ -32,7 +33,7 @@ struct MaxTransactionFeeView: View {
             }
             VStack{
                 ForEach(dataModel) { val in
-                    MaxTransactionFeeOptionView(selectedItem: $selectedId, id:val.id,title: val.title, amt: "\(val.maxTransAmtInEth)", processInTime: "\(val.timeInSec)")
+                    MaxTransactionFeeOptionView(selectedItem: $selectedId, id:val.id,title: val.title, amt: "\(vm.manager.getMaxtransactionFee(amount: val.amt))", processInTime: "\(val.timeInSec)")
                 }
               
             }
@@ -80,7 +81,7 @@ struct MaxTransactionFeeView: View {
 
 struct MaxTransactionFeeView_Previews: PreviewProvider {
     static var previews: some View {
-        MaxTransactionFeeView(show: .constant(true), selectedId: .constant(0), dataModel: [])
+        MaxTransactionFeeView(show: .constant(true), selectedId: .constant(0), dataModel: [], vm: .init(manager: SolanaManager(authManager: AuthManager())!))
         MaxTransactionFeeOptionView(selectedItem: .constant(1), id:0,title: "High", amt: "5", processInTime: "5")
     }
 }

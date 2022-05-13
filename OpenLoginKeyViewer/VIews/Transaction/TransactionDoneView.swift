@@ -16,6 +16,7 @@ struct TransactionDoneView: View {
     var infoText:String
     @State var successMessage:String = "Transaction Successful"
     @State var errorMessage:String = "Transaction Failed"
+    var urlLinkName:String
     var delegate:TransactionDoneViewDelegate?
     var body: some View {
         ZStack(alignment:.center){
@@ -36,7 +37,7 @@ struct TransactionDoneView: View {
                             Button {
                                 delegate?.viewOnEtherscan()
                             } label: {
-                                Text("Etherscan")
+                                Text(urlLinkName)
                                     .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                                 
                             }
@@ -74,8 +75,8 @@ struct TransactionDoneView: View {
 
 struct TransactionDoneView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionDoneView(success: .constant(true), infoText: "")
-        TransactionDoneView(success: .constant(false), infoText: "")
+        TransactionDoneView(success: .constant(true), infoText: "", urlLinkName: "Etherscan")
+        TransactionDoneView(success: .constant(false), infoText: "", urlLinkName: "Etherscan")
     }
 }
 

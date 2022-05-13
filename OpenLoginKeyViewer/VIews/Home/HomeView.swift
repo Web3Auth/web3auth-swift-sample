@@ -128,7 +128,7 @@ struct HomeView: View {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
-                            Text("$vm.networkName")
+                            Text("\(vm.manager.type.name) Mainnet")
                                 .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 12))
                         }
@@ -182,7 +182,7 @@ struct HomeView: View {
                     Button {
                         pastTransactionOnEtherScan()
                     } label: {
-                       Text("View past transaction’s status on Etherscan")
+                        Text("View past transaction’s status on \(vm.manager.type.urlLinkName)")
                             .font(.custom(DMSANSFONTLIST.Medium, size: 14))
                             .minimumScaleFactor(0.95)
                         Image("open-in-browser")
@@ -321,7 +321,7 @@ struct HomeView: View {
     
     
     func pastTransactionOnEtherScan(){
-        guard let url = URL(string: "https://ropsten.etherscan.io/address/\(vm.publicAddress)")
+        guard let url = vm.manager.type.allTransactionURL(address: vm.publicAddress)
         else {return}
         openURL(url)
     }
@@ -359,8 +359,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         if let ethManager = EthManager(authManager: AuthManager(), network: .constant(.mainnet)){
             HomeView(vm: HomeViewModel(manager: ethManager))
-                //.environmentObject(AuthManager())
-               // .environmentObject(ethManager)
+                .environmentObject(AuthManager())
             }
         }
     }

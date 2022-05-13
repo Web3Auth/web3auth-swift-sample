@@ -28,7 +28,7 @@ struct ConfirmTransactionView: View {
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
                 HStack{
                     VStack(spacing:10){
-                        Image("(vm.ethManager.authManager.currentUser?.typeOfDisabledImage ?? ")
+                        Image((vm.manager.authManager.currentUser?.typeOfDisabledImage ?? ""))
                             .resizable()
                             .frame(width: 40, height: 40, alignment: .center)
                         Text("\(vm.manager.addressString)")
@@ -47,7 +47,7 @@ struct ConfirmTransactionView: View {
                             Image("wi-fi")
                                 .frame(width: 13, height: 13, alignment: .center)
                                 .foregroundColor(.black)
-                            Text("vm.manager.networkName")
+                            Text("\(vm.manager.type.name) Network")
                                 .foregroundColor(.black)
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 10))
                         }
@@ -80,10 +80,10 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("\(String(format: "%.6f", vm.convertAmountToETH())) ETH")
+                        Text("\(String(format: "%.6f", vm.convertAmountToNative())) \(vm.manager.type.shortName)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
 
-                        Text("~\(vm.convertAmountToETH() * vm.currentUSDRate) USD")
+                        Text("~\(vm.convertAmountToNative() * vm.currentUSDRate) USD")
 
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                     }
@@ -94,7 +94,7 @@ struct ConfirmTransactionView: View {
 
                     Spacer()
                     VStack{
-                        Text("\(vm.selectedMaxTransactionDataModel.maxTransAmtInEth)")
+                        Text("\(vm.manager.getMaxtransactionFee(amount: vm.selectedMaxTransactionDataModel.amt)) \(vm.manager.type.shortName)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
                         Text(" In \(String(format: "%.0f", vm.selectedMaxTransactionDataModel.timeInSec)) seconds")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 10))
@@ -112,7 +112,7 @@ struct ConfirmTransactionView: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     Spacer()
                     VStack{
-                        Text("\(vm.totalAmountInEth) ETH")
+                        Text("\(vm.totalAmountInNative) \(vm.manager.type.shortName)")
                             .font(.custom(DMSANSFONTLIST.Bold, size: 14))
                         Text("~\(vm.totalAmountInUSD) USD")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
