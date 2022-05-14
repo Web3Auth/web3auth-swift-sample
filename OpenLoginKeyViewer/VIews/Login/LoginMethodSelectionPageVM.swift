@@ -11,11 +11,10 @@ import Web3Auth
 
 
 class LoginMethodSelectionPageVM:ObservableObject{
-    var web3AuthManager:Web3AuthManager
-    var authManager:AuthManager
+   @Published var web3AuthManager:Web3AuthManager
+   @Published var authManager:AuthManager
     @Published var showError = false
     @Published var showSuccess = false
-    @Published var isLoggedIn = false
     @Published var errorMessage = ""
     @Published var userEmail:String = ""
     @Published var selectedBlockchain:BlockchainEnum = .ethereum
@@ -39,13 +38,12 @@ class LoginMethodSelectionPageVM:ObservableObject{
         else if selectedBlockchain == .solana{
             authManager.currentBlockChain = .solana
         }
+        
         authManager.saveUser(user: .init(privKey: safeuser.privKey, ed25519PrivKey: safeuser.ed25519PrivKey, userInfo: .init(name: safeuser.userInfo.name, profileImage: safeuser.userInfo.profileImage, typeOfLogin: safeuser.userInfo.typeOfLogin, aggregateVerifier: safeuser.userInfo.aggregateVerifier, verifier: safeuser.userInfo.verifier, verifierId: safeuser.userInfo.verifierId, email: safeuser.userInfo.email), currentBlockchain: authManager.currentBlockChain))
-      
-          isLoggedIn.toggle()
     }
     
     func login(_ provider: Web3AuthProvider?) {
-        web3AuthManager.auth.login(.init(loginProvider: provider?.rawValue,mfaLevel: .MANDATORY)) {[unowned self]
+        web3AuthManager.auth.login(.init(loginProvider: provider?.rawValue)) {[unowned self]
             result in
                 switch result{
                 case .success(let model):

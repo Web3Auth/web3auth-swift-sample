@@ -112,15 +112,17 @@ struct TransferAssetView: View {
                         Button {
                             showMaxTransactionPopUp.toggle()
                         } label: {
+                            if vm.manager.showTransactionFeeOption{
                             Text("Edit")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 14))
-                                .opacity(vm.showEditBtn ? 1 : 0)
+                            }
+                            
                         }
 
                     }
                     .padding([.leading,.trailing],40)
                     HStack{
-                        Text("\(vm.manager.getMaxtransactionFee(amount: vm.selectedMaxTransactionDataModel.amt) )Eth")
+                        Text("\(vm.manager.getMaxtransactionFee(amount: vm.selectedMaxTransactionDataModel.amt))")
                         Spacer()
                         Text("\(vm.manager.type.shortName)")
                 }
@@ -159,8 +161,8 @@ struct TransferAssetView: View {
                                                             RoundedRectangle(cornerRadius: 40)
                                                                 .stroke(Color(uiColor: .grayColor()), lineWidth: 1))
                 }
-            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.checkRecipentAddressError())
-            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || !vm.checkRecipentAddressError() ? 0.5 : 1)
+            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || vm.checkRecipentAddressError())
+            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || vm.checkRecipentAddressError() ? 0.5 : 1)
         }
         }
             if showScanner{
@@ -264,7 +266,9 @@ extension TransferAssetView:ConfirmTransactionViewDelegate{
 
 extension TransferAssetView:TransactionDoneViewDelegate{
     func viewOnEtherscan() {
-        openURL(URL(string: "https://ropsten.etherscan.io/tx/\(        vm.lastTransactionHash)")!)
+        guard let url = vm.manager.type.transactionURL(tx: vm.lastTransactionHash)
+        else{return}
+        openURL(url)
     }
     
    

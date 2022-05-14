@@ -29,6 +29,7 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
     var isUserLoggedIn = false
  
     @Published var currentUser:User?
+    
     let keychain = KeychainSwift()
     
      init(){
@@ -39,8 +40,8 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
         do{
             guard let data = keychain.getData(userInfoString) else{return}
             let user = try JSONDecoder().decode(User.self, from: data)
-            currentUser = user
             currentBlockChain = user.currentBlockchain
+            currentUser = user
         }
         catch{
             print(error)
@@ -52,11 +53,11 @@ class AuthManager:ObservableObject,EthereumKeyStorageProtocol{
         do{
         let data = try JSONEncoder().encode(user)
         keychain.set(data, forKey: userInfoString)
-        currentUser = user
         }
         catch{
             print(error)
         }
+        currentUser = user
     }
     
     func removeUser(){
@@ -71,7 +72,6 @@ extension AuthManager:SolanaAccountStorage{
     }
     
     var account:Swift.Result<Account, Error> {
-      //  getCurrentUser()
         if currentUser != nil, let account = Account(secretKey: currentUser!.ed25519PrivKey.web3.hexData ?? Data()) {
             return .success(account)
         }

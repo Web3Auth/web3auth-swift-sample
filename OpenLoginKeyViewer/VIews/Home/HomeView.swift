@@ -173,7 +173,7 @@ struct HomeView: View {
 
                     }
                           
-                            Text("1 ETH = \(String(format: "%.2f",vm.currentRate)) \(  vm.currentCurrency.rawValue)")
+                            Text("1 \(vm.manager.type.shortName) = \(String(format: "%.2f",vm.currentRate)) \(  vm.currentCurrency.rawValue)")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                         }
                         Spacer()

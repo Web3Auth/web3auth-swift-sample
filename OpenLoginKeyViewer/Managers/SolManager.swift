@@ -14,6 +14,7 @@ class SolanaManager:BlockChainManagerProtocol {
         return amount
     }
     
+    var lamportsPerSOL:Double = 1000000000
     
     var type: BlockchainEnum = .solana
     
@@ -32,7 +33,7 @@ class SolanaManager:BlockChainManagerProtocol {
         solana.api.getFees{[weak self] result in
             switch result{
             case .success(let fee):
-                let fees = Double(fee.feeCalculator?.lamportsPerSignature ?? 0) / 1000000000
+                let fees = Double(fee.feeCalculator?.lamportsPerSignature ?? 0) / (self?.lamportsPerSOL ?? 1)
                 self?.maxTransactionDataModel = [.init(id: 0, title: "Fast", time: 30, amt: Double(fees))]
             case .failure(let error):
                 print(error)
@@ -97,7 +98,7 @@ class SolanaManager:BlockChainManagerProtocol {
     
     func transferAsset(sendTo: String, amount: Double, maxTip: Double = 0, gasLimit: BigUInt = 0) async throws -> String {
         return try await withCheckedThrowingContinuation({(continuation : CheckedContinuation<String, Error>) in
-            let amountInLamport = amount * 1000000000
+            let amountInLamport = amount * lamportsPerSOL
             solana.action.sendSOL(to: sendTo, amount: UInt64(amountInLamport)){ result in
                     switch result{
                     case .success(let val):

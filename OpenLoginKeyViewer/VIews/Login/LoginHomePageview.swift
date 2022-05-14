@@ -9,12 +9,9 @@ import SwiftUI
 import Web3Auth
 
 struct LoginHomePageview: View {
-    @EnvironmentObject var auth:AuthManager
-    @EnvironmentObject var web3authManager:Web3AuthManager
     @State var showNext = false
     @StateObject var vm:LoginMethodSelectionPageVM
     @State var selectedBlockChain:BlockchainEnum = .ethereum
-    @State var selectedNetwork:Network = .mainnet
     var networkArr:[Network] = [.mainnet,.testnet,.cyan]
     let blockChainArr:[BlockchainEnum] = [.ethereum,.solana] 
     var body: some View {
@@ -31,7 +28,7 @@ struct LoginHomePageview: View {
         .padding([.top,.bottom] ,100)
             VStack(spacing:24){
                 VStack(spacing:24){
-                    MenuPickerView(currentSelection: $web3authManager.network, arr: networkArr, title: "Web3Auth Network")
+                    MenuPickerView(currentSelection: $vm.web3AuthManager.network, arr: networkArr, title: "Web3Auth Network")
                     MenuPickerView(currentSelection: $vm.selectedBlockchain, arr: blockChainArr, title: "BlockChain")
         }
             .padding(.bottom,48)
@@ -64,12 +61,7 @@ struct LoginHomePageview: View {
     }
     
     
-        
-  
-    
-    func changeNetwork(val:Network){
-        selectedNetwork = val
-    }
+
     
 
     

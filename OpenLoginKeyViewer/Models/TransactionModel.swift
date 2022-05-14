@@ -14,15 +14,11 @@ struct MaxTransactionDataModel:Hashable,Identifiable{
     var title:String
     var time:Double
     var amt:Double
-    
-   
-    
     var timeInSec:Double{
         TorusUtil.timeMinToSec(val: time)
     }
-    
-    
 }
+
 
 struct ETHGasAPIResponseModel:Codable {
     let fast, fastest, safeLow, average: Double

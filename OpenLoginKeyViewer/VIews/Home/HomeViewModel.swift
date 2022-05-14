@@ -15,7 +15,7 @@ import Web3Auth
 class HomeViewModel:ObservableObject{
     
     @Published var convertedBalance:Double = 0
-    @Published var currentCurrency:TorusSupportedCurrencies = .ETH
+    @Published var currentCurrency:TorusSupportedCurrencies
     @Published var currentRate:Double = 0
     
     var publicAddress:String{
@@ -27,7 +27,7 @@ class HomeViewModel:ObservableObject{
     
     init(manager:BlockChainManagerProtocol){
         self.manager = manager
-        currentCurrency = manager.type == .ethereum ? .ETH : .SOL
+        currentCurrency = manager.type.currencyValue
         getBalance()
     }
     

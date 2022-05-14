@@ -96,6 +96,15 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
         }
     }
     
+    func transactionURL(tx:String) -> URL?{
+        switch self {
+        case .ethereum:
+            return URL(string: "https://ropsten.etherscan.io/tx/\(tx)")
+        case .solana:
+            return URL(string: "https://explorer.solana.com/tx/\(tx)/?cluster=devnet")
+        }
+    }
+    
     var urlLinkName:String{
         switch self {
         case .ethereum:
