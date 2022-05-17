@@ -161,8 +161,8 @@ struct TransferAssetView: View {
                                                             RoundedRectangle(cornerRadius: 40)
                                                                 .stroke(Color(uiColor: .grayColor()), lineWidth: 1))
                 }
-            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || vm.checkRecipentAddressError())
-            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || vm.checkRecipentAddressError() ? 0.5 : 1)
+            .disabled(vm.sendingAddress.isEmpty || vm.amount.isEmpty || vm.balanceError || vm.recipientAddressError)
+            .opacity(vm.sendingAddress.isEmpty || vm.amount.isEmpty || vm.balanceError || vm.recipientAddressError ? 0.5 : 1)
         }
         }
             if showScanner{

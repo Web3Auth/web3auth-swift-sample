@@ -28,13 +28,14 @@ struct LoginMethodSelectionPage: View {
                 Button {
                     self.presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Image(systemName: "arrow.backward")
+                    Image("arrow-left")
                         .tint(.black)
                         .frame(width: 18, height: 18, alignment: .center)
                 }
                 .padding(.leading,-15)
+                .padding(.bottom,-10)
 
-                VStack(spacing:5){
+                VStack(spacing:0){
                     Text("Welcome onboard")
                         .font(.custom(POPPINSFONTLIST.Bold, size: 24))
                     Text("Select how you would like to continue")
@@ -42,6 +43,7 @@ struct LoginMethodSelectionPage: View {
                         .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                 }
                 .padding(.top,40)
+                .padding(.bottom,10)
             }
             .frame(height: 115, alignment: .center)
             .frame(maxWidth:.infinity)
@@ -119,8 +121,9 @@ struct LoginMethodSelectionPage: View {
             }
             Divider()
                 .background(.gray)
-                .frame(width:300, alignment: .center)
+                .frame(width:272, alignment: .center)
                 .padding(.bottom, 24)
+                .padding(.top,isExpanded ? 16 : -16)
             
             VStack(alignment: .leading, spacing: 30){
                 VStack(alignment: .leading, spacing: 24){

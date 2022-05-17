@@ -60,12 +60,7 @@ class HomeViewModel:ObservableObject{
         }
     }
     
-    func signMessage(message:String) -> String{
-           if let signedMessage = manager.signMessage(message: message){
-               return signedMessage
-           }
-           else{
-               return ""
-           }
-   }
+    func signMessage(message:String) async -> String{
+      return await manager.signMessage(message: message)
+}
 }

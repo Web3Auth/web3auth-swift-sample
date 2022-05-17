@@ -23,6 +23,9 @@
 		FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEF828049AD90093E4A6 /* UITextView.swift */; };
 		FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */; };
 		FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29477927FEDA8400E717E4 /* EthManager.swift */; };
+		FB2AFD222830F36B00E82CE0 /* CustomAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB2AFD212830F36B00E82CE0 /* CustomAuth */; };
+		FB2AFD242830F38500E82CE0 /* CustomAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2AFD232830F38500E82CE0 /* CustomAuthManager.swift */; };
+		FB2AFD262830F77900E82CE0 /* Auth.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB2AFD252830F77900E82CE0 /* Auth.plist */; };
 		FB321540280E6AAA004712A1 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32153F280E6AAA004712A1 /* HapticGenerator.swift */; };
 		FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */; };
 		FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */; };
@@ -48,9 +51,13 @@
 		FBE1DF85280FE6DF00EBF87C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FBE1DF84280FE6DF00EBF87C /* Lottie */; };
 		FBE1DF87280FE72A00EBF87C /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE1DF86280FE72A00EBF87C /* LottieView.swift */; };
 		FBE1DF89280FE75A00EBF87C /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FBE1DF88280FE75A00EBF87C /* loading.json */; };
+		FBE28CC4283034A000340B36 /* AuthManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE28CC3283034A000340B36 /* AuthManagerProtocol.swift */; };
 		FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */; };
 		FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE74534280005FF002680A3 /* NetworkHelper.swift */; };
 		FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453928000DF2002680A3 /* NetworkingClient.swift */; };
+		FBFBD218282FF50500CCCEE9 /* TorusUtils in Frameworks */ = {isa = PBXBuildFile; productRef = FBFBD217282FF50500CCCEE9 /* TorusUtils */; };
+		FBFBD21B2830015200CCCEE9 /* TweetNacl in Frameworks */ = {isa = PBXBuildFile; productRef = FBFBD21A2830015200CCCEE9 /* TweetNacl */; };
+		FBFBD21E2830020800CCCEE9 /* TorusUtils in Frameworks */ = {isa = PBXBuildFile; productRef = FBFBD21D2830020800CCCEE9 /* TorusUtils */; };
 		FBFD6D3527F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3627F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3727F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
@@ -168,6 +175,8 @@
 		FB23EEF828049AD90093E4A6 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		FB29477927FEDA8400E717E4 /* EthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthManager.swift; sourceTree = "<group>"; };
+		FB2AFD232830F38500E82CE0 /* CustomAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthManager.swift; sourceTree = "<group>"; };
+		FB2AFD252830F77900E82CE0 /* Auth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Auth.plist; sourceTree = "<group>"; };
 		FB32153F280E6AAA004712A1 /* HapticGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticGenerator.swift; sourceTree = "<group>"; };
 		FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxTransactionFeeView.swift; sourceTree = "<group>"; };
 		FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmTransactionView.swift; sourceTree = "<group>"; };
@@ -189,6 +198,7 @@
 		FBE0A85F2800426700661B1F /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		FBE1DF86280FE72A00EBF87C /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		FBE1DF88280FE75A00EBF87C /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		FBE28CC3283034A000340B36 /* AuthManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManagerProtocol.swift; sourceTree = "<group>"; };
 		FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusWeb3Utils.swift; sourceTree = "<group>"; };
 		FBE74534280005FF002680A3 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		FBE7453928000DF2002680A3 /* NetworkingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
@@ -225,12 +235,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBFBD218282FF50500CCCEE9 /* TorusUtils in Frameworks */,
 				C0CA3B6CD04150AEDD50A06F /* Pods_OpenLoginKeyViewer.framework in Frameworks */,
 				FB530F3827F3036C00298116 /* web3.swift in Frameworks */,
 				FB530F3E27F305EE00298116 /* KeychainSwift in Frameworks */,
 				FBFD6D9D27F2D60F00FD7288 /* Web3Auth in Frameworks */,
 				FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */,
+				FBFBD21B2830015200CCCEE9 /* TweetNacl in Frameworks */,
 				FBBD001828292CDC00554EBB /* Solana in Frameworks */,
+				FBFBD21E2830020800CCCEE9 /* TorusUtils in Frameworks */,
+				FB2AFD222830F36B00E82CE0 /* CustomAuth in Frameworks */,
 				FBE1DF85280FE6DF00EBF87C /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +322,7 @@
 				FBB23EE927EC491200370ECE /* Color.xcassets */,
 				E44B3AE7278812590017646F /* Preview Content */,
 				DF2B1524565A49D62E4A1FB1 /* OpenLogin.plist */,
+				FB2AFD252830F77900E82CE0 /* Auth.plist */,
 			);
 			path = OpenLoginKeyViewer;
 			sourceTree = "<group>";
@@ -396,6 +411,7 @@
 			children = (
 				FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */,
 				FBAE5CA7282E654300415AB0 /* BlockchainManagerProtocol.swift */,
+				FBE28CC3283034A000340B36 /* AuthManagerProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -415,6 +431,7 @@
 				FBBD001928292D0D00554EBB /* SolManager.swift */,
 				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
 				FB530F3927F3044E00298116 /* AuthManager.swift */,
+				FB2AFD232830F38500E82CE0 /* CustomAuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -515,6 +532,10 @@
 				FB1BDF4828056860003509B6 /* CodeScanner */,
 				FBE1DF84280FE6DF00EBF87C /* Lottie */,
 				FBBD001728292CDC00554EBB /* Solana */,
+				FBFBD217282FF50500CCCEE9 /* TorusUtils */,
+				FBFBD21A2830015200CCCEE9 /* TweetNacl */,
+				FBFBD21D2830020800CCCEE9 /* TorusUtils */,
+				FB2AFD212830F36B00E82CE0 /* CustomAuth */,
 			);
 			productName = OpenLoginKeyViewer;
 			productReference = E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */;
@@ -595,6 +616,10 @@
 				FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */,
+				FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */,
+				FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */,
+				FBFBD21C2830020800CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */,
+				FB2AFD202830F36B00E82CE0 /* XCRemoteSwiftPackageReference "customauth-swift-sdk" */,
 			);
 			productRefGroup = E44B3ADF278812580017646F /* Products */;
 			projectDirPath = "";
@@ -634,6 +659,7 @@
 				E44B3AE9278812590017646F /* Preview Assets.xcassets in Resources */,
 				E44B3AE6278812590017646F /* Assets.xcassets in Resources */,
 				FBE1DF89280FE75A00EBF87C /* loading.json in Resources */,
+				FB2AFD262830F77900E82CE0 /* Auth.plist in Resources */,
 				FBFD6D6227F2CED100FD7288 /* Poppins-Thin.ttf in Resources */,
 				FBFD6D8427F2CEE800FD7288 /* DMSans-Italic.ttf in Resources */,
 				FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */,
@@ -768,6 +794,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "
+
 ";
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -787,6 +814,7 @@
 				FBAE5CA8282E654300415AB0 /* BlockchainManagerProtocol.swift in Sources */,
 				FB184C0C280D7ABD00654847 /* HomeViewModel.swift in Sources */,
 				FBBD001A28292D0D00554EBB /* SolManager.swift in Sources */,
+				FBE28CC4283034A000340B36 /* AuthManagerProtocol.swift in Sources */,
 				FBE7453127FFF920002680A3 /* TorusWeb3Utils.swift in Sources */,
 				FB9F6D0028112F7000AFCCED /* TransactionModel.swift in Sources */,
 				E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */,
@@ -802,6 +830,7 @@
 				FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */,
 				FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */,
 				FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */,
+				FB2AFD242830F38500E82CE0 /* CustomAuthManager.swift in Sources */,
 				FBE1DF87280FE72A00EBF87C /* LottieView.swift in Sources */,
 				FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */,
 				FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */,
@@ -1185,6 +1214,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		FB2AFD202830F36B00E82CE0 /* XCRemoteSwiftPackageReference "customauth-swift-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/torusresearch/customauth-swift-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		FB530F3627F3036C00298116 /* XCRemoteSwiftPackageReference "web3" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argentlabs/web3.swift";
@@ -1217,6 +1254,30 @@
 				kind = branch;
 			};
 		};
+		FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/torusresearch/torus-utils-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bitmark-inc/tweetnacl-swiftwrap.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		FBFBD21C2830020800CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/torusresearch/torus-utils-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FBFD6D9B27F2D60F00FD7288 /* XCRemoteSwiftPackageReference "web3auth-swift-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/web3auth/web3auth-swift-sdk";
@@ -1232,6 +1293,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		FB2AFD212830F36B00E82CE0 /* CustomAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB2AFD202830F36B00E82CE0 /* XCRemoteSwiftPackageReference "customauth-swift-sdk" */;
+			productName = CustomAuth;
 		};
 		FB530F3727F3036C00298116 /* web3.swift */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1252,6 +1318,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		FBFBD217282FF50500CCCEE9 /* TorusUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */;
+			productName = TorusUtils;
+		};
+		FBFBD21A2830015200CCCEE9 /* TweetNacl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */;
+			productName = TweetNacl;
+		};
+		FBFBD21D2830020800CCCEE9 /* TorusUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */;
+			productName = TorusUtils;
 		};
 		FBFD6D9C27F2D60F00FD7288 /* Web3Auth */ = {
 			isa = XCSwiftPackageProductDependency;

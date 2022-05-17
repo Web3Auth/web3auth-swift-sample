@@ -141,7 +141,7 @@ struct HomeView: View {
                         
 
                     }
-                    .padding(.top,10)
+                     .padding(.top,20)
                     .padding(.leading,10)
                     .padding(.trailing,10)
                     HStack(alignment:.center){
@@ -188,7 +188,6 @@ struct HomeView: View {
                         Image("open-in-browser")
                             .frame(width: 16, height: 16, alignment: .center)
                     }
-                    .padding(.bottom,5)
                     Button {
                         showTransferScreen.toggle()
                     } label: {
@@ -216,18 +215,18 @@ struct HomeView: View {
 
                 }
                 .padding()
-                .frame(height:248,alignment: .center)
-                .frame(maxWidth:UIScreen.screenWidth - 32)
                 .background(.white)
+                .frame(height:280,alignment: .center)
+                .frame(maxWidth:UIScreen.screenWidth - 32)
                 .cornerRadius(24)
-                .padding()
                 HStack{
                 Text("Sign Message (Demo)")
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 16))
                     .padding(.leading,27)
                     Spacer()
                 }
-                VStack(alignment:.center,spacing: 8){
+                .padding(.top,20)
+                VStack(alignment:.center,spacing: 0){
                     HStack{
                     Text("Message")
                             .font(.custom(POPPINSFONTLIST.SemiBold, size: 14))
@@ -235,6 +234,7 @@ struct HomeView: View {
                         Spacer()
                         
                     }
+                    .padding(.top,20)
                     TextView(text: $message, placeholderText: "Enter your message here")
                         .frame(width:308,height: 210, alignment: .center)
                         .cornerRadius(24)
@@ -259,6 +259,7 @@ struct HomeView: View {
                     .disabled(message.isEmpty)
                     .opacity(message.isEmpty ? 0.5 : 1)
                     .padding(.top,24)
+                    .padding(.bottom,24)
                     
 
                     
@@ -267,7 +268,7 @@ struct HomeView: View {
                 .frame(maxWidth:UIScreen.screenWidth - 32)
                 .background(.white)
                 .cornerRadius(24)
-                .padding()
+            
                 
             }
 
@@ -327,14 +328,16 @@ struct HomeView: View {
     }
     
     
-     func signMessage(){
+    func signMessage() {
         endEditing()
-         signedMessageHashString = vm.signMessage(message: message)
+        Task{
+        signedMessageHashString = await vm.signMessage(message: message)
                 signedMessageResult = true
                 withAnimation {
                     showPopup = true
                 }
             }
+    }
     
     func logout(){
         

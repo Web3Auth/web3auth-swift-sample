@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CustomAuth
 
 @main
 struct OpenLoginSampleApp: App {
@@ -13,7 +14,9 @@ struct OpenLoginSampleApp: App {
     @StateObject var web3AuthManager = Web3AuthManager(network: .mainnet)
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().onOpenURL { url in
+                CustomAuth.handle(url: url)
+            }
                 .environmentObject(authManager)
                 .environmentObject(web3AuthManager)
         }

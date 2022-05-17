@@ -26,6 +26,7 @@ struct ConfirmTransactionView: View {
             VStack{
         Text("Confirm Transaction")
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
+                    .padding()
                 HStack{
                     VStack(spacing:10){
                         Image((vm.manager.authManager.currentUser?.typeOfDisabledImage ?? ""))
@@ -118,7 +119,7 @@ struct ConfirmTransactionView: View {
                             .font(.custom(DMSANSFONTLIST.Regular, size: 14))
                     }
                 }
-                .padding()
+                .padding([.leading,.trailing,.top])
                 VStack
                 {
                     Button {
@@ -147,10 +148,12 @@ struct ConfirmTransactionView: View {
                     }
                 }
                 .padding(.top,36)
-                
+                .padding(.bottom,10)
+    
             }
+            .padding()
         }
-        .frame(width: UIScreen.screenWidth - 32, height: 590, alignment: .center)
+        .frame(width: UIScreen.screenWidth - 32, height: 550, alignment: .center)
         .background(.white)
         .cornerRadius(20)
         .padding(.top,UIScreen.screenWidth - 590/2)

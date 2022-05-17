@@ -23,17 +23,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "599CE299-B345-4106-B00F-918BC4C3CC08"
-            shouldBeEnabled = "Yes"
+            uuid = "04650D5E-4035-4285-8B2D-0BD6B8AFE112"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OpenLoginKeyViewer/Networking/NetworkingClient.swift"
+            filePath = "OpenLoginKeyViewer/VIews/Login/LoginHomePageview.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "NetworkingClient"
-            landmarkType = "3">
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

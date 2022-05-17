@@ -19,7 +19,6 @@ struct CustomButton: View {
 struct CustomButton_Previews: PreviewProvider {
     static var previews: some View {
         CustomButton()
-           
     }
 }
 
@@ -47,7 +46,6 @@ struct CustomButtonUIKit: UIViewRepresentable {
         button.layer.borderColor = UIColor.grayColor().cgColor
       return button
     }
-
 }
 
 

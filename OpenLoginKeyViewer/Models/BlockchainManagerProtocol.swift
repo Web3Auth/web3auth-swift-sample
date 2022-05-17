@@ -24,7 +24,7 @@ protocol BlockChainManagerProtocol{
     var showTransactionFeeOption:Bool {get}
     var addressString:String {get}
     func getBalance() async throws -> Double
-    func signMessage(message:String) -> String?
+    func signMessage(message:String) async -> String
     func transferAsset(sendTo:String,amount:Double,maxTip:Double,gasLimit:BigUInt) async throws -> String
     func getMaxtransAPIModel() async
     func checkRecipentAddressError(address:String) -> Bool

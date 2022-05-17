@@ -90,12 +90,12 @@ class TransferAssetViewModel:ObservableObject{
     
 
     
-    func checkRecipentAddressError() -> Bool{
+    func checkRecipentAddressError(){
         if manager.checkRecipentAddressError(address: sendingAddress){
-            return false
+            recipientAddressError = false
             }
             else{
-                return true
+        recipientAddressError = true
             }
     }
     

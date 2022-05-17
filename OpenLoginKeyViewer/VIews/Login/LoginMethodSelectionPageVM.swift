@@ -11,8 +11,8 @@ import Web3Auth
 
 
 class LoginMethodSelectionPageVM:ObservableObject{
-   @Published var web3AuthManager:Web3AuthManager
-   @Published var authManager:AuthManager
+    @Published var web3AuthManager:Web3AuthManager
+    @Published var authManager:AuthManager
     @Published var showError = false
     @Published var showSuccess = false
     @Published var errorMessage = ""
