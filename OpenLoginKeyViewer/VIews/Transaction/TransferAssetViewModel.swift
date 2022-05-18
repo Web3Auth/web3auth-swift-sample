@@ -49,12 +49,12 @@ class TransferAssetViewModel: ObservableObject {
 
     deinit {
         print("Free")
-        Task {
-            await cleanUp()
+        cancellables.forEach { val in
+            val.cancel()
         }
     }
 
-    @objc func cleanUp() {
+     func cleanUp() {
         cancellables.forEach { val in
             val.cancel()
         }

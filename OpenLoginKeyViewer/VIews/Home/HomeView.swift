@@ -324,10 +324,12 @@ struct HomeView: View {
                         }
                 }
 
+        }.onChange(of: showTransferScreen) { newValue in
+            if newValue == false{
+                vm.manager.getBalance()
+            }
         }
-        .onDisappear {
-            vm.cleanup()
-        }
+    
     }
     
     

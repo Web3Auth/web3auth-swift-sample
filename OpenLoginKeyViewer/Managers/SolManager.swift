@@ -8,22 +8,21 @@ enum SolanaError: Error {
     case unauthorized
 }
 
-class SolanaManager: BlockChainManagerProtocol,ObservableObject {
-    var userBalancePublished: Published<Double>.Publisher {$userBalance}
-    
-    func getMaxtransactionFee(amount: Double) -> Double {
-        return amount
-    }
-
-    var lastestBlockHash:String = ""
+class SolanaManager: BlockChainManagerProtocol, ObservableObject {
+    var userBalancePublished: Published<Double>.Publisher { $userBalance }
+    var lastestBlockHash: String = ""
     var lamportsPerSOL: Double = 1000000000
-
     var type: BlockchainEnum = .solana
-
     var showTransactionFeeOption: Bool = false
-
-    func checkRecipentAddressError(address: String) -> Bool {
-        return address.count >= PublicKey.LENGTH ? true : false
+    @Published var maxTransactionDataModel: [MaxTransactionDataModel] = []
+    @Published var userBalance: Double = 0
+    private let solana: Solana
+    var authManager: AuthManager
+    private let endpoint: RPCEndpoint = .devnetSolana
+    private let network: NetworkingRouter
+    var account: Account
+    var addressString: String {
+        return account.publicKey.base58EncodedString
     }
 
     func getMaxtransAPIModel() async {
@@ -31,26 +30,16 @@ class SolanaManager: BlockChainManagerProtocol,ObservableObject {
             switch result {
             case let .success(fee):
                 let fees = Double(fee.feeCalculator?.lamportsPerSignature ?? 0) / (self?.lamportsPerSOL ?? 1)
-                self?.maxTransactionDataModel = [.init(id: 0, title: "Fast", time: 30, amt: Double(fees))]
+                self?.maxTransactionDataModel = [.init(id: 0, title: "Fast", time: 0.5, amt: Double(fees))]
             case let .failure(error):
                 print(error)
             }
         }
     }
 
-    @Published var maxTransactionDataModel: [MaxTransactionDataModel] = []
-
-    @Published var userBalance: Double = 0
-
-    var addressString: String {
-        return account.publicKey.base58EncodedString
+    func getMaxtransactionFee(amount: Double) -> Double {
+        return amount
     }
-
-    private let solana: Solana
-    var authManager: AuthManager
-    private let endpoint: RPCEndpoint = .devnetSolana
-    private let network: NetworkingRouter
-    var account: Account
 
     init?(authManager: AuthManager) {
         self.authManager = authManager
@@ -67,25 +56,27 @@ class SolanaManager: BlockChainManagerProtocol,ObservableObject {
             return nil
         }
     }
-    
-    func getBlock() async -> Bool{
+
+    func checkRecipentAddressError(address: String) -> Bool {
+        return address.count >= PublicKey.LENGTH ? true : false
+    }
+
+    func getBlock() async -> Bool {
         return await withCheckedContinuation({ continuation in
-            solana.api.getRecentBlockhash {[weak self] result in
-                switch result{
-                case .success(let val):
-                    if self?.lastestBlockHash != val{
+            solana.api.getRecentBlockhash { [weak self] result in
+                switch result {
+                case let .success(val):
+                    if self?.lastestBlockHash != val {
                         self?.lastestBlockHash = val
                         continuation.resume(returning: true)
-                    }
-                    else{
+                    } else {
                         continuation.resume(returning: false)
                     }
-                case .failure(_):
+                case .failure:
                     continuation.resume(returning: true)
                 }
             }
         })
-      
     }
 
     func signMessage(message: String) async -> String {
@@ -103,14 +94,20 @@ class SolanaManager: BlockChainManagerProtocol,ObservableObject {
     }
 
     func getBalance() {
+        Task {
+            let blockChanged = await getBlock()
+            guard blockChanged == true else { userBalance = userBalance
+                return
+            }
             solana.api.getBalance(account: account.publicKey.base58EncodedString) { [weak self] result in
                 switch result {
                 case let .success(val):
                     let curr = Double(val) / pow(10, 9)
                     self?.userBalance = curr
                 case let .failure(error):
-                   print(error)
+                    print(error)
                 }
+            }
         }
     }
 
@@ -127,7 +124,4 @@ class SolanaManager: BlockChainManagerProtocol,ObservableObject {
             }
         })
     }
-}
-
-extension TransactionInstruction {
 }

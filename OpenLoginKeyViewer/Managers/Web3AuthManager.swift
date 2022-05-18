@@ -15,7 +15,6 @@ class Web3AuthManager: ObservableObject {
             auth = Web3Auth(.init(clientId: clientID, network: network))
         }
     }
-
     var auth: Web3Auth
 
     init(network: Network) {

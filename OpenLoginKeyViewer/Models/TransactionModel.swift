@@ -27,9 +27,3 @@ struct ETHGasAPIResponseModel:Codable {
     let fastWait, fastestWait: Double
     
 }
-
-enum MaxTransactionModelEnum:Int{
-    case fast
-    case avg
-    case slow
-}

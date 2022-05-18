@@ -59,7 +59,6 @@ class HomeViewModel: ObservableObject {
 }
 
 // cleanUP
-
 extension HomeViewModel {
     func cleanup() {
         clearCache()

@@ -13,25 +13,14 @@ import web3
 import Web3Auth
 
 class EthManager: BlockChainManagerProtocol {
+    
     var userBalancePublished: Published<Double>.Publisher { $userBalance }
-
-    func getMaxtransactionFee(amount: Double) -> Double {
-        return TorusUtil.toEther(Gwie: BigUInt(amount) * 21000)
-    }
-
     var blockNum: Int = 0
     var type: BlockchainEnum = .ethereum
-
     var showTransactionFeeOption: Bool = true
-
-    func checkRecipentAddressError(address: String) -> Bool {
-        return address.isValidEthAddress()
-    }
-
     var addressString: String {
         return address.value
     }
-
     @Published var userBalance: Double = 0
     var authManager: AuthManager
     var client: EthereumClientProtocol
@@ -80,6 +69,14 @@ class EthManager: BlockChainManagerProtocol {
         })
     }
 
+    func getMaxtransactionFee(amount: Double) -> Double {
+        return TorusUtil.toEther(Gwie: BigUInt(amount) * 21000)
+    }
+
+    func checkRecipentAddressError(address: String) -> Bool {
+        return address.isValidEthAddress()
+    }
+
     func getMaxtransAPIModel() async {
         do {
             let val = try await NetworkingClient.shared.getSuggestedGasFees()
@@ -94,7 +91,9 @@ class EthManager: BlockChainManagerProtocol {
     func getBalance() {
         Task {
             let blockChanged = await checkLatestBlockChanged()
-            guard blockChanged == true else { return }
+            guard blockChanged == true else { userBalance = userBalance
+                return
+            }
             client.eth_getBalance(address: self.address, block: .Latest) { [unowned self] error, balance in
                 if let error = error {
                     print(error)

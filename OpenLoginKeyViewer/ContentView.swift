@@ -19,7 +19,6 @@ struct ContentView: View {
         else {
             LoginHomePageview( vm: .init(web3AuthManager: .init(network: .mainnet), authManager: authManager))
         }
-        
     }
 }
 
