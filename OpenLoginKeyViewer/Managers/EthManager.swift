@@ -13,10 +13,13 @@ import web3
 import Web3Auth
 
 class EthManager: BlockChainManagerProtocol {
+    var userBalancePublished: Published<Double>.Publisher { $userBalance }
+
     func getMaxtransactionFee(amount: Double) -> Double {
         return TorusUtil.toEther(Gwie: BigUInt(amount) * 21000)
     }
 
+    var blockNum: Int = 0
     var type: BlockchainEnum = .ethereum
 
     var showTransactionFeeOption: Bool = true
@@ -29,7 +32,7 @@ class EthManager: BlockChainManagerProtocol {
         return address.value
     }
 
-    var userBalance: Double = 0
+    @Published var userBalance: Double = 0
     var authManager: AuthManager
     var client: EthereumClientProtocol
     var address: EthereumAddress
@@ -41,6 +44,8 @@ class EthManager: BlockChainManagerProtocol {
         return "Ethereum \(network.name)"
     }
 
+    var latestBlock = 0
+    var timer: Timer?
     @Published var maxTransactionDataModel: [MaxTransactionDataModel] = []
 
     init?(urlSession: URLSession = URLSession.shared, authManager: AuthManager, network: Binding<Network>) {
@@ -58,6 +63,23 @@ class EthManager: BlockChainManagerProtocol {
         }
     }
 
+    deinit {
+        timer?.invalidate()
+    }
+
+    func checkLatestBlockChanged() async -> Bool {
+        return await withCheckedContinuation({ continuation in
+            client.eth_blockNumber { [weak self] _, val in
+                guard let val = val, self?.latestBlock != val else {
+                    continuation.resume(returning: false)
+                    return
+                }
+                self?.latestBlock = val
+                continuation.resume(returning: true)
+            }
+        })
+    }
+
     func getMaxtransAPIModel() async {
         do {
             let val = try await NetworkingClient.shared.getSuggestedGasFees()
@@ -69,16 +91,17 @@ class EthManager: BlockChainManagerProtocol {
         }
     }
 
-    func getBalance() async throws -> Double {
-        try await withCheckedThrowingContinuation { continuation in
+    func getBalance() {
+        Task {
+            let blockChanged = await checkLatestBlockChanged()
+            guard blockChanged == true else { return }
             client.eth_getBalance(address: self.address, block: .Latest) { [unowned self] error, balance in
                 if let error = error {
-                    continuation.resume(throwing: error)
+                    print(error)
                 }
                 if let balance = balance {
                     let newBalance = TorusUtil.toEther(wei: Wei(balance))
                     userBalance = newBalance
-                    continuation.resume(returning: newBalance)
                 }
             }
         }

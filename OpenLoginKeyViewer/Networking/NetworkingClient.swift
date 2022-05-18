@@ -12,24 +12,13 @@ import SystemConfiguration
 
 class NetworkingClient {
     var session: URLSession
-    var currentPriceETHCacheDict = [TorusSupportedCurrencies: Double]()
-    var currentPriceSOLCacheDict = [TorusSupportedCurrencies: Double]()
     static let shared = NetworkingClient()
 
     private init() {
         session = URLSession.shared
     }
 
-    func getCurrentPrice(blockChain: BlockchainEnum = .ethereum, forCurrency: TorusSupportedCurrencies) async -> Double {
-        if blockChain == .solana {
-            if let cachedValue = currentPriceSOLCacheDict[forCurrency] {
-                return cachedValue
-            }
-        } else if blockChain == .ethereum {
-            if let cachedValue = currentPriceETHCacheDict[forCurrency] {
-                return cachedValue
-            }
-        }
+    func getCurrentPrice(blockChain: BlockchainEnum, forCurrency: TorusSupportedCurrencies) async -> Double {
         let urlStr = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=\(blockChain.shortName)&tsyms=\(forCurrency.rawValue)"
         let url = URL(string: urlStr)!
         do {
@@ -37,7 +26,6 @@ class NetworkingClient {
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                   let val = json[blockChain.shortName] as? [String: Any],
                   let curr = val[forCurrency.rawValue] as? Double else { return 0 }
-            currentPriceETHCacheDict[forCurrency] = curr
             return curr
         } catch {
             return 0

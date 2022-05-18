@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct UpdationTimeConstants {
+    static var balanceUpdation: TimeInterval = 20 // every 20 seconds
+    static var convRateUpdation: TimeInterval = 300 // every 5 minutes
+}
 
 struct POPPINSFONTLIST {
     static let Regular = "Poppins-Regular"

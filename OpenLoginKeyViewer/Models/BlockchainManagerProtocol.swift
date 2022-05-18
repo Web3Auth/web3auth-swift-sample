@@ -13,17 +13,16 @@ import BigInt
 import Web3Auth
 
 
-
-protocol BlockChainManagerProtocol{
+protocol BlockChainManagerProtocol:AnyObject{
     
     func getMaxtransactionFee(amount:Double) -> Double
     var authManager:AuthManager{get}
     var type:BlockchainEnum { get }
     var maxTransactionDataModel:[MaxTransactionDataModel] { get }
-    var userBalance:Double{get}
+    var userBalancePublished:Published<Double>.Publisher{get}
     var showTransactionFeeOption:Bool {get}
     var addressString:String {get}
-    func getBalance() async throws -> Double
+    func getBalance()
     func signMessage(message:String) async -> String
     func transferAsset(sendTo:String,amount:Double,maxTip:Double,gasLimit:BigUInt) async throws -> String
     func getMaxtransAPIModel() async

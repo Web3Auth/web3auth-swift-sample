@@ -24,7 +24,6 @@
 		FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */; };
 		FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29477927FEDA8400E717E4 /* EthManager.swift */; };
 		FB2AFD222830F36B00E82CE0 /* CustomAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB2AFD212830F36B00E82CE0 /* CustomAuth */; };
-		FB2AFD242830F38500E82CE0 /* CustomAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2AFD232830F38500E82CE0 /* CustomAuthManager.swift */; };
 		FB2AFD262830F77900E82CE0 /* Auth.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB2AFD252830F77900E82CE0 /* Auth.plist */; };
 		FB321540280E6AAA004712A1 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32153F280E6AAA004712A1 /* HapticGenerator.swift */; };
 		FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */; };
@@ -175,7 +174,6 @@
 		FB23EEF828049AD90093E4A6 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		FB29477927FEDA8400E717E4 /* EthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthManager.swift; sourceTree = "<group>"; };
-		FB2AFD232830F38500E82CE0 /* CustomAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthManager.swift; sourceTree = "<group>"; };
 		FB2AFD252830F77900E82CE0 /* Auth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Auth.plist; sourceTree = "<group>"; };
 		FB32153F280E6AAA004712A1 /* HapticGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticGenerator.swift; sourceTree = "<group>"; };
 		FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxTransactionFeeView.swift; sourceTree = "<group>"; };
@@ -431,7 +429,6 @@
 				FBBD001928292D0D00554EBB /* SolManager.swift */,
 				FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */,
 				FB530F3927F3044E00298116 /* AuthManager.swift */,
-				FB2AFD232830F38500E82CE0 /* CustomAuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -830,7 +827,6 @@
 				FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */,
 				FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */,
 				FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */,
-				FB2AFD242830F38500E82CE0 /* CustomAuthManager.swift in Sources */,
 				FBE1DF87280FE72A00EBF87C /* LottieView.swift in Sources */,
 				FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */,
 				FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */,

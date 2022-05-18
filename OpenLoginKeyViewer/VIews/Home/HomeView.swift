@@ -26,7 +26,14 @@ struct HomeView: View {
     @State var signedMessageResult:Bool = false
     @Environment(\.openURL) private var openURL
     @State var showQRCode:Bool = false
-    @StateObject var vm:HomeViewModel
+    @StateObject private var vm:HomeViewModel
+    var manager:BlockChainManagerProtocol
+    
+    
+    init(manager:BlockChainManagerProtocol){
+        self.manager = manager
+        _vm = .init(wrappedValue: HomeViewModel(manager: manager))
+    }
 
     
     var body: some View {
@@ -318,6 +325,9 @@ struct HomeView: View {
                 }
 
         }
+        .onDisappear {
+            vm.cleanup()
+        }
     }
     
     
@@ -361,7 +371,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         if let ethManager = EthManager(authManager: AuthManager(), network: .constant(.mainnet)){
-            HomeView(vm: HomeViewModel(manager: ethManager))
+            HomeView(manager: ethManager)
                 .environmentObject(AuthManager())
             }
         }

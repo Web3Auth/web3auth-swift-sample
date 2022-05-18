@@ -15,15 +15,6 @@ public typealias Wei = BigUInt
 
 public final class TorusUtil {
     
-
-    
-    
-    public var currentUSDRate:Double = 0
-    
-    private func getUSDConvRate() async{
-        currentUSDRate = await NetworkingClient.shared.getCurrentPrice(forCurrency: .USD)
-    }
-    
     
     public static func timeMinToSec(val:Double) -> Double{
         return val * 60

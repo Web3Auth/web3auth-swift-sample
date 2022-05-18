@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var web3AuthManager: Web3AuthManager
     var body: some View {
         if authManager.currentUser != nil,let manager:BlockChainManagerProtocol = authManager.currentBlockChain == .ethereum ? EthManager(authManager: authManager, network: $web3AuthManager.network) : SolanaManager(authManager: authManager){
-            HomeView( vm: HomeViewModel(manager: manager))
+            HomeView( manager: manager)
                 .environmentObject(authManager)
                 .environmentObject(web3AuthManager)
             }

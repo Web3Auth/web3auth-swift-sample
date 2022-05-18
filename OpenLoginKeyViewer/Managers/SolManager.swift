@@ -8,11 +8,14 @@ enum SolanaError: Error {
     case unauthorized
 }
 
-class SolanaManager: BlockChainManagerProtocol {
+class SolanaManager: BlockChainManagerProtocol,ObservableObject {
+    var userBalancePublished: Published<Double>.Publisher {$userBalance}
+    
     func getMaxtransactionFee(amount: Double) -> Double {
         return amount
     }
 
+    var lastestBlockHash:String = ""
     var lamportsPerSOL: Double = 1000000000
 
     var type: BlockchainEnum = .solana
@@ -64,6 +67,26 @@ class SolanaManager: BlockChainManagerProtocol {
             return nil
         }
     }
+    
+    func getBlock() async -> Bool{
+        return await withCheckedContinuation({ continuation in
+            solana.api.getRecentBlockhash {[weak self] result in
+                switch result{
+                case .success(let val):
+                    if self?.lastestBlockHash != val{
+                        self?.lastestBlockHash = val
+                        continuation.resume(returning: true)
+                    }
+                    else{
+                        continuation.resume(returning: false)
+                    }
+                case .failure(_):
+                    continuation.resume(returning: true)
+                }
+            }
+        })
+      
+    }
 
     func signMessage(message: String) async -> String {
         let transaction = TransactionInstruction(keys: [.init(publicKey: account.publicKey, isSigner: true, isWritable: true)], programId: account.publicKey, data: message.data(using: .utf8)!.bytes)
@@ -79,19 +102,16 @@ class SolanaManager: BlockChainManagerProtocol {
         })
     }
 
-    func getBalance() async throws -> Double {
-        return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<Double, Error>) in
+    func getBalance() {
             solana.api.getBalance(account: account.publicKey.base58EncodedString) { [weak self] result in
                 switch result {
                 case let .success(val):
                     let curr = Double(val) / pow(10, 9)
                     self?.userBalance = curr
-                    continuation.resume(returning: curr)
                 case let .failure(error):
-                    continuation.resume(throwing: error)
+                   print(error)
                 }
-            }
-        })
+        }
     }
 
     func transferAsset(sendTo: String, amount: Double, maxTip: Double = 0, gasLimit: BigUInt = 0) async throws -> String {
