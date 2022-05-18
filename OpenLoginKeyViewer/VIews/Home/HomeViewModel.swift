@@ -41,11 +41,11 @@ class HomeViewModel: ObservableObject {
                 currentRate = await NetworkingClient.shared.getCurrentPrice(blockChain: manager.type, forCurrency: currentCurrency)
                 addConvRateInCache(currentRate: currentRate)
             }
-               convertedBalance = userBalance * currentRate
-            }
+            convertedBalance = userBalance * currentRate
         }
-    
-    func addConvRateInCache(currentRate:Double){
+    }
+
+    func addConvRateInCache(currentRate: Double) {
         if let _ = convRateCache[manager.type] {
             convRateCache[manager.type]?[currentCurrency] = currentRate
         } else {
@@ -88,7 +88,7 @@ extension HomeViewModel {
         timer = .scheduledTimer(timeInterval: UpdationTimeConstants.balanceUpdation, target: self, selector: #selector(updateBalance), userInfo: nil, repeats: true)
     }
 
-    @objc func updateBalance()  {
+    @objc func updateBalance() {
         manager.getBalance()
     }
 
@@ -97,4 +97,3 @@ extension HomeViewModel {
         getConversionRate()
     }
 }
-
