@@ -51,7 +51,7 @@ class AuthManager: ObservableObject {
     }
 }
 
-//Ethereum login
+// Ethereum login
 extension AuthManager: EthereumKeyStorageProtocol {
     func storePrivateKey(key: Data) throws {
     }

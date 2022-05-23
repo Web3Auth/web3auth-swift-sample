@@ -11,7 +11,6 @@ import Web3Auth
 struct LoginHomePageview: View {
     @State var showNext = false
     @StateObject var vm:LoginMethodSelectionPageVM
-    @State var selectedBlockChain:BlockchainEnum = .ethereum
     var networkArr:[Network] = [.mainnet,.testnet,.cyan]
     let blockChainArr:[BlockchainEnum] = [.ethereum,.solana] 
     var body: some View {
@@ -65,9 +64,7 @@ struct LoginHomePageview: View {
     
 
     
-    func changeBlockChain(val:Int){
-        selectedBlockChain = BlockchainEnum(rawValue:val) ?? .ethereum
-    }
+
 }
 
 struct HomePageview_Previews: PreviewProvider {
