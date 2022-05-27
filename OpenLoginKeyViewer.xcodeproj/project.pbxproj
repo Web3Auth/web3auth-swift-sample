@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C0CA3B6CD04150AEDD50A06F /* Pods_OpenLoginKeyViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 179A7195A11B36D6C0A72282 /* Pods_OpenLoginKeyViewer.framework */; };
-		DF2B1F8AA6019EE81060E6C1 /* OpenLogin.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2B1524565A49D62E4A1FB1 /* OpenLogin.plist */; };
+		DF2B1F8AA6019EE81060E6C1 /* Web3Auth.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */; };
 		E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */; };
 		E44B3AE4278812580017646F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE3278812580017646F /* ContentView.swift */; };
 		E44B3AE6278812590017646F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B3AE5278812590017646F /* Assets.xcassets */; };
@@ -24,7 +24,6 @@
 		FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */; };
 		FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29477927FEDA8400E717E4 /* EthManager.swift */; };
 		FB2AFD222830F36B00E82CE0 /* CustomAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB2AFD212830F36B00E82CE0 /* CustomAuth */; };
-		FB2AFD262830F77900E82CE0 /* Auth.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB2AFD252830F77900E82CE0 /* Auth.plist */; };
 		FB321540280E6AAA004712A1 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32153F280E6AAA004712A1 /* HapticGenerator.swift */; };
 		FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */; };
 		FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */; };
@@ -36,6 +35,9 @@
 		FB797F93280B89FF0033255E /* TransactionDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB797F92280B89FF0033255E /* TransactionDoneView.swift */; };
 		FB7F86E127F430F2006E8611 /* HelperViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7F86E027F430F2006E8611 /* HelperViews.swift */; };
 		FB7F86E327F434A2006E8611 /* Web3AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */; };
+		FB8F665228409CCB00D95B00 /* Web3AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8F665128409CCB00D95B00 /* Web3AuthManagerTest.swift */; };
+		FB8F66542840A40700D95B00 /* AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8F66532840A40700D95B00 /* AuthManagerTest.swift */; };
+		FB8F66562840AA5000D95B00 /* TorusUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8F66552840AA5000D95B00 /* TorusUtilTest.swift */; };
 		FB9F6CFD281128E000AFCCED /* LoginMethodSelectionPageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */; };
 		FB9F6D0028112F7000AFCCED /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */; };
 		FB9F6D05281131C600AFCCED /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F6D04281131C600AFCCED /* CustomButton.swift */; };
@@ -159,7 +161,7 @@
 		179A7195A11B36D6C0A72282 /* Pods_OpenLoginKeyViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenLoginKeyViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4018E85554A0167B8721CC45 /* Pods-OpenLoginKeyViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenLoginKeyViewer.debug.xcconfig"; path = "Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		9F287BC092C895839B4A95FB /* Pods-OpenLoginKeyViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenLoginKeyViewer.release.xcconfig"; path = "Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer.release.xcconfig"; sourceTree = "<group>"; };
-		DF2B1524565A49D62E4A1FB1 /* OpenLogin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = OpenLogin.plist; sourceTree = "<group>"; };
+		DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Web3Auth.plist; sourceTree = "<group>"; };
 		E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenLoginKeyViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginSampleApp.swift; sourceTree = "<group>"; };
 		E44B3AE3278812580017646F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = OpenLoginKeyViewer/ContentView.swift; sourceTree = SOURCE_ROOT; };
@@ -176,7 +178,6 @@
 		FB23EEF828049AD90093E4A6 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		FB29477927FEDA8400E717E4 /* EthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthManager.swift; sourceTree = "<group>"; };
-		FB2AFD252830F77900E82CE0 /* Auth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Auth.plist; sourceTree = "<group>"; };
 		FB32153F280E6AAA004712A1 /* HapticGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticGenerator.swift; sourceTree = "<group>"; };
 		FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxTransactionFeeView.swift; sourceTree = "<group>"; };
 		FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmTransactionView.swift; sourceTree = "<group>"; };
@@ -186,6 +187,9 @@
 		FB797F92280B89FF0033255E /* TransactionDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDoneView.swift; sourceTree = "<group>"; };
 		FB7F86E027F430F2006E8611 /* HelperViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViews.swift; sourceTree = "<group>"; };
 		FB7F86E227F434A2006E8611 /* Web3AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3AuthManager.swift; sourceTree = "<group>"; };
+		FB8F665128409CCB00D95B00 /* Web3AuthManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3AuthManagerTest.swift; sourceTree = "<group>"; };
+		FB8F66532840A40700D95B00 /* AuthManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManagerTest.swift; sourceTree = "<group>"; };
+		FB8F66552840AA5000D95B00 /* TorusUtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusUtilTest.swift; sourceTree = "<group>"; };
 		FB9F6CFC281128E000AFCCED /* LoginMethodSelectionPageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMethodSelectionPageVM.swift; sourceTree = "<group>"; };
 		FB9F6CFF28112F7000AFCCED /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		FB9F6D04281131C600AFCCED /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -323,8 +327,7 @@
 				E44B3AE5278812590017646F /* Assets.xcassets */,
 				FBB23EE927EC491200370ECE /* Color.xcassets */,
 				E44B3AE7278812590017646F /* Preview Content */,
-				DF2B1524565A49D62E4A1FB1 /* OpenLogin.plist */,
-				FB2AFD252830F77900E82CE0 /* Auth.plist */,
+				DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */,
 			);
 			path = OpenLoginKeyViewer;
 			sourceTree = "<group>";
@@ -341,8 +344,11 @@
 			isa = PBXGroup;
 			children = (
 				E44B3AF2278812590017646F /* OpenLoginKeyViewerTests.swift */,
+				FB8F665128409CCB00D95B00 /* Web3AuthManagerTest.swift */,
+				FB8F66532840A40700D95B00 /* AuthManagerTest.swift */,
 				FBFA9ED428356EA700F8BDEA /* SOLManagerTest.swift */,
 				FBFA9ED2283564A500F8BDEA /* ETHManagerTest.swift */,
+				FB8F66552840AA5000D95B00 /* TorusUtilTest.swift */,
 			);
 			path = OpenLoginKeyViewerTests;
 			sourceTree = "<group>";
@@ -662,7 +668,6 @@
 				E44B3AE9278812590017646F /* Preview Assets.xcassets in Resources */,
 				E44B3AE6278812590017646F /* Assets.xcassets in Resources */,
 				FBE1DF89280FE75A00EBF87C /* loading.json in Resources */,
-				FB2AFD262830F77900E82CE0 /* Auth.plist in Resources */,
 				FBFD6D6227F2CED100FD7288 /* Poppins-Thin.ttf in Resources */,
 				FBFD6D8427F2CEE800FD7288 /* DMSans-Italic.ttf in Resources */,
 				FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */,
@@ -670,7 +675,7 @@
 				FBFD6D7E27F2CEE800FD7288 /* DMSans-BoldItalic.ttf in Resources */,
 				FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */,
 				FBFD6D3827F2CED100FD7288 /* Poppins-ThinItalic.ttf in Resources */,
-				DF2B1F8AA6019EE81060E6C1 /* OpenLogin.plist in Resources */,
+				DF2B1F8AA6019EE81060E6C1 /* Web3Auth.plist in Resources */,
 				FBFD6D7827F2CEE800FD7288 /* DMSans-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -846,8 +851,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E44B3AF3278812590017646F /* OpenLoginKeyViewerTests.swift in Sources */,
+				FB8F665228409CCB00D95B00 /* Web3AuthManagerTest.swift in Sources */,
 				FBFA9ED3283564A500F8BDEA /* ETHManagerTest.swift in Sources */,
 				FBFA9ED528356EA700F8BDEA /* SOLManagerTest.swift in Sources */,
+				FB8F66542840A40700D95B00 /* AuthManagerTest.swift in Sources */,
+				FB8F66562840AA5000D95B00 /* TorusUtilTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ struct LoginMethodSelectionPage: View {
   
     var arr1: [Web3AuthProvider] = [
         .APPLE,.GOOGLE,.FACEBOOK,.TWITTER]
-    var arr2: [Web3AuthProvider] = [.LINE,.REDDIT,.DISCORD,.FACEBOOK,.TWITCH]
+    var arr2: [Web3AuthProvider] = [.LINE,.REDDIT,.DISCORD,.WECHAT,.TWITCH]
     var arr3 : [Web3AuthProvider] = [.GITHUB,.LINKEDIN,.KAKAO]
     var body: some View {
         ScrollView{

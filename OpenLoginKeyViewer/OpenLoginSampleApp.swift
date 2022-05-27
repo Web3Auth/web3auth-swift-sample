@@ -5,8 +5,8 @@
 //  Created by Michael Lee on 7/1/2022.
 //
 
-import SwiftUI
 import CustomAuth
+import SwiftUI
 
 @main
 struct OpenLoginSampleApp: App {
@@ -17,13 +17,8 @@ struct OpenLoginSampleApp: App {
             ContentView().onOpenURL { url in
                 CustomAuth.handle(url: url)
             }
-                .environmentObject(authManager)
-                .environmentObject(web3AuthManager)
+            .environmentObject(authManager)
+            .environmentObject(web3AuthManager)
         }
-        
     }
-    
 }
-
-
-

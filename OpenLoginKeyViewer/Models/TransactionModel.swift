@@ -15,7 +15,7 @@ struct MaxTransactionDataModel:Hashable,Identifiable{
     var time:Double
     var amt:Double
     var timeInSec:Double{
-        TorusUtil.timeMinToSec(val: time)
+        TorusWeb3Utils.timeMinToSec(val: time)
     }
 }
 

@@ -81,7 +81,11 @@ extension AuthManager: SolanaAccountStorage {
     }
 }
 
-public struct User: Codable {
+public struct User: Equatable,Codable {
+    public static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.privKey == rhs.privKey
+    }
+    
     public let privKey: String
     public let ed25519PrivKey: String
     public let userInfo: UserInfo

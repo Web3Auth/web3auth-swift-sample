@@ -33,38 +33,13 @@ class OpenLoginKeyViewerTests: XCTestCase {
             exp.fulfill()
         }
     }
-    
+
     func test_get_suggested_gas_price() async {
-        do{
+        do {
             let val = try await NetworkingClient.shared.getSuggestedGasFees()
             XCTAssertEqual(val.count, 3)
-        }catch{
+        } catch {
             XCTFail()
         }
-           
     }
-    
-    
-    
-    
-
-
-    
-
-   
-
-
-
-   
-
-
-//    @MainActor func test_transfer_USD_conversion(){
-//        let vm = TransferAssetViewModel(manager: ethManager)
-//        vm.amount = "100"
-//        vm.currentCurrency = .USD
-//        vm.currentUSDRate = 75
-//        let exp1 = Double(vm.amount)! / vm.currentUSDRate
-//        print(vm.con)
-//        XCTAssertEqual(exp1, vm.convertAmountToETH())
-//    }
 }

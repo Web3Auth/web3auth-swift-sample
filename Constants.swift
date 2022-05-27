@@ -19,43 +19,41 @@ struct POPPINSFONTLIST {
     static let Medium = "Poppins-Medium"
 }
 
-struct DMSANSFONTLIST{
+struct DMSANSFONTLIST {
     static let Regular = "DMSans-Regular"
     static let Bold = "DMSans-Bold"
     static let Medium = "DMSans-Medium"
 }
 
-enum TorusSupportedCurrencies:String,CaseIterable,MenuPickerProtocol{
-    
+enum TorusSupportedCurrencies: String, CaseIterable, MenuPickerProtocol {
     case ETH
     case USD
     case INR
     case SOL
-    
-    var name: String{
-        return self.rawValue
+
+    var name: String {
+        return rawValue
     }
 }
 
-enum TorusSupportedCyrptoCurrencies:String,CaseIterable{
+enum TorusSupportedCyrptoCurrencies: String, CaseIterable {
     case ETH
     case SOL
 }
 
-enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
+enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable {
     case ethereum, solana
-    
-    var name:String{
+
+    var name: String {
         switch self {
         case .ethereum:
             return "Ethereum"
         case .solana:
             return "Solana"
+        }
     }
-    
-}
-    
-    var shortName:String{
+
+    var shortName: String {
         switch self {
         case .ethereum:
             return "ETH"
@@ -63,17 +61,17 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return "SOL"
         }
     }
-        
-    var addressStr:String{
-            switch self {
-            case .ethereum:
-                return "ETH Address"
-            case .solana:
-                return "SOL Address"
-            }
+
+    var addressStr: String {
+        switch self {
+        case .ethereum:
+            return "ETH Address"
+        case .solana:
+            return "SOL Address"
+        }
     }
-    
-    var sampleAddress:String{
+
+    var sampleAddress: String {
         switch self {
         case .ethereum:
             return "0xC951C5A85BE62F1Fe9337e698349bD7"
@@ -81,8 +79,8 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return "Bu7kgguFArj5qhQY8xGk1dEyRWpoeSaU9XT1FYUCkHom"
         }
     }
-    
-    var currencyValue:TorusSupportedCurrencies{
+
+    var currencyValue: TorusSupportedCurrencies {
         switch self {
         case .ethereum:
             return .ETH
@@ -90,8 +88,8 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return .SOL
         }
     }
-    
-    func allTransactionURL(address:String) -> URL?{
+
+    func allTransactionURL(address: String) -> URL? {
         switch self {
         case .ethereum:
             return URL(string: "https://ropsten.etherscan.io/address/\(address)")
@@ -99,8 +97,8 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return URL(string: "https://explorer.solana.com/address/\(address)?cluster=devnet")
         }
     }
-    
-    func transactionURL(tx:String) -> URL?{
+
+    func transactionURL(tx: String) -> URL? {
         switch self {
         case .ethereum:
             return URL(string: "https://ropsten.etherscan.io/tx/\(tx)")
@@ -108,8 +106,8 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return URL(string: "https://explorer.solana.com/tx/\(tx)/?cluster=devnet")
         }
     }
-    
-    var urlLinkName:String{
+
+    var urlLinkName: String {
         switch self {
         case .ethereum:
             return "Etherscan"
@@ -117,13 +115,10 @@ enum BlockchainEnum:Int,CaseIterable,Hashable,MenuPickerProtocol,Codable{
             return "Solana Explorer"
         }
     }
-    
 }
 
-extension String:MenuPickerProtocol{
+extension String: MenuPickerProtocol {
     var name: String {
         return self
     }
-    
-    
 }

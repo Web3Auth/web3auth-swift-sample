@@ -5,6 +5,7 @@
 //  Created by Dhruv Jaiswal on 30/03/22.
 //
 
+import CustomAuth
 import Foundation
 import Web3Auth
 
@@ -15,6 +16,7 @@ class Web3AuthManager: ObservableObject {
             auth = Web3Auth(.init(clientId: clientID, network: network))
         }
     }
+
     var auth: Web3Auth
 
     init(network: Network) {
@@ -24,5 +26,35 @@ class Web3AuthManager: ObservableObject {
 
     func getClientID() -> String {
         return clientID
+    }
+
+    func login(provider: Web3AuthProvider) async throws -> Web3AuthState {
+        return try await withCheckedThrowingContinuation { continuation in
+            auth.login(.init(loginProvider: provider.rawValue)) {
+                result in
+                switch result {
+                case let .success(model):
+                    continuation.resume(returning: model)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    func loginWithEmail(email: String) async throws -> Web3AuthState {
+        return try await withCheckedThrowingContinuation { continuation in
+            let extraOptions = ExtraLoginOptions(display: nil, prompt: nil, max_age: nil, ui_locales: nil, id_token_hint: nil, id_token: nil, login_hint: email, acr_values: nil, scope: nil, audience: nil, connection: nil, domain: nil, client_id: nil, redirect_uri: nil, leeway: nil, verifierIdField: nil, isVerifierIdCaseSensitive: nil)
+            auth.login(.init(loginProvider: Web3AuthProvider.EMAIL_PASSWORDLESS.rawValue, extraLoginOptions: extraOptions)) {
+                result in
+                switch result {
+                case let .success(model):
+                    continuation.resume(returning: model)
+                case let .failure(error):
+                    print(error)
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
     }
 }

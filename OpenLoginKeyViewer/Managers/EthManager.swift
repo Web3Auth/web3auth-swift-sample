@@ -70,7 +70,7 @@ class EthManager: BlockChainManagerProtocol {
     }
 
     func getMaxtransactionFee(amount: Double) -> Double {
-        return TorusUtil.toEther(Gwie: BigUInt(amount) * 21000)
+        return TorusWeb3Utils.toEther(Gwie: BigUInt(amount) * 21000)
     }
 
     func checkRecipentAddressError(address: String) -> Bool {
@@ -99,7 +99,7 @@ class EthManager: BlockChainManagerProtocol {
                     print(error)
                 }
                 if let balance = balance {
-                    let newBalance = TorusUtil.toEther(wei: Wei(balance))
+                    let newBalance = TorusWeb3Utils.toEther(wei: Wei(balance))
                     userBalance = newBalance
                 }
             }
@@ -117,9 +117,9 @@ class EthManager: BlockChainManagerProtocol {
 
     func transferAsset(sendTo: String, amount: Double, maxTip: Double, gasLimit: BigUInt = 21000) async throws -> String {
         let gasPrice = try await client.eth_gasPrice()
-        let maxTipInGwie = BigUInt(TorusUtil.toEther(Gwie: BigUInt(amount)))
+        let maxTipInGwie = BigUInt(TorusWeb3Utils.toEther(Gwie: BigUInt(amount)))
         let totalGas = gasPrice + maxTipInGwie
-        let amtInGwie = TorusUtil.toWei(ether: amount)
+        let amtInGwie = TorusWeb3Utils.toWei(ether: amount)
         let nonce = try await client.eth_getTransactionCount(address: address, block: .Latest)
         let transaction = EthereumTransaction(from: address, to: EthereumAddress(sendTo), value: amtInGwie, data: Data(), nonce: nonce + 1, gasPrice: totalGas, gasLimit: gasLimit, chainId: 3)
         let signed = try account.sign(transaction: transaction)

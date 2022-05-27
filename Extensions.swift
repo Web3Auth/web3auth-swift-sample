@@ -5,15 +5,12 @@
 //  Created by Dhruv Jaiswal on 24/03/22.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 import Web3Auth
 
-
-
-
-protocol MenuPickerProtocol:Hashable{
-    var name:String { get }
+protocol MenuPickerProtocol: Hashable {
+    var name: String { get }
 }
 
 extension UIApplication {
@@ -22,9 +19,8 @@ extension UIApplication {
     }
 }
 
-extension Network:MenuPickerProtocol{
-
-    var networkURL:String{
+extension Network: MenuPickerProtocol {
+    var networkURL: String {
         switch self {
         case .mainnet:
             return "mainnet"
@@ -34,9 +30,8 @@ extension Network:MenuPickerProtocol{
             return "cyan"
         }
     }
-    
-    
-    var name:String{
+
+    var name: String {
         switch self {
         case .mainnet:
             return "MAINNET"
@@ -48,37 +43,38 @@ extension Network:MenuPickerProtocol{
     }
 }
 
-enum OpenLoginError:Error{
+enum OpenLoginError: Error {
     case accountError
 }
 
-
-extension UIColor{
-    static func bkgColor() -> UIColor{
+extension UIColor {
+    static func bkgColor() -> UIColor {
         return UIColor(named: "background") ?? .white
     }
-    static func labelColor() -> UIColor{
+
+    static func labelColor() -> UIColor {
         return UIColor(named: "LabelColor") ?? .white
     }
-    static func themeColor() -> UIColor{
+
+    static func themeColor() -> UIColor {
         return UIColor(named: "themeColor") ?? .white
     }
-    static func grayColor() -> UIColor{
+
+    static func grayColor() -> UIColor {
         return UIColor(named: "grayColor") ?? .white
     }
 }
 
-extension String{
-    
-    func invalidEmail() -> Bool{
+extension String {
+    func invalidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-          let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-          return !emailPred.evaluate(with: self)
+        let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return !emailPred.evaluate(with: self)
     }
 }
 
-extension Web3AuthProvider{
-    var img:String{
+extension Web3AuthProvider {
+    var img: String {
         switch self {
         case .GOOGLE:
             return "Google"
@@ -116,39 +112,36 @@ extension Web3AuthProvider{
     }
 }
 
-
-
-
-extension UIScreen{
-   static let screenWidth = UIScreen.main.bounds.size.width
-   static let screenHeight = UIScreen.main.bounds.size.height
-   static let screenSize = UIScreen.main.bounds.size
+extension UIScreen {
+    static let screenWidth = UIScreen.main.bounds.size.width
+    static let screenHeight = UIScreen.main.bounds.size.height
+    static let screenSize = UIScreen.main.bounds.size
 }
 
 import Foundation
 import SwiftUI
 class KeyboardResponder: ObservableObject {
     @Published var currentHeight: CGFloat = 0
-    
-var center: NotificationCenter
+
+    var center: NotificationCenter
     init(center: NotificationCenter = .default) {
         self.center = center
-        //4. Tell the notification center to listen to the system keyboardWillShow and keyboardWillHide notification
-            center.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-            center.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        }
+        // 4. Tell the notification center to listen to the system keyboardWillShow and keyboardWillHide notification
+        center.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        center.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
     @objc func keyBoardWillShow(notification: Notification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                withAnimation {
-                   currentHeight = keyboardSize.height
-                }
-            }
-        }
-    @objc func keyBoardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             withAnimation {
-               currentHeight = 0
+                currentHeight = keyboardSize.height
             }
         }
+    }
+
+    @objc func keyBoardWillHide(notification: Notification) {
+        withAnimation {
+            currentHeight = 0
+        }
+    }
 }
-
-
