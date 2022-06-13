@@ -10,57 +10,12 @@
       }
     },
     {
-      "identity" : "blueecc",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/IBM-Swift/BlueECC.git",
-      "state" : {
-        "revision" : "baf6ed3fc1a622675f0041b4aff7c02dd1a93818",
-        "version" : "1.2.200"
-      }
-    },
-    {
       "identity" : "codescanner",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/CodeScanner.git",
       "state" : {
         "revision" : "c27a66149b7483fe42e2ec6aad61d5c3fffe522d",
         "version" : "2.1.1"
-      }
-    },
-    {
-      "identity" : "cryptoswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
-      "state" : {
-        "revision" : "039f56c5d7960f277087a0be51f5eb04ed0ec073",
-        "version" : "1.5.1"
-      }
-    },
-    {
-      "identity" : "customauth-swift-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/torusresearch/customauth-swift-sdk.git",
-      "state" : {
-        "revision" : "a4fb843fabdfd19905b7e215f40ebab4a184c9ed",
-        "version" : "2.1.0"
-      }
-    },
-    {
-      "identity" : "fetch-node-details-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/torusresearch/fetch-node-details-swift",
-      "state" : {
-        "revision" : "5ffc3d87988574fd13dd7c04bca94d25b4531b69",
-        "version" : "1.4.0"
-      }
-    },
-    {
-      "identity" : "foundation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PromiseKit/Foundation.git",
-      "state" : {
-        "revision" : "985f17fa69ee0e5b7eb3ff9be87ffc4e05fc0927",
-        "version" : "3.4.0"
       }
     },
     {
@@ -87,16 +42,7 @@
       "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
         "branch" : "master",
-        "revision" : "e4811e864395f44a056616c0159524c622145af4"
-      }
-    },
-    {
-      "identity" : "promisekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/PromiseKit.git",
-      "state" : {
-        "revision" : "c946b7561fbe11379a874e59faa2c5f8077ae0e1",
-        "version" : "6.17.1"
+        "revision" : "b81beb678aceff7695130a0ff9420628b5a5e491"
       }
     },
     {
@@ -113,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ajamaica/Solana.Swift.git",
       "state" : {
-        "revision" : "d9f6bc2e9878f476b3bc06685cadc8cc14e578e4",
-        "version" : "1.2.0"
+        "branch" : "master",
+        "revision" : "7dd94bd16e57246673fc6e5ae6751916fa736c90"
       }
     },
     {
@@ -124,15 +70,6 @@
       "state" : {
         "revision" : "df8d82047f6654d8e4b655d1b1525c64e1059d21",
         "version" : "4.0.4"
-      }
-    },
-    {
-      "identity" : "torus-utils-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/torusresearch/torus-utils-swift.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "90515b838c6cede8622bf1e24f23192eba98cf60"
       }
     },
     {

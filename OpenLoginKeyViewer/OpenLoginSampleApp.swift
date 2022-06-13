@@ -5,7 +5,6 @@
 //  Created by Michael Lee on 7/1/2022.
 //
 
-import CustomAuth
 import SwiftUI
 
 @main
@@ -14,9 +13,7 @@ struct OpenLoginSampleApp: App {
     @StateObject var web3AuthManager = Web3AuthManager(network: .mainnet)
     var body: some Scene {
         WindowGroup {
-            ContentView().onOpenURL { url in
-                CustomAuth.handle(url: url)
-            }
+            ContentView()
             .environmentObject(authManager)
             .environmentObject(web3AuthManager)
         }

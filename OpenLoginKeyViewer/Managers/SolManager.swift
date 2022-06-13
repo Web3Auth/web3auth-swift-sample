@@ -1,6 +1,6 @@
 import BigInt
 import KeychainSwift
-@testable import Solana
+import Solana
 import UIKit
 
 enum SolanaError: Error {
@@ -45,10 +45,9 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
         self.authManager = authManager
         network = NetworkingRouter(endpoint: .devnetSolana)
         solana = Solana(
-            router: network,
-            accountStorage: authManager
+            router: network
         )
-        let result = solana.auth.account
+        let result = authManager.account
         switch result {
         case let .success(account):
             self.account = account
@@ -114,7 +113,7 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     func transferAsset(sendTo: String, amount: Double, maxTip: Double = 0, gasLimit: BigUInt = 0) async throws -> String {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<String, Error>) in
             let amountInLamport = amount * lamportsPerSOL
-            solana.action.sendSOL(to: sendTo, amount: UInt64(amountInLamport)) { result in
+            solana.action.sendSOL(to: sendTo, from: account, amount: UInt64(amountInLamport)) { result in
                 switch result {
                 case let .success(val):
                     continuation.resume(returning: val)
@@ -125,3 +124,8 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
         })
     }
 }
+
+
+
+
+

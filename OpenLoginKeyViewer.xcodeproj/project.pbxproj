@@ -23,10 +23,11 @@
 		FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEF828049AD90093E4A6 /* UITextView.swift */; };
 		FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */; };
 		FB29477A27FEDA8400E717E4 /* EthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29477927FEDA8400E717E4 /* EthManager.swift */; };
-		FB2AFD222830F36B00E82CE0 /* CustomAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB2AFD212830F36B00E82CE0 /* CustomAuth */; };
 		FB321540280E6AAA004712A1 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32153F280E6AAA004712A1 /* HapticGenerator.swift */; };
 		FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96212806D7380068935F /* MaxTransactionFeeView.swift */; };
 		FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */; };
+		FB45F9122856FBEC00D72B22 /* SolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD001928292D0D00554EBB /* SolManager.swift */; };
+		FB45F9152856FC5900D72B22 /* Solana in Frameworks */ = {isa = PBXBuildFile; productRef = FB45F9142856FC5900D72B22 /* Solana */; };
 		FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3227F2E09A00298116 /* TransferAssetView.swift */; };
 		FB530F3527F2FFA600298116 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3427F2FFA600298116 /* Constants.swift */; };
 		FB530F3827F3036C00298116 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB530F3727F3036C00298116 /* web3.swift */; };
@@ -46,7 +47,6 @@
 		FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */; };
 		FBB23EEA27EC491200370ECE /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB23EE927EC491200370ECE /* Color.xcassets */; };
 		FBB23EEC27EC4A3600370ECE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB23EEB27EC4A3600370ECE /* Extensions.swift */; };
-		FBBD001828292CDC00554EBB /* Solana in Frameworks */ = {isa = PBXBuildFile; productRef = FBBD001728292CDC00554EBB /* Solana */; };
 		FBBD001A28292D0D00554EBB /* SolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD001928292D0D00554EBB /* SolManager.swift */; };
 		FBE0A8602800426700661B1F /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0A85F2800426700661B1F /* PopUpView.swift */; };
 		FBE1DF85280FE6DF00EBF87C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FBE1DF84280FE6DF00EBF87C /* Lottie */; };
@@ -58,9 +58,7 @@
 		FBE7453A28000DF2002680A3 /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE7453928000DF2002680A3 /* NetworkingClient.swift */; };
 		FBFA9ED3283564A500F8BDEA /* ETHManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFA9ED2283564A500F8BDEA /* ETHManagerTest.swift */; };
 		FBFA9ED528356EA700F8BDEA /* SOLManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFA9ED428356EA700F8BDEA /* SOLManagerTest.swift */; };
-		FBFBD218282FF50500CCCEE9 /* TorusUtils in Frameworks */ = {isa = PBXBuildFile; productRef = FBFBD217282FF50500CCCEE9 /* TorusUtils */; };
 		FBFBD21B2830015200CCCEE9 /* TweetNacl in Frameworks */ = {isa = PBXBuildFile; productRef = FBFBD21A2830015200CCCEE9 /* TweetNacl */; };
-		FBFBD21E2830020800CCCEE9 /* TorusUtils in Frameworks */ = {isa = PBXBuildFile; productRef = FBFBD21D2830020800CCCEE9 /* TorusUtils */; };
 		FBFD6D3527F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3627F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
 		FBFD6D3727F2CED100FD7288 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBFD6D2227F2CED100FD7288 /* Poppins-ExtraLight.ttf */; };
@@ -241,16 +239,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBFBD218282FF50500CCCEE9 /* TorusUtils in Frameworks */,
 				C0CA3B6CD04150AEDD50A06F /* Pods_OpenLoginKeyViewer.framework in Frameworks */,
 				FB530F3827F3036C00298116 /* web3.swift in Frameworks */,
+				FB45F9152856FC5900D72B22 /* Solana in Frameworks */,
 				FB530F3E27F305EE00298116 /* KeychainSwift in Frameworks */,
 				FBFD6D9D27F2D60F00FD7288 /* Web3Auth in Frameworks */,
 				FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */,
 				FBFBD21B2830015200CCCEE9 /* TweetNacl in Frameworks */,
-				FBBD001828292CDC00554EBB /* Solana in Frameworks */,
-				FBFBD21E2830020800CCCEE9 /* TorusUtils in Frameworks */,
-				FB2AFD222830F36B00E82CE0 /* CustomAuth in Frameworks */,
 				FBE1DF85280FE6DF00EBF87C /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,11 +535,8 @@
 				FB530F3D27F305EE00298116 /* KeychainSwift */,
 				FB1BDF4828056860003509B6 /* CodeScanner */,
 				FBE1DF84280FE6DF00EBF87C /* Lottie */,
-				FBBD001728292CDC00554EBB /* Solana */,
-				FBFBD217282FF50500CCCEE9 /* TorusUtils */,
 				FBFBD21A2830015200CCCEE9 /* TweetNacl */,
-				FBFBD21D2830020800CCCEE9 /* TorusUtils */,
-				FB2AFD212830F36B00E82CE0 /* CustomAuth */,
+				FB45F9142856FC5900D72B22 /* Solana */,
 			);
 			productName = OpenLoginKeyViewer;
 			productReference = E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */;
@@ -624,11 +616,8 @@
 				FB530F3C27F305EE00298116 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */,
-				FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */,
 				FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */,
-				FBFBD21C2830020800CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */,
-				FB2AFD202830F36B00E82CE0 /* XCRemoteSwiftPackageReference "customauth-swift-sdk" */,
+				FB45F9132856FC5900D72B22 /* XCRemoteSwiftPackageReference "Solana.Swift" */,
 			);
 			productRefGroup = E44B3ADF278812580017646F /* Products */;
 			projectDirPath = "";
@@ -852,6 +841,7 @@
 			files = (
 				E44B3AF3278812590017646F /* OpenLoginKeyViewerTests.swift in Sources */,
 				FB8F665228409CCB00D95B00 /* Web3AuthManagerTest.swift in Sources */,
+				FB45F9122856FBEC00D72B22 /* SolManager.swift in Sources */,
 				FBFA9ED3283564A500F8BDEA /* ETHManagerTest.swift in Sources */,
 				FBFA9ED528356EA700F8BDEA /* SOLManagerTest.swift in Sources */,
 				FB8F66542840A40700D95B00 /* AuthManagerTest.swift in Sources */,
@@ -1010,7 +1000,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"OpenLoginKeyViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
@@ -1030,7 +1020,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.torusresearch.iosapps.OpenLoginKeyViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1047,10 +1037,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"OpenLoginKeyViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenLoginKeyViewer/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "need camera to scan the qr code";
@@ -1067,7 +1058,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.torusresearch.iosapps.OpenLoginKeyViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1226,12 +1217,12 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		FB2AFD202830F36B00E82CE0 /* XCRemoteSwiftPackageReference "customauth-swift-sdk" */ = {
+		FB45F9132856FC5900D72B22 /* XCRemoteSwiftPackageReference "Solana.Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/torusresearch/customauth-swift-sdk.git";
+			repositoryURL = "https://github.com/ajamaica/Solana.Swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		FB530F3627F3036C00298116 /* XCRemoteSwiftPackageReference "web3" */ = {
@@ -1250,14 +1241,6 @@
 				kind = branch;
 			};
 		};
-		FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ajamaica/Solana.Swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1266,28 +1249,12 @@
 				kind = branch;
 			};
 		};
-		FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/torusresearch/torus-utils-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bitmark-inc/tweetnacl-swiftwrap.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		FBFBD21C2830020800CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/torusresearch/torus-utils-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		FBFD6D9B27F2D60F00FD7288 /* XCRemoteSwiftPackageReference "web3auth-swift-sdk" */ = {
@@ -1306,10 +1273,10 @@
 			package = FB1BDF4728056860003509B6 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
 		};
-		FB2AFD212830F36B00E82CE0 /* CustomAuth */ = {
+		FB45F9142856FC5900D72B22 /* Solana */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB2AFD202830F36B00E82CE0 /* XCRemoteSwiftPackageReference "customauth-swift-sdk" */;
-			productName = CustomAuth;
+			package = FB45F9132856FC5900D72B22 /* XCRemoteSwiftPackageReference "Solana.Swift" */;
+			productName = Solana;
 		};
 		FB530F3727F3036C00298116 /* web3.swift */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1321,30 +1288,15 @@
 			package = FB530F3C27F305EE00298116 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
 		};
-		FBBD001728292CDC00554EBB /* Solana */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FBBD001628292CDC00554EBB /* XCRemoteSwiftPackageReference "Solana.Swift" */;
-			productName = Solana;
-		};
 		FBE1DF84280FE6DF00EBF87C /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		FBFBD217282FF50500CCCEE9 /* TorusUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */;
-			productName = TorusUtils;
-		};
 		FBFBD21A2830015200CCCEE9 /* TweetNacl */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */;
 			productName = TweetNacl;
-		};
-		FBFBD21D2830020800CCCEE9 /* TorusUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FBFBD216282FF50500CCCEE9 /* XCRemoteSwiftPackageReference "torus-utils-swift" */;
-			productName = TorusUtils;
 		};
 		FBFD6D9C27F2D60F00FD7288 /* Web3Auth */ = {
 			isa = XCSwiftPackageProductDependency;

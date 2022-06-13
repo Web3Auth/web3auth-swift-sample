@@ -5,7 +5,7 @@
 //  Created by Dhruv Jaiswal on 30/03/22.
 //
 
-import CustomAuth
+
 import Foundation
 import Web3Auth
 
