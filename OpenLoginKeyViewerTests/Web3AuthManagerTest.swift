@@ -14,7 +14,7 @@ class Web3AuthManagerTest: XCTestCase  {
 
     override func setUp() {
         super.setUp()
-        web3AuthManager = Web3AuthManager(network: .testnet)
+        web3AuthManager = Web3AuthManager(network: .mainnet)
     }
     
     func test_network_change(){

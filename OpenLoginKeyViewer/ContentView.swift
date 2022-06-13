@@ -16,7 +16,7 @@ struct ContentView: View {
                 .environmentObject(authManager)
                 .environmentObject(web3AuthManager)
         } else {
-            LoginHomePageview(vm: .init(web3AuthManager: .init(network: .testnet), authManager: authManager))
+            LoginHomePageview(vm: .init(web3AuthManager: .init(network: .mainnet), authManager: authManager))
         }
     }
 }

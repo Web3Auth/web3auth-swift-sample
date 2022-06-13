@@ -10,7 +10,6 @@
 		E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */; };
 		E44B3AE4278812580017646F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE3278812580017646F /* ContentView.swift */; };
 		E44B3AE6278812590017646F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B3AE5278812590017646F /* Assets.xcassets */; };
-		E44B3AE9278812590017646F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B3AE8278812590017646F /* Preview Assets.xcassets */; };
 		E44B3AF3278812590017646F /* OpenLoginKeyViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AF2278812590017646F /* OpenLoginKeyViewerTests.swift */; };
 		E44B3AFD278812590017646F /* OpenLoginKeyViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFC278812590017646F /* OpenLoginKeyViewerUITests.swift */; };
 		E44B3AFF278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AFE278812590017646F /* OpenLoginKeyViewerUITestsLaunchTests.swift */; };
@@ -159,7 +158,6 @@
 		E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginSampleApp.swift; sourceTree = "<group>"; };
 		E44B3AE3278812580017646F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = OpenLoginKeyViewer/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		E44B3AE5278812590017646F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E44B3AE8278812590017646F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E44B3AEE278812590017646F /* OpenLoginKeyViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenLoginKeyViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B3AF2278812590017646F /* OpenLoginKeyViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginKeyViewerTests.swift; sourceTree = "<group>"; };
 		E44B3AF8278812590017646F /* OpenLoginKeyViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenLoginKeyViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,17 +295,8 @@
 				FBB23EE727EC486D00370ECE /* Launch Screen.storyboard */,
 				E44B3AE5278812590017646F /* Assets.xcassets */,
 				FBB23EE927EC491200370ECE /* Color.xcassets */,
-				E44B3AE7278812590017646F /* Preview Content */,
 			);
 			path = OpenLoginKeyViewer;
-			sourceTree = "<group>";
-		};
-		E44B3AE7278812590017646F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				E44B3AE8278812590017646F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		E44B3AF1278812590017646F /* OpenLoginKeyViewerTests */ = {
@@ -629,7 +618,6 @@
 				FBFD6D4727F2CED100FD7288 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				FBFD6D5027F2CED100FD7288 /* Poppins-BlackItalic.ttf in Resources */,
 				FBFD6D6527F2CED100FD7288 /* Poppins-SemiBold.ttf in Resources */,
-				E44B3AE9278812590017646F /* Preview Assets.xcassets in Resources */,
 				E44B3AE6278812590017646F /* Assets.xcassets in Resources */,
 				FBE1DF89280FE75A00EBF87C /* loading.json in Resources */,
 				FBFD6D6227F2CED100FD7288 /* Poppins-Thin.ttf in Resources */,
@@ -935,7 +923,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"OpenLoginKeyViewer/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -971,7 +959,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"OpenLoginKeyViewer/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTABILITY = NO;
