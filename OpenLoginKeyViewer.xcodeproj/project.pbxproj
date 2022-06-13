@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C0CA3B6CD04150AEDD50A06F /* Pods_OpenLoginKeyViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 179A7195A11B36D6C0A72282 /* Pods_OpenLoginKeyViewer.framework */; };
 		DF2B1F8AA6019EE81060E6C1 /* Web3Auth.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */; };
 		E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */; };
 		E44B3AE4278812580017646F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE3278812580017646F /* ContentView.swift */; };
@@ -28,6 +27,7 @@
 		FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B96232806D96A0068935F /* ConfirmTransactionView.swift */; };
 		FB45F9122856FBEC00D72B22 /* SolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD001928292D0D00554EBB /* SolManager.swift */; };
 		FB45F9152856FC5900D72B22 /* Solana in Frameworks */ = {isa = PBXBuildFile; productRef = FB45F9142856FC5900D72B22 /* Solana */; };
+		FB45F91F28571E8000D72B22 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = FB45F91E28571E8000D72B22 /* AlertToast */; };
 		FB530F3327F2E09A00298116 /* TransferAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3227F2E09A00298116 /* TransferAssetView.swift */; };
 		FB530F3527F2FFA600298116 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB530F3427F2FFA600298116 /* Constants.swift */; };
 		FB530F3827F3036C00298116 /* web3.swift in Frameworks */ = {isa = PBXBuildFile; productRef = FB530F3727F3036C00298116 /* web3.swift */; };
@@ -156,9 +156,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		179A7195A11B36D6C0A72282 /* Pods_OpenLoginKeyViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenLoginKeyViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4018E85554A0167B8721CC45 /* Pods-OpenLoginKeyViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenLoginKeyViewer.debug.xcconfig"; path = "Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer.debug.xcconfig"; sourceTree = "<group>"; };
-		9F287BC092C895839B4A95FB /* Pods-OpenLoginKeyViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenLoginKeyViewer.release.xcconfig"; path = "Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer.release.xcconfig"; sourceTree = "<group>"; };
 		DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Web3Auth.plist; sourceTree = "<group>"; };
 		E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenLoginKeyViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginSampleApp.swift; sourceTree = "<group>"; };
@@ -239,9 +236,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0CA3B6CD04150AEDD50A06F /* Pods_OpenLoginKeyViewer.framework in Frameworks */,
 				FB530F3827F3036C00298116 /* web3.swift in Frameworks */,
 				FB45F9152856FC5900D72B22 /* Solana in Frameworks */,
+				FB45F91F28571E8000D72B22 /* AlertToast in Frameworks */,
 				FB530F3E27F305EE00298116 /* KeychainSwift in Frameworks */,
 				FBFD6D9D27F2D60F00FD7288 /* Web3Auth in Frameworks */,
 				FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */,
@@ -267,23 +264,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		16708FDE448EB12D5CB283DB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4018E85554A0167B8721CC45 /* Pods-OpenLoginKeyViewer.debug.xcconfig */,
-				9F287BC092C895839B4A95FB /* Pods-OpenLoginKeyViewer.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		315AF146706F4ECDE8E7ED6B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				179A7195A11B36D6C0A72282 /* Pods_OpenLoginKeyViewer.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E44B3AD5278812580017646F = {
 			isa = PBXGroup;
 			children = (
@@ -291,8 +271,6 @@
 				E44B3AF1278812590017646F /* OpenLoginKeyViewerTests */,
 				E44B3AFB278812590017646F /* OpenLoginKeyViewerUITests */,
 				E44B3ADF278812580017646F /* Products */,
-				16708FDE448EB12D5CB283DB /* Pods */,
-				315AF146706F4ECDE8E7ED6B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -517,11 +495,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E44B3B02278812590017646F /* Build configuration list for PBXNativeTarget "OpenLoginKeyViewer" */;
 			buildPhases = (
-				B013CA2BEB1ED8B720753134 /* [CP] Check Pods Manifest.lock */,
 				E44B3ADA278812580017646F /* Sources */,
 				E44B3ADB278812580017646F /* Frameworks */,
 				E44B3ADC278812580017646F /* Resources */,
-				978EBD7FF0FB5A56B2E0B617 /* [CP] Embed Pods Frameworks */,
 				FB23EEFC28049E020093E4A6 /* ShellScript */,
 			);
 			buildRules = (
@@ -537,6 +513,7 @@
 				FBE1DF84280FE6DF00EBF87C /* Lottie */,
 				FBFBD21A2830015200CCCEE9 /* TweetNacl */,
 				FB45F9142856FC5900D72B22 /* Solana */,
+				FB45F91E28571E8000D72B22 /* AlertToast */,
 			);
 			productName = OpenLoginKeyViewer;
 			productReference = E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */;
@@ -618,6 +595,7 @@
 				FBE1DF83280FE6DF00EBF87C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				FBFBD2192830015200CCCEE9 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */,
 				FB45F9132856FC5900D72B22 /* XCRemoteSwiftPackageReference "Solana.Swift" */,
+				FB45F91D28571E8000D72B22 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = E44B3ADF278812580017646F /* Products */;
 			projectDirPath = "";
@@ -736,45 +714,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		978EBD7FF0FB5A56B2E0B617 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OpenLoginKeyViewer/Pods-OpenLoginKeyViewer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B013CA2BEB1ED8B720753134 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OpenLoginKeyViewer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FB23EEFC28049E020093E4A6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -994,7 +933,6 @@
 		};
 		E44B3B03278812590017646F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4018E85554A0167B8721CC45 /* Pods-OpenLoginKeyViewer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1031,7 +969,6 @@
 		};
 		E44B3B04278812590017646F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F287BC092C895839B4A95FB /* Pods-OpenLoginKeyViewer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1225,6 +1162,14 @@
 				kind = branch;
 			};
 		};
+		FB45F91D28571E8000D72B22 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		FB530F3627F3036C00298116 /* XCRemoteSwiftPackageReference "web3" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/argentlabs/web3.swift";
@@ -1277,6 +1222,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB45F9132856FC5900D72B22 /* XCRemoteSwiftPackageReference "Solana.Swift" */;
 			productName = Solana;
+		};
+		FB45F91E28571E8000D72B22 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB45F91D28571E8000D72B22 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 		FB530F3727F3036C00298116 /* web3.swift */ = {
 			isa = XCSwiftPackageProductDependency;
