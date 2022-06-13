@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF2B1F8AA6019EE81060E6C1 /* Web3Auth.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */; };
 		E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */; };
 		E44B3AE4278812580017646F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B3AE3278812580017646F /* ContentView.swift */; };
 		E44B3AE6278812590017646F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44B3AE5278812590017646F /* Assets.xcassets */; };
@@ -156,7 +155,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Web3Auth.plist; sourceTree = "<group>"; };
 		E44B3ADE278812580017646F /* OpenLoginKeyViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenLoginKeyViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44B3AE1278812580017646F /* OpenLoginSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginSampleApp.swift; sourceTree = "<group>"; };
 		E44B3AE3278812580017646F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = OpenLoginKeyViewer/ContentView.swift; sourceTree = SOURCE_ROOT; };
@@ -300,7 +298,6 @@
 				E44B3AE5278812590017646F /* Assets.xcassets */,
 				FBB23EE927EC491200370ECE /* Color.xcassets */,
 				E44B3AE7278812590017646F /* Preview Content */,
-				DF2B1524565A49D62E4A1FB1 /* Web3Auth.plist */,
 			);
 			path = OpenLoginKeyViewer;
 			sourceTree = "<group>";
@@ -642,7 +639,6 @@
 				FBFD6D7E27F2CEE800FD7288 /* DMSans-BoldItalic.ttf in Resources */,
 				FBB23EE827EC486D00370ECE /* Launch Screen.storyboard in Resources */,
 				FBFD6D3827F2CED100FD7288 /* Poppins-ThinItalic.ttf in Resources */,
-				DF2B1F8AA6019EE81060E6C1 /* Web3Auth.plist in Resources */,
 				FBFD6D7827F2CEE800FD7288 /* DMSans-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
