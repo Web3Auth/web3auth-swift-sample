@@ -81,7 +81,7 @@ extension Web3AuthProvider {
         case .FACEBOOK:
             return "Facebook"
         case .REDDIT:
-            return ("Twitter")
+            return ("Reddit")
         case .DISCORD:
             return ("Discord")
         case .TWITCH:
