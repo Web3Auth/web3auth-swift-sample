@@ -26,6 +26,7 @@ class TransferAssetViewModel: ObservableObject {
     var addressType: [AddressType] = []
     @Published var selectItemToTransfer: BlockchainEnum
     @Published var showEditBtn = false
+    @Published var enableDisableSendBtn:Bool = false
     var userBalance: Double = 0
     var cancellables: Set<AnyCancellable> = []
     var currencyInArr: [TorusSupportedCurrencies] = []
@@ -40,7 +41,7 @@ class TransferAssetViewModel: ObservableObject {
             return .init(id: 0, title: "Loading", time: 0, amt: 0)
         }
     }
-
+    
     func convertAmountToNative() -> Double {
         guard let amt = Double(amount) else { return 0 }
         let convCurr = amt / (currentCurrency == .USD ? currentUSDRate : 1)
@@ -83,7 +84,8 @@ class TransferAssetViewModel: ObservableObject {
 
     func checkBalanceError() {
         validate()
-        if Double(convertAmountToNative()) > userBalance {
+        let nativeFee = manager.getMaxtransactionFee(amount: selectedMaxTransactionDataModel.amt)
+        if Double(convertAmountToNative()) + nativeFee  > userBalance  {
             balanceError = true
             HapticGenerator.shared.generateHaptic(val: .error)
         } else {
@@ -123,6 +125,10 @@ class TransferAssetViewModel: ObservableObject {
         if amount.numberOfOccurrencesOf(string: ".") > 1 {
             amount.removeLast()
         }
+    }
+    
+    func enableDisableSendBtnCheck() -> Bool{
+        return (sendingAddress.isEmpty || amount.isEmpty || Double(amount) ?? 0 == 0 || balanceError || recipientAddressError)
     }
 
     func transferAsset() async throws {
