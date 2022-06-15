@@ -16,6 +16,7 @@
 		FB0811C727F1B4E400F20BDD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0811C627F1B4E400F20BDD /* HomeView.swift */; };
 		FB184C0A280D1ABC00654847 /* TransferAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB184C09280D1ABC00654847 /* TransferAssetViewModel.swift */; };
 		FB184C0C280D7ABD00654847 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB184C0B280D7ABD00654847 /* HomeViewModel.swift */; };
+		FB18B3DA2859EE1200AC0357 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB18B3D92859EE1200AC0357 /* Error.swift */; };
 		FB1BDF4928056860003509B6 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = FB1BDF4828056860003509B6 /* CodeScanner */; };
 		FB23EEF928049AD90093E4A6 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEF828049AD90093E4A6 /* UITextView.swift */; };
 		FB23EEFB28049CD20093E4A6 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */; };
@@ -166,6 +167,7 @@
 		FB0811C627F1B4E400F20BDD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FB184C09280D1ABC00654847 /* TransferAssetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAssetViewModel.swift; sourceTree = "<group>"; };
 		FB184C0B280D7ABD00654847 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		FB18B3D92859EE1200AC0357 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		FB23EEF828049AD90093E4A6 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		FB23EEFA28049CD20093E4A6 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		FB29477927FEDA8400E717E4 /* EthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthManager.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				FB530F3427F2FFA600298116 /* Constants.swift */,
 				FBE7453027FFF920002680A3 /* TorusWeb3Utils.swift */,
 				FBB23EEB27EC4A3600370ECE /* Extensions.swift */,
+				FB18B3D92859EE1200AC0357 /* Error.swift */,
 			);
 			name = Helper;
 			path = ..;
@@ -740,6 +743,7 @@
 				E44B3AE2278812580017646F /* OpenLoginSampleApp.swift in Sources */,
 				FB321540280E6AAA004712A1 /* HapticGenerator.swift in Sources */,
 				FB3B96222806D7380068935F /* MaxTransactionFeeView.swift in Sources */,
+				FB18B3DA2859EE1200AC0357 /* Error.swift in Sources */,
 				FB530F3527F2FFA600298116 /* Constants.swift in Sources */,
 				FBE74535280005FF002680A3 /* NetworkHelper.swift in Sources */,
 				FB3B96242806D96A0068935F /* ConfirmTransactionView.swift in Sources */,
