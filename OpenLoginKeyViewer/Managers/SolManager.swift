@@ -2,6 +2,7 @@ import BigInt
 import KeychainSwift
 import Solana
 import UIKit
+import web3
 
 class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     var userBalancePublished: Published<Double>.Publisher { $userBalance }
@@ -52,7 +53,9 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     }
 
     func checkRecipentAddressError(address: String) -> Bool {
-        return address.count >= PublicKey.LENGTH ? true : false
+        guard let pubKey = PublicKey(string: address),pubKey.bytes.count == 32 else{return false}
+        return PublicKey.isOnCurve(publicKeyBytes: pubKey.data).toBool()
+        
     }
 
     func getBlock() async -> Bool {
@@ -118,3 +121,5 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
             } })
     }
 }
+
+

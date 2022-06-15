@@ -7,6 +7,8 @@
 
 import Solana
 import Foundation
+import TweetNacl
+import CTweetNacl
 
 extension SolanaError:LocalizedError{
     public var errorDescription: String? {
@@ -38,3 +40,4 @@ extension SolanaError:LocalizedError{
         }
     }
 }
+

@@ -147,3 +147,8 @@ class KeyboardResponder: ObservableObject {
     }
 }
 
+extension Int {
+    func toBool() -> Bool {
+        self != 0
+    }
+}
