@@ -3,11 +3,6 @@ import KeychainSwift
 import Solana
 import UIKit
 
-enum SolanaError: Error {
-    case accountFailed
-    case unauthorized
-}
-
 class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     var userBalancePublished: Published<Double>.Publisher { $userBalance }
     var lastestBlockHash: String = ""
@@ -120,12 +115,6 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
                 case let .failure(error):
                     continuation.resume(throwing: error)
                 }
-            }
-        })
+            } })
     }
 }
-
-
-
-
-

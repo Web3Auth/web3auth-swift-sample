@@ -71,7 +71,7 @@ extension AuthManager: SolanaAccountStorage {
         if currentUser != nil, let account = Account(secretKey: currentUser!.ed25519PrivKey.web3.hexData ?? Data()) {
             return .success(account)
         } else {
-            return .failure(SolanaError.accountFailed)
+            return .failure(SolanaError.unauthorized)
         }
     }
 

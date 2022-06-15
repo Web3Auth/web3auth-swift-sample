@@ -145,3 +145,34 @@ class KeyboardResponder: ObservableObject {
         }
     }
 }
+
+extension SolanaError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .unauthorized:
+            return "Unauthorized"
+        case .notFoundProgramAddress:
+            return "Not found program address"
+        case let .invalidRequest(reason):
+            return reason ?? ""
+        case let .invalidResponse(responseError):
+            return responseError.message ?? ""
+        case let .socket(error):
+            return error.localizedDescription
+        case .couldNotRetriveAccountInfo:
+            return "Could not retrive account info"
+        case let .other(string):
+            return string
+        case .nullValue:
+            return "Null Value"
+        case .couldNotRetriveBalance:
+            return "Could not retrive balance"
+        case .blockHashNotFound:
+            return "BlockHash not found"
+        case .invalidPublicKey:
+            return "Invalid Public Key"
+        case .invalidMNemonic:
+            return "Invalid MNemonic"
+        }
+    }
+}
