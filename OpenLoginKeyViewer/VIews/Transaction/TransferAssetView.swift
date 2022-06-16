@@ -71,7 +71,8 @@ struct TransferAssetView: View {
                 }
                 .padding([.leading,.trailing],40)
                     TextRoundedFieldView(text: $vm.sendingAddress,placeHolder: vm.manager.type.sampleAddress, error: $vm.recipientAddressError,errorInfoString: "Invalid Address")
-                        .onChange(of: vm.sendingAddress) { newValue in
+                        .onChange(of: vm.sendingAddress) {
+                            newValue in
                             vm.checkRecipentAddressError()
                         }
 

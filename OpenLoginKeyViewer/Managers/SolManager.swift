@@ -53,7 +53,7 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     }
 
     func checkRecipentAddressError(address: String) -> Bool {
-        guard let pubKey = PublicKey(string: address),pubKey.bytes.count == 32 else{return false}
+        guard let pubKey = PublicKey(string: address),pubKey.bytes.count >= 32 else{return false}
         return PublicKey.isOnCurve(publicKeyBytes: pubKey.data).toBool()
         
     }

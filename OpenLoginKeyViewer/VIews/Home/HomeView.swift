@@ -373,7 +373,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         if let ethManager = EthManager(authManager: AuthManager(), network: .constant(.mainnet)){
-            HomeView(manager: ethManager)
+            HomeView(manager: ethManager).preferredColorScheme(.dark)
                 .environmentObject(AuthManager())
             }
         }

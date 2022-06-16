@@ -94,6 +94,7 @@ class TransferAssetViewModel: ObservableObject {
     }
 
     func checkRecipentAddressError() {
+       sendingAddress = sendingAddress.replacingOccurrences(of: " ", with: "")
         if manager.checkRecipentAddressError(address: sendingAddress) {
             recipientAddressError = false
         } else {
