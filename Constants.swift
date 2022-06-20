@@ -92,18 +92,18 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable {
     func allTransactionURL(address: String) -> URL? {
         switch self {
         case .ethereum:
-            return URL(string: "https://ropsten.etherscan.io/address/\(address)")
+            return URL(string: "https://etherscan.io/address/\(address)")
         case .solana:
-            return URL(string: "https://explorer.solana.com/address/\(address)?cluster=devnet")
+            return URL(string: "https://explorer.solana.com/address/\(address)")
         }
     }
 
     func transactionURL(tx: String) -> URL? {
         switch self {
         case .ethereum:
-            return URL(string: "https://ropsten.etherscan.io/tx/\(tx)")
+            return URL(string: "https://etherscan.io/tx/\(tx)")
         case .solana:
-            return URL(string: "https://explorer.solana.com/tx/\(tx)/?cluster=devnet")
+            return URL(string: "https://explorer.solana.com/tx/\(tx)")
         }
     }
 

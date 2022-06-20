@@ -42,7 +42,7 @@ class EthManager: BlockChainManagerProtocol {
             _network = network
             self.authManager = authManager
             self.urlSession = urlSession
-            let clientUrl = URL(string: "https://ropsten.infura.io/v3/\(projectID)")!
+            let clientUrl = URL(string: "https://mainnet.infura.io/v3/\(projectID)")!
             client = EthereumClient(url: clientUrl, sessionConfig: urlSession.configuration)
             account = try EthereumAccount(keyStorage: authManager)
             address = account.address

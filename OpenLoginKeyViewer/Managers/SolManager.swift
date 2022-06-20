@@ -14,7 +14,7 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     @Published var userBalance: Double = 0
     private let solana: Solana
     var authManager: AuthManager
-    private let endpoint: RPCEndpoint = .devnetSolana
+    private let endpoint: RPCEndpoint = .mainnetBetaSolana
     private let network: NetworkingRouter
     var account: Account
     var addressString: String {
@@ -39,7 +39,7 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
 
     init?(authManager: AuthManager) {
         self.authManager = authManager
-        network = NetworkingRouter(endpoint: .devnetSolana)
+        network = NetworkingRouter(endpoint: .mainnetBetaSolana)
         solana = Solana(
             router: network
         )
