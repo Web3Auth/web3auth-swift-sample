@@ -121,7 +121,7 @@ class EthManager: BlockChainManagerProtocol {
         let totalGas = gasPrice + maxTipInGwie
         let amtInGwie = TorusWeb3Utils.toWei(ether: amount)
         let nonce = try await client.eth_getTransactionCount(address: address, block: .Latest)
-        let transaction = EthereumTransaction(from: address, to: EthereumAddress(sendTo), value: amtInGwie, data: Data(), nonce: nonce + 1, gasPrice: totalGas, gasLimit: gasLimit, chainId: 3)
+        let transaction = EthereumTransaction(from: address, to: EthereumAddress(sendTo), value: amtInGwie, data: Data(), nonce: nonce + 1, gasPrice: totalGas, gasLimit: gasLimit, chainId: 1)
         let signed = try account.sign(transaction: transaction)
         let val = try await client.eth_sendRawTransaction(signed.transaction, withAccount: account)
         return val

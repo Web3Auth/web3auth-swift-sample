@@ -111,7 +111,7 @@ class SolanaManager: BlockChainManagerProtocol, ObservableObject {
     func transferAsset(sendTo: String, amount: Double, maxTip: Double = 0, gasLimit: BigUInt = 0) async throws -> String {
         return try await withCheckedThrowingContinuation({ (continuation: CheckedContinuation<String, Error>) in
             let amountInLamport = amount * lamportsPerSOL
-            solana.action.sendSOL(to: sendTo, from: account, amount: UInt64(amountInLamport)) { result in
+            solana.action.sendSOL(to: sendTo, from: account, amount: UInt64(amountInLamport),allowUnfundedRecipient: true) { result in
                 switch result {
                 case let .success(val):
                     continuation.resume(returning: val)
