@@ -296,6 +296,7 @@ struct HomeView: View {
                                 .opacity(0.5)
                                 .ignoresSafeArea()
                             MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
+                                .frame(maxHeight:200)
                         }
                         .onTapGesture {
                             withAnimation {

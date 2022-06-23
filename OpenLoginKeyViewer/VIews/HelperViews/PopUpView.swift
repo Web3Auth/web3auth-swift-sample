@@ -13,6 +13,7 @@ struct MessageSignedView: View {
     @State var errorMessage:String = "Sign Failed"
     @State var info:String
     var body: some View {
+       
         ZStack(alignment:.center){
             PopUpView()
             VStack{
@@ -22,11 +23,15 @@ struct MessageSignedView: View {
             Text(success ? successMessage : errorMessage)
                     .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
                 if success{
+            ScrollView{
             Text(info)
                 .multilineTextAlignment(.center)
                 .padding(.leading,30)
                 .padding(.trailing,30)
                 .padding(.top,10)
+            }
+            .frame(maxHeight:150)
+            .padding()
             HStack{
                 Button {
                     UIPasteboard.general.string = info
@@ -41,9 +46,9 @@ struct MessageSignedView: View {
                 }
             }
         }
+        }
     }
-    
-}
+
 
 struct PopUpView: View {
     var body: some View {
