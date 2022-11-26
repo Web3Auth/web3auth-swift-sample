@@ -10,27 +10,36 @@ import XCTest
 
 final class Torus_WalletTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var authManager: AuthManager!
+    var ethManager: EthManager!
+    var solManager: SolanaManager!
+    var web3AuthManager: AuthManager!
+
+    override func setUp() {
+        super.setUp()
+        authManager = .init()
+        ethManager = .init(authManager: authManager, network: .constant(.mainnet))!
+        web3AuthManager = .init(network: .mainnet)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func test_get_current_price() {
+        let exp = XCTestExpectation(description: "Should get Current price")
+        defer {
+            wait(for: [exp], timeout: 10)
+        }
+        Task {
+            let val = await NetworkingClient.shared.getCurrentPrice(blockChain: .ethereum, forCurrency: .USD)
+            XCTAssertNotEqual(0, val)
+            exp.fulfill()
         }
     }
 
+    func test_get_suggested_gas_price() async {
+        do {
+            let val = try await NetworkingClient.shared.getSuggestedGasFees()
+            XCTAssertEqual(val.count, 3)
+        } catch {
+            XCTFail()
+        }
+    }
 }

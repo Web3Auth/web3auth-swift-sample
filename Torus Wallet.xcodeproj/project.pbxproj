@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		FC66F9972932C1B40049DF5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC66F9962932C1B40049DF5B /* Assets.xcassets */; };
+		FC66F9992932C5C90049DF5B /* ETHManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */; };
+		FC66F99B2932C5CE0049DF5B /* SOLManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */; };
+		FC66F99D2932C5D50049DF5B /* TorusUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */; };
+		FC66F99F2932C5E20049DF5B /* Web3AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */; };
+		FC66F9A12932C5EA0049DF5B /* AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */; };
 		FCDAB202292826DA00359916 /* Torus_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB201292826DA00359916 /* Torus_WalletApp.swift */; };
 		FCDAB209292826DB00359916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDAB208292826DB00359916 /* Preview Assets.xcassets */; };
 		FCDAB213292826DB00359916 /* Torus_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB212292826DB00359916 /* Torus_WalletTests.swift */; };
@@ -109,6 +114,11 @@
 
 /* Begin PBXFileReference section */
 		FC66F9962932C1B40049DF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETHManagerTest.swift; sourceTree = "<group>"; };
+		FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOLManagerTest.swift; sourceTree = "<group>"; };
+		FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorusUtilTest.swift; sourceTree = "<group>"; };
+		FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Web3AuthManagerTest.swift; sourceTree = "<group>"; };
+		FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManagerTest.swift; sourceTree = "<group>"; };
 		FCDAB1FE292826DA00359916 /* Torus Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Torus Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB201292826DA00359916 /* Torus_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletApp.swift; sourceTree = "<group>"; };
 		FCDAB208292826DB00359916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -272,6 +282,11 @@
 			isa = PBXGroup;
 			children = (
 				FCDAB212292826DB00359916 /* Torus_WalletTests.swift */,
+				FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */,
+				FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */,
+				FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */,
+				FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */,
+				FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */,
 			);
 			path = "Torus WalletTests";
 			sourceTree = "<group>";
@@ -725,7 +740,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC66F99F2932C5E20049DF5B /* Web3AuthManagerTest.swift in Sources */,
 				FCDAB213292826DB00359916 /* Torus_WalletTests.swift in Sources */,
+				FC66F99D2932C5D50049DF5B /* TorusUtilTest.swift in Sources */,
+				FC66F9992932C5C90049DF5B /* ETHManagerTest.swift in Sources */,
+				FC66F99B2932C5CE0049DF5B /* SOLManagerTest.swift in Sources */,
+				FC66F9A12932C5EA0049DF5B /* AuthManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
