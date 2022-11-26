@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC66F9972932C1B40049DF5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC66F9962932C1B40049DF5B /* Assets.xcassets */; };
 		FCDAB202292826DA00359916 /* Torus_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB201292826DA00359916 /* Torus_WalletApp.swift */; };
 		FCDAB209292826DB00359916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDAB208292826DB00359916 /* Preview Assets.xcassets */; };
 		FCDAB213292826DB00359916 /* Torus_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB212292826DB00359916 /* Torus_WalletTests.swift */; };
 		FCDAB21D292826DB00359916 /* Torus_WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB21C292826DB00359916 /* Torus_WalletUITests.swift */; };
 		FCDAB21F292826DB00359916 /* Torus_WalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB21E292826DB00359916 /* Torus_WalletUITestsLaunchTests.swift */; };
-		FCDAB27E2928270A00359916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDAB22B2928270A00359916 /* Assets.xcassets */; };
 		FCDAB27F2928270A00359916 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB22D2928270A00359916 /* TransactionModel.swift */; };
 		FCDAB2802928270A00359916 /* BlockchainEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB22E2928270A00359916 /* BlockchainEnum.swift */; };
 		FCDAB2812928270A00359916 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB22F2928270A00359916 /* UserModel.swift */; };
@@ -108,6 +108,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC66F9962932C1B40049DF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCDAB1FE292826DA00359916 /* Torus Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Torus Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB201292826DA00359916 /* Torus_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletApp.swift; sourceTree = "<group>"; };
 		FCDAB208292826DB00359916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		FCDAB218292826DB00359916 /* Torus WalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Torus WalletUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB21C292826DB00359916 /* Torus_WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletUITests.swift; sourceTree = "<group>"; };
 		FCDAB21E292826DB00359916 /* Torus_WalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FCDAB22B2928270A00359916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../web3auth-swift-sample/TorusWallet/Assets.xcassets"; sourceTree = "<group>"; };
 		FCDAB22D2928270A00359916 /* TransactionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		FCDAB22E2928270A00359916 /* BlockchainEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockchainEnum.swift; sourceTree = "<group>"; };
 		FCDAB22F2928270A00359916 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				FCDAB2C12928276F00359916 /* Torus-Wallet-Info.plist */,
-				FCDAB22B2928270A00359916 /* Assets.xcassets */,
 				FCDAB2522928270A00359916 /* Color.xcassets */,
+				FC66F9962932C1B40049DF5B /* Assets.xcassets */,
 				FCDAB2362928270A00359916 /* Fonts */,
 				FCDAB27D2928270A00359916 /* Launch Screen.storyboard */,
 				FCDAB2712928270A00359916 /* Managers */,
@@ -623,12 +623,12 @@
 				FCDAB29A2928270A00359916 /* Poppins-Bold.ttf in Resources */,
 				FCDAB29D2928270A00359916 /* Poppins-SemiBold.ttf in Resources */,
 				FCDAB209292826DB00359916 /* Preview Assets.xcassets in Resources */,
-				FCDAB27E2928270A00359916 /* Assets.xcassets in Resources */,
 				FCDAB2C02928270A00359916 /* Launch Screen.storyboard in Resources */,
 				FCDAB28B2928270A00359916 /* DMSans-MediumItalic.ttf in Resources */,
 				FCDAB2A02928270A00359916 /* Color.xcassets in Resources */,
 				FCDAB2962928270A00359916 /* Poppins-BlackItalic.ttf in Resources */,
 				FCDAB2872928270A00359916 /* DMSans-Regular.ttf in Resources */,
+				FC66F9972932C1B40049DF5B /* Assets.xcassets in Resources */,
 				FCDAB2942928270A00359916 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				FCDAB2992928270A00359916 /* Poppins-LightItalic.ttf in Resources */,
 			);
