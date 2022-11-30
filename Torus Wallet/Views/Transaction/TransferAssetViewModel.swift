@@ -12,7 +12,7 @@ import web3
 
 @MainActor
 class TransferAssetViewModel: ObservableObject {
-    var manager: BlockChainProtocol
+    unowned var manager: BlockChainProtocol
     @Published var amount: String = ""
     @Published var selectedTransactionFee = 0
     @Published var sendingAddress: String = ""
@@ -46,12 +46,10 @@ class TransferAssetViewModel: ObservableObject {
         let convCurr = amt / (currentCurrency == .USD ? currentUSDRate : 1)
         return convCurr
     }
+    
 
     deinit {
         print("Free")
-        cancellables.forEach { val in
-            val.cancel()
-        }
     }
 
      func cleanUp() {
@@ -61,7 +59,8 @@ class TransferAssetViewModel: ObservableObject {
     }
 
     var user: User {
-        return manager.blockchainManager.user
+
+        return manager.user
     }
 
     var totalAmountInNative: String {
@@ -111,18 +110,17 @@ class TransferAssetViewModel: ObservableObject {
         currencyInArr.append(.USD)
         currentCurrency = currencyInArr[0]
         selectItemToTransfer = manager.type
-
-        manager.userBalancePublished.sink { [weak self] val in
-            self?.userBalance = val
-        }
-        .store(in: &cancellables)
+      //  manager.userBalancePublished.sink { [weak self] val in
+     //       self?.userBalance = val
+    //    }
+      //  .store(in: &cancellables)
         manager.getBalance()
         Task {
             await manager.getMaxtransAPIModel()
             let val = await NetworkingClient.shared.getCurrentPrice(blockChain: manager.type, forCurrency: .USD)
-            DispatchQueue.main.async { [weak self] in
-                self?.currentUSDRate = val
-            }
+//            DispatchQueue.main.async { [weak self] in
+//                self?.currentUSDRate = val
+//            }
         }
     }
 

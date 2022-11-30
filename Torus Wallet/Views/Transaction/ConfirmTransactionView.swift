@@ -18,10 +18,8 @@ struct ConfirmTransactionView: View {
     var delegate: ConfirmTransactionViewDelegate?
     var body: some View {
         ZStack(alignment: .center) {
-            Rectangle()
-                 .fill(.black)
-                 .opacity(0.5)
-                 .edgesIgnoringSafeArea([.leading, .trailing, .top])
+            Blur(radius: 5, opaque: true)
+                .edgesIgnoringSafeArea([.top, .leading, .trailing])
             ScrollView {
                 VStack {
                     Text("Confirm Transaction")
@@ -156,6 +154,9 @@ struct ConfirmTransactionView: View {
                 .padding(.top, UIScreen.screenWidth - 590/2)
             }
 
+        }
+        .onTapGesture {
+            showPopUp.toggle()
         }
 
     }

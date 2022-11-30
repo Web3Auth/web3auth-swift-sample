@@ -10,7 +10,9 @@ import Foundation
 import web3
 
 class EthManager: BlockChainProtocol {
-
+    var user: User {
+        return blockchainManager.user
+    }
     private var sub: PassthroughSubject<Double, Never>
     private var chainID: Int
     private var blockNum: Int = 0
@@ -38,7 +40,7 @@ class EthManager: BlockChainProtocol {
             account = try EthereumAccount(keyStorage: blockchainManager)
             address = account.address
             sub = .init()
-            userBalancePublished = sub.eraseToAnyPublisher()
+            userBalancePublished = sub.share().eraseToAnyPublisher()
         } catch {
             print(error)
             return nil

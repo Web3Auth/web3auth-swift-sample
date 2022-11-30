@@ -10,6 +10,7 @@ import BigInt
 import Combine
 
 protocol BlockChainProtocol: AnyObject {
+    var user: User { get }
     var blockchainManager: BlockchainManager {get}
     var type: BlockchainEnum { get }
     var maxTransactionDataModel: [MaxTransactionDataModel] { get }

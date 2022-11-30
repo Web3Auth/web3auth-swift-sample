@@ -14,10 +14,8 @@ struct MaxTransactionFeeView: View {
     var vm: TransferAssetViewModel
     var body: some View {
         ZStack {
-                Rectangle()
-                    .fill(.black)
-                    .opacity(0.5)
-                    .ignoresSafeArea()
+            Blur(radius: 5, opaque: true)
+                .edgesIgnoringSafeArea([.top, .leading, .trailing])
         VStack {
             VStack {
             Text("Max Transaction Fee")
@@ -64,6 +62,9 @@ struct MaxTransactionFeeView: View {
         .background(Color.whiteGrayColor())
         .cornerRadius(20)
     }
+        .onTapGesture {
+            show.toggle()
+        }
 
     }
 

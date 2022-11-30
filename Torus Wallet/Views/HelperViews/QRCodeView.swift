@@ -7,19 +7,15 @@
 
 import SwiftUI
 import CodeScanner
+import CoreImage
 import CoreImage.CIFilterBuiltins
-
 struct QRCodeAlert: View {
     var publicAddres: String
     @Binding var isPresenting: Bool
 
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.gray)
-                .opacity(0.5)
-                .edgesIgnoringSafeArea([.top, .leading, .trailing])
-
+            Blur(radius: 5, opaque: true)
             VStack {
                 Spacer()
                 HStack {

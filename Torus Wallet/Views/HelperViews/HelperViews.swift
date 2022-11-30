@@ -19,6 +19,7 @@ struct HelperViews_Previews: PreviewProvider {
         TextRoundedFieldView(text: .constant("Hello"), placeHolder: "Hello", error: .constant(true), errorInfoString: "Hello")
         let arr: [Network] = [.mainnet, .testnet, .cyan]
         MenuPickerView(currentSelection: .constant(arr[0]), arr: arr, title: "web3Auth Network")
+        Blur(radius: 25, opaque: true)
 
     }
 }
@@ -99,4 +100,28 @@ struct MenuPickerView<T: MenuPickerProtocol>: View {
     }
     }
 
+}
+
+class UIBackdropView: UIView {
+    override class var layerClass: AnyClass {
+        NSClassFromString("CABackdropLayer") ?? CALayer.self
+    }
+}
+
+struct Backdrop: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIBackdropView {
+        UIBackdropView()
+    }
+
+    func updateUIView(_ uiView: UIBackdropView, context: Context) {}
+}
+
+struct Blur: View {
+    var radius: CGFloat = 3
+    var opaque: Bool = false
+
+    var body: some View {
+        Backdrop()
+            .blur(radius: radius, opaque: opaque)
+    }
 }

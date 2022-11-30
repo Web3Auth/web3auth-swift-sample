@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import UIKit
 
 class SettingVM: ObservableObject {
     var blockchain: BlockchainEnum {
@@ -16,10 +17,17 @@ class SettingVM: ObservableObject {
         blockchainManager.user
     }
 
+    @Published var themeMode: ThemeModes = .lightMode
+
     private var blockchainManager: BlockchainManagerProtocol
     private var manager: BlockChainProtocol
     private var cancellables: Set<AnyCancellable> = []
+    private var keyWindow: UIWindow?
     init(blockchainManager: BlockchainManagerProtocol) {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        keyWindow = windowScene?.windows.first
+       // themeMode = keyWindow?.overrideUserInterfaceStyle
         self.blockchainManager = blockchainManager
         manager = blockchainManager.manager
         blockchainManager.blockchainDidChange.sink { completionVal in
@@ -36,5 +44,11 @@ class SettingVM: ObservableObject {
 
     func logout() {
         manager.logout()
+    }
+
+    func changeThemeMode(val:ThemeModes) {
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = .dark
+        }
     }
 }

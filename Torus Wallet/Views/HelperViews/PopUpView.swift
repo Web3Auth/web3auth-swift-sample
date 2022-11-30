@@ -15,9 +15,7 @@ struct MessageSignedView: View {
     var body: some View {
 
         ZStack(alignment: .center) {
-            Rectangle()
-                .fill(Color.gray)
-                .opacity(0.5)
+            Blur(radius: 5, opaque: true)
                 .edgesIgnoringSafeArea([.top, .leading, .trailing])
             VStack {
             Image(success ? "success" : "failure")

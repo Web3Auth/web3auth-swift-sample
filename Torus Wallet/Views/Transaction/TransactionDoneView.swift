@@ -20,7 +20,7 @@ struct TransactionDoneView: View {
     var delegate: TransactionDoneViewDelegate?
     var body: some View {
         ZStack(alignment: .center) {
-               PopUpView()
+            Blur(radius: 5, opaque: true)
             VStack {
                 Image(success ? "transactionSuccess" : "failure")
                     .resizable()
@@ -66,6 +66,9 @@ struct TransactionDoneView: View {
                     }
                 }
             }
+            .padding()
+            .frame(width: UIScreen.screenWidth - 32, height: UIScreen.screenHeight * 0.5, alignment: .center)
+            .background(RoundedRectangle(cornerRadius: 27).fill(Color.whiteGrayColor()))
         }
     }
 

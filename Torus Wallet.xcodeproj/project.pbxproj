@@ -13,6 +13,7 @@
 		FC66F99D2932C5D50049DF5B /* TorusUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */; };
 		FC66F99F2932C5E20049DF5B /* Web3AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */; };
 		FC66F9A12932C5EA0049DF5B /* AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */; };
+		FC78E13C2937199800902545 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78E13B2937199800902545 /* VisualEffectBlur.swift */; };
 		FCDAB202292826DA00359916 /* Torus_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB201292826DA00359916 /* Torus_WalletApp.swift */; };
 		FCDAB209292826DB00359916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDAB208292826DB00359916 /* Preview Assets.xcassets */; };
 		FCDAB213292826DB00359916 /* Torus_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB212292826DB00359916 /* Torus_WalletTests.swift */; };
@@ -93,6 +94,7 @@
 		FCDAB2DC29282A5900359916 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB2D729282A5900359916 /* Constants.swift */; };
 		FCDAB2DD29282A5900359916 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB2D829282A5900359916 /* Error.swift */; };
 		FCDAB2DE29282A5900359916 /* SolanaAccountAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB2D929282A5900359916 /* SolanaAccountAuthenticator.swift */; };
+		FCF2E0E129358B3C00EC3479 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCF2E0DF29358B3C00EC3479 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,7 @@
 		FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorusUtilTest.swift; sourceTree = "<group>"; };
 		FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Web3AuthManagerTest.swift; sourceTree = "<group>"; };
 		FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManagerTest.swift; sourceTree = "<group>"; };
+		FC78E13B2937199800902545 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		FCDAB1FE292826DA00359916 /* Torus Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Torus Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB201292826DA00359916 /* Torus_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletApp.swift; sourceTree = "<group>"; };
 		FCDAB208292826DB00359916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -191,12 +194,13 @@
 		FCDAB27A2928270A00359916 /* Web3AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Web3AuthManager.swift; sourceTree = "<group>"; };
 		FCDAB27B2928270A00359916 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		FCDAB27D2928270A00359916 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		FCDAB2C12928276F00359916 /* Torus-Wallet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Torus-Wallet-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FCDAB2C12928276F00359916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		FCDAB2D529282A5900359916 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FCDAB2D629282A5900359916 /* TorusWeb3Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorusWeb3Utils.swift; sourceTree = "<group>"; };
 		FCDAB2D729282A5900359916 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FCDAB2D829282A5900359916 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		FCDAB2D929282A5900359916 /* SolanaAccountAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolanaAccountAuthenticator.swift; sourceTree = "<group>"; };
+		FCF2E0E029358B3C00EC3479 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +257,8 @@
 		FCDAB200292826DA00359916 /* Torus Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				FCDAB2C12928276F00359916 /* Torus-Wallet-Info.plist */,
+				FCDAB2C12928276F00359916 /* Info.plist */,
+				FCF2E0DF29358B3C00EC3479 /* Localizable.strings */,
 				FCDAB2522928270A00359916 /* Color.xcassets */,
 				FC66F9962932C1B40049DF5B /* Assets.xcassets */,
 				FCDAB2362928270A00359916 /* Fonts */,
@@ -487,6 +492,7 @@
 		FCDAB2D429282A4200359916 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FC78E13B2937199800902545 /* VisualEffectBlur.swift */,
 				FCDAB2D729282A5900359916 /* Constants.swift */,
 				FCDAB2D829282A5900359916 /* Error.swift */,
 				FCDAB2D529282A5900359916 /* Extensions.swift */,
@@ -591,6 +597,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = FCDAB1F5292826DA00359916;
 			packageReferences = (
@@ -642,6 +649,7 @@
 				FCDAB28B2928270A00359916 /* DMSans-MediumItalic.ttf in Resources */,
 				FCDAB2A02928270A00359916 /* Color.xcassets in Resources */,
 				FCDAB2962928270A00359916 /* Poppins-BlackItalic.ttf in Resources */,
+				FCF2E0E129358B3C00EC3479 /* Localizable.strings in Resources */,
 				FCDAB2872928270A00359916 /* DMSans-Regular.ttf in Resources */,
 				FC66F9972932C1B40049DF5B /* Assets.xcassets in Resources */,
 				FCDAB2942928270A00359916 /* Poppins-ExtraBoldItalic.ttf in Resources */,
@@ -681,7 +689,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint --fix\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -725,6 +734,7 @@
 				FCDAB2B12928270A00359916 /* QRCodeView.swift in Sources */,
 				FCDAB2BA2928270A00359916 /* SolManager.swift in Sources */,
 				FCDAB2B42928270A00359916 /* LoadingView.swift in Sources */,
+				FC78E13C2937199800902545 /* VisualEffectBlur.swift in Sources */,
 				FCDAB2A62928270A00359916 /* TransactionDoneView.swift in Sources */,
 				FCDAB2A22928270A00359916 /* NetworkingClient.swift in Sources */,
 				FCDAB2DA29282A5900359916 /* Extensions.swift in Sources */,
@@ -772,6 +782,18 @@
 			targetProxy = FCDAB219292826DB00359916 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FCF2E0DF29358B3C00EC3479 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCF2E0E029358B3C00EC3479 /* es */,
+			);
+			name = Localizable.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FCDAB220292826DB00359916 /* Debug */ = {
@@ -830,6 +852,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -883,6 +906,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -899,7 +923,7 @@
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Torus-Wallet-Info.plist";
+				INFOPLIST_FILE = info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -930,7 +954,7 @@
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Torus-Wallet-Info.plist";
+				INFOPLIST_FILE = info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -4,6 +4,10 @@ import Foundation
 import Solana
 
 class SolanaManager: BlockChainProtocol, ObservableObject {
+    var user: User {
+        return blockchainManager.user
+    }
+
     private var userBalanceSub: PassthroughSubject<Double, Never>
     private let solana: Solana
     private let endpoint: RPCEndpoint
@@ -53,7 +57,7 @@ class SolanaManager: BlockChainProtocol, ObservableObject {
             return nil
         }
         userBalanceSub = .init()
-        userBalancePublished = userBalanceSub.eraseToAnyPublisher()
+        userBalancePublished = userBalanceSub.share().eraseToAnyPublisher()
     }
 
     func checkRecipentAddressError(address: String) -> Bool {

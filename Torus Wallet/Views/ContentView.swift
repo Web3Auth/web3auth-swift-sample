@@ -18,17 +18,20 @@ struct ContentView: View {
         } else {
             if let user = authManager.user, let blockchainManager = BlockchainManager(authManager: authManager, user: user) {
                 TabView {
-                    HomeView(vm: .init(blockchainManager: blockchainManager))
-                        .tabItem {
-                            Label("Home", systemImage: "house.fill")
-                        }
+                    NavigationView {
+                        HomeView(vm: .init(blockchainManager: blockchainManager))
+                    }
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
                     SettingView(vm: .init(blockchainManager: blockchainManager))
                         .tabItem {
                             Label("Setting", systemImage: "gear")
 
                         }
                 }
-                .accentColor(Color.tabBarColor())
+                .tint(.tabBarColor())
             } else {
                 LoginHomePageview(vm: .init(authManager: authManager))
             }

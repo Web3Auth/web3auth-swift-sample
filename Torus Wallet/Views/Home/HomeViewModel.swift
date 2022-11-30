@@ -30,7 +30,7 @@ class HomeViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private var convRateCache = [BlockchainEnum: [TorusSupportedCurrencies: Double]]()
     private var blockchainManager: BlockchainManagerProtocol
-    var manager: BlockChainProtocol
+    unowned var manager: BlockChainProtocol
 
     init(blockchainManager: BlockchainManagerProtocol) {
         self.blockchainManager = blockchainManager
@@ -47,6 +47,10 @@ class HomeViewModel: ObservableObject {
 
         }
         .store(in: &cancellables)
+    }
+    
+    deinit{
+        print("Home free")
     }
 
     private func setup() {

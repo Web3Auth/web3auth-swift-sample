@@ -24,10 +24,12 @@ class LoginMethodSelectionPageVM: ObservableObject {
 
     init(authManager: AuthManager) {
         self.authManager = authManager
-        setup()
+        Task {
+           await setup()
+        }
     }
 
-    func setup() {
+   @MainActor func setup() {
         authManager.$showError.sink { val in
             self.showError = val
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showTransferScreen = false
-    @ObservedObject var keyboardResponder = KeyboardResponder()
+  //  @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var currentRate: Double = 0
     @State var didStartEditing = false
     @State var showPublicAddressQR: Bool = false
@@ -23,7 +23,6 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            NavigationView {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         HStack {
@@ -232,12 +231,9 @@ struct HomeView: View {
                 .onTapGesture {
                     self.endEditing()
                 }
-                .offset(y: -keyboardResponder.currentHeight * 0.9)
-                // .ignoresSafeArea()
+               // .offset(y: -keyboardResponder.currentHeight * 0.9)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.bkgColor())
-            }
-            .accentColor(.tabBarColor())
             if showPopup {
                     MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
                 .onTapGesture {
@@ -251,6 +247,7 @@ struct HomeView: View {
 
             if showPublicAddressQR, showPublicAddressQR, let key = vm.publicAddress {
                         QRCodeAlert(publicAddres: key, isPresenting: $showPublicAddressQR)
+                    .navigationBarTitleDisplayMode(.inline)
                     .onTapGesture {
                         withAnimation {
                             showPopup.toggle()
