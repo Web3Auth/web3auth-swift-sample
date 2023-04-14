@@ -14,6 +14,7 @@
 		FC66F9A12932C5EA0049DF5B /* AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */; };
 		FC69C9B729D76EC8002FBD13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC69C9B629D76EC8002FBD13 /* Assets.xcassets */; };
 		FC69C9B929D77715002FBD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC69C9B829D77715002FBD13 /* Localizable.strings */; };
+		FCBC65EA29E925E8006232EF /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBC65E929E925E8006232EF /* SettingsManager.swift */; };
 		FCDAB202292826DA00359916 /* Torus_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB201292826DA00359916 /* Torus_WalletApp.swift */; };
 		FCDAB209292826DB00359916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDAB208292826DB00359916 /* Preview Assets.xcassets */; };
 		FCDAB213292826DB00359916 /* Torus_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB212292826DB00359916 /* Torus_WalletTests.swift */; };
@@ -121,6 +122,7 @@
 		FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManagerTest.swift; sourceTree = "<group>"; };
 		FC69C9B629D76EC8002FBD13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC69C9B829D77715002FBD13 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FCBC65E929E925E8006232EF /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		FCDAB1FE292826DA00359916 /* Torus Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Torus Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB201292826DA00359916 /* Torus_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletApp.swift; sourceTree = "<group>"; };
 		FCDAB208292826DB00359916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				FCDAB2722928270A00359916 /* BlockchainManagers */,
 				FCDAB2762928270A00359916 /* StorageManagers */,
 				FCDAB2792928270A00359916 /* AuthManagers */,
+				FCBC65E929E925E8006232EF /* SettingsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -594,6 +597,11 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				de,
+				ja,
+				ko,
+				"zh-Hans",
 			);
 			mainGroup = FCDAB1F5292826DA00359916;
 			packageReferences = (
@@ -714,6 +722,7 @@
 				FCDAB2A92928270A00359916 /* SettingView.swift in Sources */,
 				FCDAB2A72928270A00359916 /* MaxTransactionFeeView.swift in Sources */,
 				FCDAB2A42928270A00359916 /* ConfirmTransactionView.swift in Sources */,
+				FCBC65EA29E925E8006232EF /* SettingsManager.swift in Sources */,
 				FCDAB2BD2928270A00359916 /* Web3AuthManager.swift in Sources */,
 				FCDAB2AC2928270A00359916 /* HapticGenerator.swift in Sources */,
 				FCDAB2DB29282A5900359916 /* TorusWeb3Utils.swift in Sources */,

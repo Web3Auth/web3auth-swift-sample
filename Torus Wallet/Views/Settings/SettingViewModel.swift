@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Foundation
+import SwiftUI
 
 class SettingVM: ObservableObject {
     var blockchain: BlockchainEnum {
@@ -19,6 +19,7 @@ class SettingVM: ObservableObject {
     private var blockchainManager: BlockchainManagerProtocol
     private var manager: BlockChainProtocol
     private var cancellables: Set<AnyCancellable> = []
+    @EnvironmentObject var settingsManager: SettingsManager
     init(blockchainManager: BlockchainManagerProtocol) {
         self.blockchainManager = blockchainManager
         manager = blockchainManager.manager
@@ -32,6 +33,10 @@ class SettingVM: ObservableObject {
 
     func changeBlockchain(val: BlockchainEnum) {
         blockchainManager.changeBlockChain(blockchain: val)
+    }
+
+    func changeTheme(val: ColorScheme) {
+        settingsManager.changeColorSchemeTo(val)
     }
 
     func logout() {

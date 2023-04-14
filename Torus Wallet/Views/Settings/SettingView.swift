@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct SettingView: View {
-    @State var expanded = false
+    @State var networksExpanded = false
+    @State var themeExpanded = false
+    @State var languageExpanded: Bool = false
     @StateObject var vm: SettingVM
 
     var body: some View {
-        NavigationView {
+        return NavigationView {
             if #available(iOS 16.0, *) {
-                SettingFormView(vm: vm, expanded: $expanded)
+                SettingFormView(vm: vm, networksExpanded: $networksExpanded, themeExpanded: $themeExpanded, languageExpanded: $languageExpanded)
                     .scrollContentBackground(.hidden)
                     .background(Color.bkgColor())
                     .navigationTitle("Settings")
                     .navigationBarTitleDisplayMode(.large)
             } else {
-                SettingFormView(vm: vm, expanded: $expanded)
+                SettingFormView(vm: vm, networksExpanded: $networksExpanded, themeExpanded: $themeExpanded, languageExpanded: $languageExpanded)
                     .background(Color.bkgColor())
                     .navigationTitle("Settings")
                     .navigationBarTitleDisplayMode(.large)
@@ -38,13 +40,18 @@ struct SettingView: View {
     struct SettingView_Previews: PreviewProvider {
         static var previews: some View {
             SettingView(vm: .init(blockchainManager: DummyBlockchainManager()))
-            SettingFormView(vm: .init(blockchainManager: DummyBlockchainManager()), expanded: .constant(true))
+                .environmentObject(SettingsManager())
+            SettingFormView(vm: .init(blockchainManager: DummyBlockchainManager()), networksExpanded: .constant(false), themeExpanded: .constant(false), languageExpanded: .constant(false))
+                .environmentObject(SettingsManager())
         }
     }
 
     struct SettingFormView: View {
-        @StateObject var vm: SettingVM
-        @Binding var expanded: Bool
+        @ObservedObject var vm: SettingVM
+        @Binding var networksExpanded: Bool
+        @Binding var themeExpanded: Bool
+        @Binding var languageExpanded: Bool
+        @EnvironmentObject var settings: SettingsManager
         var body: some View {
             Form {
                 Section(header: Text("Personal Info")
@@ -55,7 +62,7 @@ struct SettingView: View {
                     .listRowBackground(Color.whiteGrayColor())
                 Section(header: Text("Networks")
                     .font(.custom(POPPINSFONTLIST.Regular, size: 14))) {
-                    DisclosureGroup(isExpanded: $expanded, content: {
+                    DisclosureGroup(isExpanded: $networksExpanded, content: {
                         List(BlockchainEnum.allCases) { val in
                             HStack {
                                 Text(val.name)
@@ -66,7 +73,7 @@ struct SettingView: View {
                             .onTapGesture {
                                 withAnimation {
                                     vm.changeBlockchain(val: val)
-                                    expanded = false
+                                    networksExpanded = false
                                 }
                             }
 
@@ -78,6 +85,33 @@ struct SettingView: View {
                     }
                 }
                     .listRowBackground(Color.whiteGrayColor())
+
+                Section(header: Text("Theme")
+                    .font(.custom(POPPINSFONTLIST.Regular, size: 14))) {
+                    DisclosureGroup(isExpanded: $themeExpanded, content: {
+                        List(ColorScheme.allCases, id: \.self) { val in
+                            HStack {
+                                Text(val.name)
+                                    .font(.custom(POPPINSFONTLIST.Regular, size: 14))
+                                Spacer()
+                            }
+                            .background(Color.whiteGrayColor())
+                            .onTapGesture {
+                                withAnimation {
+                                    settings.changeColorSchemeTo(val)
+                                    themeExpanded = false
+                                }
+                            }
+
+                        }
+                        .listRowBackground(Color.whiteGrayColor())
+                    }) {
+                        Text(settings.colorScheme.name)
+                            .font(.custom(DMSANSFONTLIST.Regular, size: 16))
+                    }
+                }
+                .listRowBackground(Color.whiteGrayColor())
+
                 Section {
                     Button {
                         vm.logout()

@@ -11,6 +11,11 @@ struct ContentView: View {
 
     @StateObject var authManager: AuthManager = .init()
 
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.Bold.name, size: 24)!]
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.SemiBold.name, size: 16)!]
+    }
+
     var body: some View {
         if authManager.loading {
             LoadingView()
@@ -25,7 +30,6 @@ struct ContentView: View {
                     SettingView(vm: .init(blockchainManager: blockchainManager))
                         .tabItem {
                             Label("Setting", systemImage: "gear")
-
                         }
                 }
                 .accentColor(Color.tabBarColor())

@@ -85,8 +85,11 @@ extension AuthManager {
                 let user = self.web3AuthStateToUser(web3AuthState!)
                 await setUser(user: user)
             } catch let err {
-                errorMessage = err.localizedDescription
-                showError = true
+                await MainActor.run(body: {
+                    errorMessage = err.localizedDescription
+                    showError = true
+                })
+
             }
         }
     }

@@ -8,13 +8,31 @@
 import Foundation
 import Web3Auth
 
+extension Network {
+    var clientID: String {
+        switch self {
+        case .mainnet:
+            return "BEaGnq-mY0ZOXk2UT1ivWUe0PZ_iJX4Vyb6MtpOp7RMBu_6ErTrATlfuK3IaFcvHJr27h6L1T4owkBH6srLphIw"
+        case .testnet:
+            return "BKWc-6_pz5wgoZ5jvmgvbytxt7A8dvTTgsByZ87b8f-7NZW5zdhbznxT2MWJYJEv_O6MClj-g_HS4lYPJ4uQFhk"
+        case .cyan:
+            return "BA5akJpGy6j5bVNL33RKpe64AXTiPGTSCYOI0i-BbDtbOYWtFQNdLzaC-WKibRtQ0sV_TVHC42TdOTbyZXdN-XI"
+        }
+    }
+}
+
 class Web3AuthManager: ObservableObject {
-    private var clientID: String = "BEvzsPEkx0ir-DKwS4rJ9_Wf5FlZMTLaSlFuWN64wDlpqOkMI-gUSXUYN9JV-QZEt60dqlQOMD1oK9ZcOxbyfrc"
+    private var clientID: String = ""
     private var auth: Web3Auth?
-    private var network: Network
+    private var network: Network {
+        didSet {
+            clientID = network.clientID
+        }
+    }
 
     init(network: Network) {
         self.network = network
+        self.clientID = network.clientID
     }
 
     func setup() async {
