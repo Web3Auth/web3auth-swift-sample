@@ -249,7 +249,8 @@ struct HomeView: View {
 
             }
 
-            if showPublicAddressQR, showPublicAddressQR, let key = vm.publicAddress {
+            if showPublicAddressQR, showPublicAddressQR {
+                let key = vm.publicAddress
                         QRCodeAlert(publicAddres: key, isPresenting: $showPublicAddressQR)
                     .onTapGesture {
                         withAnimation {

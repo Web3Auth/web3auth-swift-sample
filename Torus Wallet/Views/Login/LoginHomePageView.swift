@@ -47,7 +47,7 @@ struct LoginHomePageview: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.bkgColor())
         }
-        .tint(Color.tabBarColor())
+        .accentColor(Color.tabBarColor())
     }
 }
 

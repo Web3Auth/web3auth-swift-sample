@@ -19,6 +19,7 @@ class Web3AuthManager: ObservableObject {
 
     func setup() async {
         auth = await Web3Auth(.init(clientId: clientID, network: network))
+
     }
 
     func getUser() -> Web3AuthState? {

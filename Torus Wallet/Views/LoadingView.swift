@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct LoadingView: View {
-    var body: some View {
-        VStack {
+   var body: some View {
+       UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.Bold.name, size: 24)!]
+       UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.SemiBold.name, size: 16)!]
+        return VStack {
             Image("web3auth-banner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)

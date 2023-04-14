@@ -7,6 +7,7 @@
 
 import Combine
 import Web3Auth
+import Foundation
 
 class LoginMethodSelectionPageVM: ObservableObject {
     @Published private var authManager: AuthManager
@@ -24,16 +25,24 @@ class LoginMethodSelectionPageVM: ObservableObject {
 
     init(authManager: AuthManager) {
         self.authManager = authManager
-        setup()
+        Task {
+            await setup()
+        }
     }
 
-    func setup() {
+   @MainActor func setup() {
         authManager.$showError.sink { val in
-            self.showError = val
+            DispatchQueue.main.async {
+                self.showError = val
+            }
+
         }
         .store(in: &cancellables)
         authManager.$errorMessage.sink { val in
-            self.errorMessage = val
+            DispatchQueue.main.async {
+                self.errorMessage = val
+            }
+
         }
         .store(in: &cancellables)
         $network.sink(receiveValue: { val in

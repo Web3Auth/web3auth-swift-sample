@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC66F9972932C1B40049DF5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC66F9962932C1B40049DF5B /* Assets.xcassets */; };
 		FC66F9992932C5C90049DF5B /* ETHManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */; };
 		FC66F99B2932C5CE0049DF5B /* SOLManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */; };
 		FC66F99D2932C5D50049DF5B /* TorusUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */; };
 		FC66F99F2932C5E20049DF5B /* Web3AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */; };
 		FC66F9A12932C5EA0049DF5B /* AuthManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */; };
+		FC69C9B729D76EC8002FBD13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC69C9B629D76EC8002FBD13 /* Assets.xcassets */; };
+		FC69C9B929D77715002FBD13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC69C9B829D77715002FBD13 /* Localizable.strings */; };
 		FCDAB202292826DA00359916 /* Torus_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB201292826DA00359916 /* Torus_WalletApp.swift */; };
 		FCDAB209292826DB00359916 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDAB208292826DB00359916 /* Preview Assets.xcassets */; };
 		FCDAB213292826DB00359916 /* Torus_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDAB212292826DB00359916 /* Torus_WalletTests.swift */; };
@@ -113,12 +114,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FC66F9962932C1B40049DF5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETHManagerTest.swift; sourceTree = "<group>"; };
 		FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOLManagerTest.swift; sourceTree = "<group>"; };
 		FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorusUtilTest.swift; sourceTree = "<group>"; };
 		FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Web3AuthManagerTest.swift; sourceTree = "<group>"; };
 		FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManagerTest.swift; sourceTree = "<group>"; };
+		FC69C9B629D76EC8002FBD13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC69C9B829D77715002FBD13 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FCDAB1FE292826DA00359916 /* Torus Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Torus Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB201292826DA00359916 /* Torus_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletApp.swift; sourceTree = "<group>"; };
 		FCDAB208292826DB00359916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -254,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				FCDAB2C12928276F00359916 /* Torus-Wallet-Info.plist */,
+				FC69C9B629D76EC8002FBD13 /* Assets.xcassets */,
 				FCDAB2522928270A00359916 /* Color.xcassets */,
-				FC66F9962932C1B40049DF5B /* Assets.xcassets */,
 				FCDAB2362928270A00359916 /* Fonts */,
 				FCDAB27D2928270A00359916 /* Launch Screen.storyboard */,
 				FCDAB2712928270A00359916 /* Managers */,
@@ -266,6 +268,7 @@
 				FCDAB2562928270A00359916 /* Views */,
 				FCDAB201292826DA00359916 /* Torus_WalletApp.swift */,
 				FCDAB207292826DB00359916 /* Preview Content */,
+				FC69C9B829D77715002FBD13 /* Localizable.strings */,
 			);
 			path = "Torus Wallet";
 			sourceTree = "<group>";
@@ -642,8 +645,9 @@
 				FCDAB28B2928270A00359916 /* DMSans-MediumItalic.ttf in Resources */,
 				FCDAB2A02928270A00359916 /* Color.xcassets in Resources */,
 				FCDAB2962928270A00359916 /* Poppins-BlackItalic.ttf in Resources */,
+				FC69C9B929D77715002FBD13 /* Localizable.strings in Resources */,
 				FCDAB2872928270A00359916 /* DMSans-Regular.ttf in Resources */,
-				FC66F9972932C1B40049DF5B /* Assets.xcassets in Resources */,
+				FC69C9B729D76EC8002FBD13 /* Assets.xcassets in Resources */,
 				FCDAB2942928270A00359916 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				FCDAB2992928270A00359916 /* Poppins-LightItalic.ttf in Resources */,
 			);
@@ -900,18 +904,19 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Torus-Wallet-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for using code scanner";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "web3Auth.Torus-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Torus-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -931,18 +936,19 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Torus-Wallet-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for using code scanner";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "web3Auth.Torus-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Torus-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
