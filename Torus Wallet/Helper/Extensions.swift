@@ -24,27 +24,24 @@ extension UIApplication {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-// extension UIColor {
-//    var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-//        var red: CGFloat = 0
-//        var green: CGFloat = 0
-//        var blue: CGFloat = 0
-//        var alpha: CGFloat = 0
-//        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-//
-//        return (red, green, blue, alpha)
-//    }
-// }
-//
-// extension Color {
-//    
-//    init(uiColor: UIColor) {
-//        self.init(red: Double(uiColor.rgba.red),
-//                  green: Double(uiColor.rgba.green),
-//                  blue: Double(uiColor.rgba.blue),
-//                  opacity: Double(uiColor.rgba.alpha))
-//    }
-// }
+
+extension View {
+    public func popup<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) -> some View {
+            ZStack {
+                self
+                .navigationBarHidden(isPresented.wrappedValue)
+                if isPresented.wrappedValue {
+                    ZStack {
+                        Color.black.opacity(0.4).ignoresSafeArea()
+                            .onTapGesture {
+                                isPresented.wrappedValue.toggle()
+                            }
+                        content()
+                    }
+            }
+        }
+    }
+}
 
 extension Network: MenuPickerProtocol {
     var networkURL: String {

@@ -111,24 +111,61 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
         }
     }
 
+    var baseURL: String {
+        switch self {
+        case .ETHMainnet:
+            return "https://etherscan.io/"
+        case .PolygonMainnet:
+            return "https://polygonscan.com/"
+        case .PolygonTestnet:
+            return "https://mumbai.polygonscan.com/"
+        case .BinanceMainnet:
+            return "https://bscscan.com/"
+        case .Goerli:
+            return "https://goerli.etherscan.io/"
+        case .SOLMainnet:
+            return "https://explorer.solana.com/"
+        case .SOLtestnet:
+            return "https://explorer.solana.com/"
+        case .SOLdevenet:
+            return "https://explorer.solana.com/"
+        }
+    }
+
+    var addressURL: String {
+        return self.baseURL.appending("address/")
+    }
+
+    var transactionURL: String {
+        return self.baseURL.appending("tx/")
+    }
+
     // FIX
     func allTransactionURL(address: String) -> URL? {
+        var str = addressURL.appending(address)
         switch self {
-        case .ETHMainnet, .PolygonMainnet, .BinanceMainnet, .Goerli, .PolygonTestnet:
-            return URL(string: "https://etherscan.io/address/\(address)")
-        case .SOLMainnet, .SOLtestnet, .SOLdevenet:
-            return URL(string: "https://explorer.solana.com/address/\(address)")
+        case .SOLtestnet:
+            str.append("?cluster=testnet")
+        case .SOLdevenet:
+            str.append("?cluster=devnet")
+        default:
+            str.append("")
         }
+        return URL(string: str)
     }
 
     // FIX
     func transactionURL(tx: String) -> URL? {
+        var str = addressURL.appending(tx)
         switch self {
-        case .ETHMainnet, .PolygonMainnet, .BinanceMainnet, .Goerli, .PolygonTestnet:
-            return URL(string: "https://etherscan.io/tx/\(tx)")
-        case .SOLMainnet, .SOLtestnet, .SOLdevenet:
-            return URL(string: "https://explorer.solana.com/tx/\(tx)")
+        case .SOLtestnet:
+            str.append("?cluster=testnet")
+        case .SOLdevenet:
+            str.append("?cluster=devnet")
+        default:
+            str.append("")
         }
+        return URL(string: str)
     }
 
     var urlLinkName: String {

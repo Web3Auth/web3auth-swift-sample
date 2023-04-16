@@ -234,6 +234,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FCA9DB9A29EBE1E600EE1155 /* SettingManager */ = {
+			isa = PBXGroup;
+			children = (
+				FCBC65E929E925E8006232EF /* SettingsManager.swift */,
+			);
+			path = SettingManager;
+			sourceTree = "<group>";
+		};
 		FCDAB1F5292826DA00359916 = {
 			isa = PBXGroup;
 			children = (
@@ -457,7 +465,7 @@
 				FCDAB2722928270A00359916 /* BlockchainManagers */,
 				FCDAB2762928270A00359916 /* StorageManagers */,
 				FCDAB2792928270A00359916 /* AuthManagers */,
-				FCBC65E929E925E8006232EF /* SettingsManager.swift */,
+				FCA9DB9A29EBE1E600EE1155 /* SettingManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";

@@ -13,9 +13,15 @@ struct Torus_WalletApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.colorScheme, settingsManager.colorScheme)
-                .environment(\.locale, Locale(identifier: "gr"))
+                .preferredColorScheme(settingsManager.colorScheme)
                 .environmentObject(settingsManager)
         }
     }
+}
+
+extension UINavigationController {
+  open override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+      navigationBar.topItem?.backButtonDisplayMode = .minimal
+  }
 }

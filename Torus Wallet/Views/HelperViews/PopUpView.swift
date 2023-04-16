@@ -14,11 +14,6 @@ struct MessageSignedView: View {
     @State var info: String
     var body: some View {
 
-        ZStack(alignment: .center) {
-            Rectangle()
-                .fill(Color.gray)
-                .opacity(0.5)
-                .edgesIgnoringSafeArea([.top, .leading, .trailing])
             VStack {
             Image(success ? "success" : "failure")
                 .resizable()
@@ -50,29 +45,17 @@ struct MessageSignedView: View {
                 }
             }
             .padding()
-            .frame(width: UIScreen.screenWidth - 32, height: UIScreen.screenHeight * 0.5, alignment: .center)
+          .frame(width: UIScreen.screenWidth - 32, height: UIScreen.screenHeight * 0.5)
             .background(RoundedRectangle(cornerRadius: 27).fill(Color.whiteGrayColor()))
-            Spacer()
-        }
         }
     }
-
-struct PopUpView: View {
-    var body: some View {
-        VStack {
-
-            }
-        .frame(width: UIScreen.screenWidth - 32, height: UIScreen.screenHeight * 0.5, alignment: .center)
-        .background(Color.whiteGrayColor())
-        .cornerRadius(20)
-    }
-
-}
 
 struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
-        PopUpView()
-        MessageSignedView(success: .constant(true), info: "saasa")
+        ZStack {
+            Color.black.opacity(0.3)
+            MessageSignedView(success: .constant(true), info: "saasa")
+        }
         MessageSignedView(success: .constant(false), info: "samsa")
     }
 }

@@ -22,7 +22,6 @@ struct HomeView: View {
     @StateObject var vm: HomeViewModel
 
     var body: some View {
-        ZStack {
             NavigationView {
                 ScrollView(showsIndicators: false) {
                     VStack {
@@ -233,40 +232,34 @@ struct HomeView: View {
                     self.endEditing()
                 }
                 .offset(y: -keyboardResponder.currentHeight * 0.9)
-                // .ignoresSafeArea()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.bkgColor())
-            }
             .accentColor(.tabBarColor())
-            if showPopup {
-                    MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
-                .onTapGesture {
-                    withAnimation {
-                        showPopup.toggle()
-                    }
-
+            }
+            .popup(isPresented: $showPopup) {
+                MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
+            .onTapGesture {
+                withAnimation {
+                    showPopup.toggle()
                 }
 
             }
-
-            if showPublicAddressQR, showPublicAddressQR {
-                let key = vm.publicAddress
-                        QRCodeAlert(publicAddres: key, isPresenting: $showPublicAddressQR)
-                    .onTapGesture {
-                        withAnimation {
-                            showPopup.toggle()
-                        }
-                    }
-                    }
-
             }
-    }
+            .popup(isPresented: $showPublicAddressQR) {
+                QRCodeAlert(publicAddres: vm.publicAddress, isPresenting: $showPublicAddressQR)
+            .onTapGesture {
+                withAnimation {
+                    showPopup.toggle()
+                }
+            }
+        }
+        }
 
     // FIX
     func pastTransactionOnEtherScan() {
-//        guard let url = vm.manager.type.allTransactionURL(address: vm.publicAddress)
-//        else {return}
-//        openURL(url)
+        guard let url = vm.manager.type.allTransactionURL(address: vm.publicAddress)
+        else {return}
+        openURL(url)
     }
 
     func signMessage() {

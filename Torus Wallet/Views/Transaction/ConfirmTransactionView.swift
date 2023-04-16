@@ -17,12 +17,6 @@ struct ConfirmTransactionView: View {
     @Binding var usdRate: Double
     var delegate: ConfirmTransactionViewDelegate?
     var body: some View {
-        ZStack(alignment: .center) {
-            Rectangle()
-                 .fill(.black)
-                 .opacity(0.5)
-                 .edgesIgnoringSafeArea([.leading, .trailing, .top])
-            ScrollView {
                 VStack {
                     Text("Confirm Transaction")
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
@@ -140,12 +134,10 @@ struct ConfirmTransactionView: View {
                             Text("Cancel")
                                 .font(.custom(DMSANSFONTLIST.Medium, size: 16))
                                 .frame(width: 308, height: 48)
-                               // .background(Color.white)
                                 .cornerRadius(24)
-
                         }
                     }
-                    .padding(.top, 36)
+                    .padding(.top, 10)
                     .padding(.bottom, 10)
 
                 }
@@ -153,11 +145,6 @@ struct ConfirmTransactionView: View {
                 .frame(width: UIScreen.screenWidth - 32, height: 500, alignment: .center)
                 .background(Color.whiteGrayColor())
                 .cornerRadius(20)
-                .padding(.top, UIScreen.screenWidth - 590/2)
-            }
-
-        }
-
     }
 }
 

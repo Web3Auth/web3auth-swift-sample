@@ -19,8 +19,7 @@ struct TransactionDoneView: View {
     var urlLinkName: String
     var delegate: TransactionDoneViewDelegate?
     var body: some View {
-        ZStack(alignment: .center) {
-               PopUpView()
+
             VStack {
                 Image(success ? "transactionSuccess" : "failure")
                     .resizable()
@@ -66,7 +65,6 @@ struct TransactionDoneView: View {
                     }
                 }
             }
-        }
     }
 
 }

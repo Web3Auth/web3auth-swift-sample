@@ -161,8 +161,7 @@ struct TransferAssetView: View {
             }
 
     }
-        .navigationTitle("Transfer Assets")
-
+    .navigationTitle("Transfer Assets")
         .onTapGesture {
             endEditing()
         }
@@ -180,35 +179,29 @@ struct TransferAssetView: View {
         }
 
         .offset(y: -keyboardResponder.currentHeight * 0.9)
-            if showPopup {
-                        ConfirmTransactionView(vm: vm, showPopUp: $showPopup, usdRate: $vm.currentUSDRate, delegate: self)
-                    .navigationBarTitleDisplayMode(.inline)
+        .popup(isPresented: $showPopup) {
+            ConfirmTransactionView(vm: vm, showPopUp: $showPopup, usdRate: $vm.currentUSDRate, delegate: self)
+        .navigationBarTitleDisplayMode(.inline)
+        }
+        .popup(isPresented: $showTransactionPopup) {
+            ZStack {
+                Rectangle()
+                    .fill(.black)
+                    .opacity(0.5)
+                    .ignoresSafeArea()
+                MaxTransactionFeeView(show: $showMaxTransactionPopUp, selectedId: $vm.selectedTransactionFee, dataModel: vm.maxTransactionDataModel, vm: vm)
+
             }
-            if showMaxTransactionPopUp {
-
-                        MaxTransactionFeeView(show: $showMaxTransactionPopUp, selectedId: $vm.selectedTransactionFee, dataModel: vm.maxTransactionDataModel, vm: vm)
-
-            }
-
-                if showTransactionPopup {
-                        ZStack {
-                            Rectangle()
-                                .fill(.black)
-                                .opacity(0.5)
-                                .ignoresSafeArea()
-                            TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo, urlLinkName: vm.manager.type.urlLinkName, delegate: self)
-                        }
-                        .onTapGesture {
-                            withAnimation {
-                                showTransactionPopup.toggle()
-                                if vm.transactionSuccess {
-                                presentationMode.wrappedValue.dismiss()
-                                }
-                            }
-
-                        }
-
+            .onTapGesture {
+                withAnimation {
+                    showTransactionPopup.toggle()
+                    if vm.transactionSuccess {
+                    presentationMode.wrappedValue.dismiss()
+                    }
                 }
+
+            }
+        }
 
         }
     }

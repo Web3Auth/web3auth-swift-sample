@@ -26,14 +26,13 @@ struct SettingView: View {
                     .background(Color.bkgColor())
                     .navigationTitle("Settings")
                     .navigationBarTitleDisplayMode(.large)
-                    .onAppear { // ADD THESE AFTER YOUR FORM VIEW
+                    .onAppear {
                         UITableView.appearance().backgroundColor = .clear
                     }
-                    .onDisappear { // CHANGE BACK TO SYSTEM's DEFAULT
+                    .onDisappear {
                         UITableView.appearance().backgroundColor = .systemGroupedBackground
                     }
             }
-
         }
     }
 }

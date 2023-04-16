@@ -26,6 +26,8 @@ extension ColorScheme {
             return "Light"
         case .dark:
             return "Dark"
+        default:
+            return "System"
         }
     }
 }
