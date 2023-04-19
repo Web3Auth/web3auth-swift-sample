@@ -160,25 +160,6 @@ struct TransferAssetView: View {
             if showScanner {
                 QRCodeScannerExampleView()
             }
-
-//            if showTransactionPopup {
-//                    ZStack {
-//                        Rectangle()
-//                            .fill(.black)
-//                            .opacity(0.5)
-//                            .ignoresSafeArea()
-//                        TransactionDoneView(success: $vm.transactionSuccess, infoText: transactionInfo, urlLinkName: vm.manager.type.urlLinkName, delegate: self)
-//                    }
-//                    .onTapGesture {
-//                        withAnimation {
-//                            showTransactionPopup.toggle()
-//                            if vm.transactionSuccess {
-//                            presentationMode.wrappedValue.dismiss()
-//                            }
-//                        }
-//
-//                    }
-//            }
         }
     .navigationTitle("Transfer Assets")
         .onTapGesture {

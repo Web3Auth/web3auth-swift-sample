@@ -83,10 +83,6 @@ class EthManager: BlockChainProtocol {
 
     func getBalance() {
         Task {
-            let blockChanged = await checkLatestBlockChanged()
-            guard blockChanged == true else {
-                return
-            }
             client.eth_getBalance(address: self.address, block: .Latest) { [unowned self] error, val in
                 if let error = error {
                     print(error)
