@@ -26,7 +26,7 @@ extension UIApplication {
 }
 
 extension View {
-    public func popup<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) -> some View {
+    public func popup<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content, completionHandler: ( () -> Void)? = nil) -> some View {
             ZStack {
                 self
                 .navigationBarHidden(isPresented.wrappedValue)
@@ -34,7 +34,11 @@ extension View {
                     ZStack {
                         Color.black.opacity(0.4).ignoresSafeArea()
                             .onTapGesture {
-                                isPresented.wrappedValue.toggle()
+                                if completionHandler != nil {
+                                    completionHandler?()
+                                } else {
+                                    isPresented.wrappedValue.toggle()
+                                }
                             }
                         content()
                     }

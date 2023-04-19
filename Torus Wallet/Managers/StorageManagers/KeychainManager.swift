@@ -11,6 +11,7 @@ import KeychainSwift
 enum ConfigConstantEnum {
     case configData
     case custom(String)
+    case theme
 
     var key: String {
         switch self {
@@ -18,6 +19,8 @@ enum ConfigConstantEnum {
             return "ConfigData"
         case let .custom(string):
             return string
+        case .theme:
+            return "theme"
         }
     }
 }

@@ -30,8 +30,6 @@ struct TransactionDoneView: View {
                 if success {
                     HStack {
                         Text("View transaction’s status on")
-                           // .foregroundColor(Color(uiColor: <#T##UIColor#>))
-                          //  .foregroundColor(Color(uiColor: .grayColor()))
                             .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                         HStack {
                             Button {
@@ -39,6 +37,7 @@ struct TransactionDoneView: View {
                             } label: {
                                 Text(urlLinkName)
                                     .font(.custom(DMSANSFONTLIST.Regular, size: 16))
+                                    .foregroundColor(.blue)
 
                             }
 
@@ -50,21 +49,13 @@ struct TransactionDoneView: View {
                     VStack {
                         Text(infoText)
                             .font(.custom(DMSANSFONTLIST.Regular, size: 16))
-//                    HStack {
-//                        Button {
-//
-//                        } label: {
-//                            Text("Try again now")
-//                                .font(.custom(DMSANSFONTLIST.Regular, size: 16))
-//
-//                        }
-//
-//                    }
-//                    .padding([.leading, .trailing], 10)
-//                    .padding(.top, 5)
                     }
                 }
             }
+            .padding()
+            .frame(width: UIScreen.screenWidth - 32, height: 500, alignment: .center)
+            .background(Color.whiteGrayColor())
+            .cornerRadius(20)
     }
 
 }

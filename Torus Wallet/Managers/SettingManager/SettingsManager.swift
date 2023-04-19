@@ -9,25 +9,42 @@ import Foundation
 import SwiftUI
 
 class SettingsManager: ObservableObject {
-    @Published var colorScheme: ColorScheme = .light
+    @Published var theme: Theme = .light
 
     init() {
+            let data = UserDefaultsManager.shared.get(key: .theme) ?? Data()
+            let str = String(data: data, encoding: .utf8) ?? Theme.light.rawValue
+            theme = .init(rawValue: str) ?? .light
     }
 
-    func changeColorSchemeTo(_ colorScheme: ColorScheme) {
-        self.colorScheme = colorScheme
+    func changeColorSchemeTo(_ theme: Theme) {
+           self.theme = theme
+            let data = theme.rawValue.data(using: .utf8) ?? Data()
+            UserDefaultsManager.shared.save(key: .theme, val: data)
     }
 }
 
-extension ColorScheme {
+enum Theme: String, Codable, CaseIterable {
+    case dark = "dark"
+    case light = "light"
+
+    var colorScheme: ColorScheme {
+        switch self {
+        case .dark:
+            return .dark
+        case .light:
+            return .light
+        }
+    }
+}
+
+extension Theme {
     var name: String {
         switch self {
         case .light:
             return "Light"
         case .dark:
             return "Dark"
-        default:
-            return "System"
         }
     }
 }

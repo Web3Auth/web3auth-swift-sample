@@ -13,7 +13,7 @@ struct Torus_WalletApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(settingsManager.colorScheme)
+                .preferredColorScheme(settingsManager.theme.colorScheme)
                 .environmentObject(settingsManager)
         }
     }

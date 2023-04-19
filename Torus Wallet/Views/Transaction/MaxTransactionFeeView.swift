@@ -13,11 +13,6 @@ struct MaxTransactionFeeView: View {
     var dataModel: [MaxTransactionDataModel]
     var vm: TransferAssetViewModel
     var body: some View {
-        ZStack {
-                Rectangle()
-                    .fill(.black)
-                    .opacity(0.5)
-                    .ignoresSafeArea()
         VStack {
             VStack {
             Text("Max Transaction Fee")
@@ -63,7 +58,6 @@ struct MaxTransactionFeeView: View {
         .frame(width: UIScreen.screenWidth - 32, height: 500, alignment: .center)
         .background(Color.whiteGrayColor())
         .cornerRadius(20)
-    }
 
     }
 

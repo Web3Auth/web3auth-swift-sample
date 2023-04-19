@@ -255,7 +255,6 @@ struct HomeView: View {
         }
         }
 
-    // FIX
     func pastTransactionOnEtherScan() {
         guard let url = vm.manager.type.allTransactionURL(address: vm.publicAddress)
         else {return}

@@ -88,7 +88,7 @@ struct SettingView: View {
                 Section(header: Text("Theme")
                     .font(.custom(POPPINSFONTLIST.Regular, size: 14))) {
                     DisclosureGroup(isExpanded: $themeExpanded, content: {
-                        List(ColorScheme.allCases, id: \.self) { val in
+                        List(Theme.allCases, id: \.self) { val in
                             HStack {
                                 Text(val.name)
                                     .font(.custom(POPPINSFONTLIST.Regular, size: 14))
@@ -105,7 +105,7 @@ struct SettingView: View {
                         }
                         .listRowBackground(Color.whiteGrayColor())
                     }) {
-                        Text(settings.colorScheme.name)
+                        Text(settings.theme.name)
                             .font(.custom(DMSANSFONTLIST.Regular, size: 16))
                     }
                 }

@@ -35,7 +35,7 @@ class SettingVM: ObservableObject {
         blockchainManager.changeBlockChain(blockchain: val)
     }
 
-    func changeTheme(val: ColorScheme) {
+    func changeTheme(val: Theme) {
         settingsManager.changeColorSchemeTo(val)
     }
 

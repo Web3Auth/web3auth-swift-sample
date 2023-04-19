@@ -140,7 +140,6 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
         return self.baseURL.appending("tx/")
     }
 
-    // FIX
     func allTransactionURL(address: String) -> URL? {
         var str = addressURL.appending(address)
         switch self {
@@ -154,7 +153,6 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
         return URL(string: str)
     }
 
-    // FIX
     func transactionURL(tx: String) -> URL? {
         var str = addressURL.appending(tx)
         switch self {
@@ -173,7 +171,7 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
         case .ETHMainnet, .PolygonMainnet, .BinanceMainnet, .Goerli, .PolygonTestnet:
             return "Etherscan"
         case .SOLMainnet, .SOLtestnet, .SOLdevenet:
-            return "Solana Explorer"
+            return "Explorer"
         }
     }
 

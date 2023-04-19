@@ -10,7 +10,7 @@ import Foundation
 class UserDefaultsManager: KeychainManagerProtocol {
 
     private let defaults = UserDefaults.standard
-    static let shared = KeychainManager()
+    static let shared = UserDefaultsManager()
 
     private init() {}
 
