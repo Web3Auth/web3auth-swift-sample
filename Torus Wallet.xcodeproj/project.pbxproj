@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC33557229F05CD40068AA18 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC33557129F05CD40068AA18 /* IQKeyboardManagerSwift */; };
+		FC33557429F05E0A0068AA18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33557329F05E0A0068AA18 /* AppDelegate.swift */; };
 		FC66F9992932C5C90049DF5B /* ETHManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */; };
 		FC66F99B2932C5CE0049DF5B /* SOLManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */; };
 		FC66F99D2932C5D50049DF5B /* TorusUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */; };
@@ -115,6 +117,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC33557329F05E0A0068AA18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETHManagerTest.swift; sourceTree = "<group>"; };
 		FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOLManagerTest.swift; sourceTree = "<group>"; };
 		FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorusUtilTest.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC33557229F05CD40068AA18 /* IQKeyboardManagerSwift in Frameworks */,
 				FCDAB2CD2928297C00359916 /* CodeScanner in Frameworks */,
 				FCDAB2CA2928296600359916 /* KeychainSwift in Frameworks */,
 				FCDAB2D3292829BB00359916 /* Solana in Frameworks */,
@@ -277,6 +281,7 @@
 				FCDAB2D429282A4200359916 /* Helper */,
 				FCDAB2562928270A00359916 /* Views */,
 				FCDAB201292826DA00359916 /* Torus_WalletApp.swift */,
+				FC33557329F05E0A0068AA18 /* AppDelegate.swift */,
 				FCDAB207292826DB00359916 /* Preview Content */,
 				FC69C9B829D77715002FBD13 /* Localizable.strings */,
 			);
@@ -534,6 +539,7 @@
 				FCDAB2CC2928297C00359916 /* CodeScanner */,
 				FCDAB2CF2928299F00359916 /* TweetNacl */,
 				FCDAB2D2292829BB00359916 /* Solana */,
+				FC33557129F05CD40068AA18 /* IQKeyboardManagerSwift */,
 			);
 			productName = "Torus Wallet";
 			productReference = FCDAB1FE292826DA00359916 /* Torus Wallet.app */;
@@ -619,6 +625,7 @@
 				FCDAB2CB2928297C00359916 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				FCDAB2CE2928299F00359916 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */,
 				FCDAB2D1292829BB00359916 /* XCRemoteSwiftPackageReference "Solana.Swift" */,
+				FC33557029F05CD40068AA18 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = FCDAB1FF292826DA00359916 /* Products */;
 			projectDirPath = "";
@@ -713,6 +720,7 @@
 				FCDAB2B72928270A00359916 /* LoginMethodSelectionPage.swift in Sources */,
 				FCDAB27F2928270A00359916 /* TransactionModel.swift in Sources */,
 				FCDAB2B02928270A00359916 /* PopUpView.swift in Sources */,
+				FC33557429F05E0A0068AA18 /* AppDelegate.swift in Sources */,
 				FCDAB2A52928270A00359916 /* TransferAssetViewModel.swift in Sources */,
 				FCDAB2AF2928270A00359916 /* LottieView.swift in Sources */,
 				FCDAB2B82928270A00359916 /* BlockchainManager.swift in Sources */,
@@ -935,9 +943,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Torus-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -967,9 +978,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Torus-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1091,6 +1105,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FC33557029F05CD40068AA18 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 		FCDAB2C22928291400359916 /* XCRemoteSwiftPackageReference "web3auth-swift-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Web3Auth/web3auth-swift-sdk.git";
@@ -1142,6 +1164,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FC33557129F05CD40068AA18 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC33557029F05CD40068AA18 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		FCDAB2C32928291400359916 /* Web3Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FCDAB2C22928291400359916 /* XCRemoteSwiftPackageReference "web3auth-swift-sdk" */;

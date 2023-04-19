@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showTransferScreen = false
-    @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var currentRate: Double = 0
     @State var didStartEditing = false
     @State var showPublicAddressQR: Bool = false
@@ -226,15 +225,13 @@ struct HomeView: View {
                     }
 
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.bkgColor())
+                 .accentColor(.tabBarColor())
                 .navigationTitle("Welcome \(vm.user.firstName)!")
-
                 .onTapGesture {
                     self.endEditing()
                 }
-                .offset(y: -keyboardResponder.currentHeight * 0.9)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.bkgColor())
-            .accentColor(.tabBarColor())
             }
             .popup(isPresented: $showPopup) {
                 MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)

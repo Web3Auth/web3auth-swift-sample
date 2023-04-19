@@ -11,7 +11,6 @@ import CodeScanner
 struct TransferAssetView: View {
     @Environment(\.openURL) private var openURL
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var keyboardResponder = KeyboardResponder()
     @State var scannedCode: String = ""
     @State var showPopup = false
     @State var maxTranscFee: String = ""
@@ -177,8 +176,6 @@ struct TransferAssetView: View {
                 }
             }
         }
-
-        .offset(y: -keyboardResponder.currentHeight * 0.9)
         .popup(isPresented: $showPopup) {
             ConfirmTransactionView(vm: vm, showPopUp: $showPopup, usdRate: $vm.currentUSDRate, delegate: self)
         }

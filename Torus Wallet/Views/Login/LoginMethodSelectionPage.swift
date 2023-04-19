@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LoginMethodSelectionPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var keyboardResponder = KeyboardResponder()
     @StateObject var vm: LoginMethodSelectionPageVM
 
     var body: some View {
@@ -120,11 +119,11 @@ struct LoginMethodSelectionPage: View {
                 .padding(.leading, 50)
                 .padding(.trailing, 50)
             }
-            .offset(y: -keyboardResponder.currentHeight * 0.9)
             .alert(isPresented: $vm.showError) {
                 Alert(title: Text("Error"), message: Text(vm.errorMessage), dismissButton: .cancel(Text("Ok")))
             }
         }
+        .ignoresSafeArea(.keyboard)
         .navigationBarTitle("Welcome onboard", displayMode: .large)
         .background(Color.bkgColor())
     }

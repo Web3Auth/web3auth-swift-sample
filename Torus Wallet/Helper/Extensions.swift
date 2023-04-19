@@ -120,6 +120,9 @@ extension Color {
     static func blueWhiteColor() -> Color {
         return Color("blueWhiteColor")
     }
+    static func popupBKGColor() -> Color {
+        return Color("popupBKGColor")
+    }
 }
 
 extension String {
@@ -190,6 +193,7 @@ class KeyboardResponder: ObservableObject {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             withAnimation {
                 currentHeight = keyboardSize.height
+                print(currentHeight)
             }
         }
     }

@@ -13,7 +13,7 @@ class SettingsManager: ObservableObject {
 
     init() {
             let data = UserDefaultsManager.shared.get(key: .theme) ?? Data()
-            let str = String(data: data, encoding: .utf8) ?? Theme.light.rawValue
+        let str = String(data: data, encoding: .utf8) ?? "light"
             theme = .init(rawValue: str) ?? .light
     }
 
