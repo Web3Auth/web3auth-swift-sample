@@ -48,7 +48,6 @@ class TransferAssetViewModel: ObservableObject {
     }
 
     deinit {
-        print("Free")
         cancellables.forEach { val in
             val.cancel()
         }
@@ -144,7 +143,6 @@ class TransferAssetViewModel: ObservableObject {
             transactionSuccess.toggle()
             lastTransactionHash = val
         } catch {
-            print(error)
             loading.toggle()
 
             throw error

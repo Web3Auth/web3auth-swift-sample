@@ -28,8 +28,7 @@ class AuthManager: ObservableObject {
             self.network = data.network
             self.blockchain = data.blockchain
             setupWeb3Auth(val: data)
-        case let .failure(err):
-            print(err)
+        case let .failure:
             loading = false
         }
     }

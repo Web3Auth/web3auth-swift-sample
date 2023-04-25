@@ -14,6 +14,8 @@ struct ContentView: View {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.Bold.name, size: 24)!]
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.SemiBold.name, size: 16)!]
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
     }
 
     var body: some View {

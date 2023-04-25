@@ -20,11 +20,10 @@ struct TransferAssetView: View {
     @StateObject var vm: TransferAssetViewModel
     @State var showMaxTransactionPopUp = false
     var tfWidht: CGFloat = UIScreen.screenWidth - 48
-
    @State var transactionInfo = ""
-
+    @State var hideTabBar: Bool = false
+    @State var hideToolbar = false
     var body: some View {
-        ZStack {
             ScrollView {
                 VStack {
                     VStack(alignment: .center, spacing: 24) {
@@ -98,7 +97,8 @@ struct TransferAssetView: View {
                                         .foregroundColor(.labelColor())
                                     Spacer()
                                     Button {
-                                        showMaxTransactionPopUp.toggle()
+
+                                        showMaxTransactionPopUp = true
                                     } label: {
                                         if vm.manager.showTransactionFeeOption {
                                             Text("Edit")
@@ -155,15 +155,19 @@ struct TransferAssetView: View {
                     .opacity(vm.enableDisableSendBtnCheck() ? 0.5 : 1)
                     }
                 }
-            }
-            if showScanner {
-                QRCodeScannerExampleView()
-            }
         }
-    .navigationTitle("Transfer Assets")
+        .onAppear {
+            hideTabBar = true
+        }
+        .onDisappear {
+            hideTabBar = false
+        }
+        .navigationTitle("Transfer Assets")
         .onTapGesture {
             endEditing()
+            hideToolbar.toggle()
         }
+
         .frame(alignment: .center)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.bkgColor())
@@ -191,7 +195,6 @@ struct TransferAssetView: View {
                 showTransactionPopup = false
             }
         }
-
         }
 
     func transfer() {

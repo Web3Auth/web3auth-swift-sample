@@ -17,9 +17,7 @@ struct HomeView: View {
     @State var signedMessageHashString: String = ""
     @State var signedMessageResult: Bool = false
     @Environment(\.openURL) private var openURL
-    @State var showQRCode: Bool = false
     @StateObject var vm: HomeViewModel
-
     var body: some View {
             NavigationView {
                 ScrollView(showsIndicators: false) {
@@ -233,23 +231,12 @@ struct HomeView: View {
                     self.endEditing()
                 }
             }
-            .popup(isPresented: $showPopup) {
-                MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
-            .onTapGesture {
-                withAnimation {
-                    showPopup.toggle()
-                }
-
-            }
-            }
             .popup(isPresented: $showPublicAddressQR) {
                 QRCodeAlert(publicAddres: vm.publicAddress, isPresenting: $showPublicAddressQR)
-            .onTapGesture {
-                withAnimation {
-                    showPopup.toggle()
-                }
             }
-        }
+            .popup(isPresented: $showPopup) {
+                MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
+            }
         }
 
     func pastTransactionOnEtherScan() {
@@ -274,7 +261,8 @@ struct HomeView: View {
     }
 
     func openQRCode() {
-        showPublicAddressQR.toggle()
+        showPublicAddressQR = true
+
     }
 
     func copyPublicKey() {

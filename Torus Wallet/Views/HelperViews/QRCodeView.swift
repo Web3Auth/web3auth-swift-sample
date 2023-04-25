@@ -14,12 +14,6 @@ struct QRCodeAlert: View {
     @Binding var isPresenting: Bool
 
     var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.gray)
-                .opacity(0.5)
-                .edgesIgnoringSafeArea([.top, .leading, .trailing])
-
             VStack {
                 Spacer()
                 HStack {
@@ -62,9 +56,6 @@ struct QRCodeAlert: View {
                 .background(RoundedRectangle(cornerRadius: 27).fill(Color.whiteGrayColor()))
                 Spacer()
             }
-        }.onTapGesture {
-            self.isPresenting = false
-        }
 
     }
 }

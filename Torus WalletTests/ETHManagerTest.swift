@@ -52,7 +52,6 @@ class ETHManagerTest: XCTestCase {
         Task {
             do {
                 let val = try await ethManager.transferAsset(sendTo: "0x1776e71Bb1956c46D9bBA247cd979B1c887dE633", amount: 0.01, maxTip: 20)
-                print(val)
                 exp.fulfill()
             } catch {
                 XCTFail()

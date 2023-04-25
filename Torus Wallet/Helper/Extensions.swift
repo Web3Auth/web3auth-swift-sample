@@ -25,24 +25,51 @@ extension UIApplication {
     }
 }
 
+struct HideTabBarViewModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content.toolbar(isPresented ? .hidden : .visible, for: .tabBar)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+}
+
+struct HideToolbarViewModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content.toolbar(isPresented ? .hidden : .visible, for: .tabBar)
+            content.toolbar(isPresented ? .hidden : .visible, for: .navigationBar)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+}
+
 extension View {
     public func popup<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content, completionHandler: ( () -> Void)? = nil) -> some View {
             ZStack {
-                self
-                .navigationBarHidden(isPresented.wrappedValue)
                 if isPresented.wrappedValue {
+                    self
+                        .modifier(HideToolbarViewModifier(isPresented: .constant(true)))
                     ZStack {
-                        Color.black.opacity(0.4).ignoresSafeArea()
+                        Color.popupBKGColor().ignoresSafeArea()
                             .onTapGesture {
                                 if completionHandler != nil {
                                     completionHandler?()
+                                    isPresented.wrappedValue = false
                                 } else {
-                                    isPresented.wrappedValue.toggle()
+                                    isPresented.wrappedValue = false
                                 }
                             }
                         content()
                     }
-            }
+                    .ignoresSafeArea()
+            } else {
+                    self
+                }
         }
     }
 }
@@ -193,7 +220,6 @@ class KeyboardResponder: ObservableObject {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             withAnimation {
                 currentHeight = keyboardSize.height
-                print(currentHeight)
             }
         }
     }

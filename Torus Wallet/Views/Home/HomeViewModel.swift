@@ -37,8 +37,7 @@ class HomeViewModel: ObservableObject {
         manager = blockchainManager.manager
         setup()
         configTimers()
-        blockchainManager.blockchainDidChange.sink { val in
-            print(val)
+        blockchainManager.blockchainDidChange.sink { _ in
         } receiveValue: { [unowned self] val in
             if val {
                 self.manager = blockchainManager.manager

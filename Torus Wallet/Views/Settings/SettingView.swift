@@ -39,9 +39,7 @@ struct SettingView: View {
     struct SettingView_Previews: PreviewProvider {
         static var previews: some View {
             SettingView(vm: .init(blockchainManager: DummyBlockchainManager()))
-                .environmentObject(SettingsManager())
             SettingFormView(vm: .init(blockchainManager: DummyBlockchainManager()), networksExpanded: .constant(false), themeExpanded: .constant(false), languageExpanded: .constant(false))
-                .environmentObject(SettingsManager())
         }
     }
 
@@ -50,7 +48,6 @@ struct SettingView: View {
         @Binding var networksExpanded: Bool
         @Binding var themeExpanded: Bool
         @Binding var languageExpanded: Bool
-        @EnvironmentObject var settings: SettingsManager
         var body: some View {
             Form {
                 Section(header: Text("Personal Info")
@@ -84,32 +81,6 @@ struct SettingView: View {
                     }
                 }
                     .listRowBackground(Color.whiteGrayColor())
-
-                Section(header: Text("Theme")
-                    .font(.custom(POPPINSFONTLIST.Regular, size: 14))) {
-                    DisclosureGroup(isExpanded: $themeExpanded, content: {
-                        List(Theme.allCases, id: \.self) { val in
-                            HStack {
-                                Text(val.name)
-                                    .font(.custom(POPPINSFONTLIST.Regular, size: 14))
-                                Spacer()
-                            }
-                            .background(Color.whiteGrayColor())
-                            .onTapGesture {
-                                withAnimation {
-                                    settings.changeColorSchemeTo(val)
-                                    themeExpanded = false
-                                }
-                            }
-
-                        }
-                        .listRowBackground(Color.whiteGrayColor())
-                    }) {
-                        Text(settings.theme.name)
-                            .font(.custom(DMSANSFONTLIST.Regular, size: 16))
-                    }
-                }
-                .listRowBackground(Color.whiteGrayColor())
 
                 Section {
                     Button {

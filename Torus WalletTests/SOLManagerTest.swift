@@ -45,7 +45,6 @@ class SOLManagerTest: XCTestCase {
         Task {
             do {
                 let val = try await solManager.transferAsset(sendTo: "3vsU1mG5CTQWk1eYFkoo3mszrk723bABZWukk6P26a26", amount: 0.1, maxTip: 0)
-                print(val)
                 exp.fulfill()
             } catch {
                 XCTFail()

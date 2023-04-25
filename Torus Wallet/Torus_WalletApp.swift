@@ -11,12 +11,9 @@ import SwiftUI
 struct Torus_WalletApp: App {
     @UIApplicationDelegateAdaptor
     private var appDelegate: AppDelegate
-    @StateObject var settingsManager: SettingsManager = .init()
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(settingsManager.theme.colorScheme)
-                .environmentObject(settingsManager)
         }
     }
 }

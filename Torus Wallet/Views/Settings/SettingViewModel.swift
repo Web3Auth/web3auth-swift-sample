@@ -3,7 +3,6 @@
 //  OpenLoginKeyViewer
 //
 //  Created by Dhruv Jaiswal on 13/11/22.
-//
 
 import Combine
 import SwiftUI
@@ -19,12 +18,10 @@ class SettingVM: ObservableObject {
     private var blockchainManager: BlockchainManagerProtocol
     private var manager: BlockChainProtocol
     private var cancellables: Set<AnyCancellable> = []
-    @EnvironmentObject var settingsManager: SettingsManager
     init(blockchainManager: BlockchainManagerProtocol) {
         self.blockchainManager = blockchainManager
         manager = blockchainManager.manager
-        blockchainManager.blockchainDidChange.sink { completionVal in
-            print(completionVal)
+        blockchainManager.blockchainDidChange.sink { _ in
         } receiveValue: {[unowned self] manager in
             self.manager = blockchainManager.manager
             objectWillChange.send()
@@ -33,10 +30,6 @@ class SettingVM: ObservableObject {
 
     func changeBlockchain(val: BlockchainEnum) {
         blockchainManager.changeBlockChain(blockchain: val)
-    }
-
-    func changeTheme(val: Theme) {
-        settingsManager.changeColorSchemeTo(val)
     }
 
     func logout() {

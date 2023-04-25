@@ -40,7 +40,6 @@ class EthManager: BlockChainProtocol {
             sub = .init()
             userBalancePublished = sub.eraseToAnyPublisher()
         } catch {
-            print(error)
             return nil
         }
     }
@@ -77,16 +76,12 @@ class EthManager: BlockChainProtocol {
                 self?.maxTransactionDataModel = val
             }
         } catch {
-            print(error)
         }
     }
 
     func getBalance() {
         Task {
-            client.eth_getBalance(address: self.address, block: .Latest) { [unowned self] error, val in
-                if let error = error {
-                    print(error)
-                }
+            client.eth_getBalance(address: self.address, block: .Latest) { [unowned self] _, val in
                 if let val = val {
                     let balance = TorusWeb3Utils.toEther(wei: Wei(val))
                     sub.send(balance)
