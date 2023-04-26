@@ -17,6 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                    [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       IQKeyboardManager.shared.enable = true
       IQKeyboardManager.shared.enableAutoToolbar = false
+      IQKeyboardManager.shared.shouldResignOnTouchOutside = true
      return true
   }
 }
