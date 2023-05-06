@@ -11,7 +11,7 @@ class HomeViewModel: ObservableObject {
     @Published var convertedBalance: Double = 0
     @Published var currentCurrency: TorusSupportedCurrencies = .USD
     @Published var currentRate: Double = 0
-
+    var signedMessageHashString: String = ""
     var blockchain: BlockchainEnum {
         manager.type
     }
@@ -91,7 +91,9 @@ class HomeViewModel: ObservableObject {
     }
 
     func signMessage(message: String) async -> String {
-        return await manager.signMessage(message: message)
+        let msg =  await manager.signMessage(message: message)
+        signedMessageHashString = msg
+        return msg
     }
 
     func logout() {

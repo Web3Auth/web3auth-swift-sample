@@ -14,8 +14,7 @@ struct HomeView: View {
     @State var didStartEditing = false
     @State var showPublicAddressQR: Bool = false
     @State var message: String = ""
-    @State var showPopup = false
-    @State var signedMessageHashString: String = ""
+    @State var showSignedMessagePopup = false
     @State var signedMessageResult: Bool = false
     @Environment(\.openURL) private var openURL
     @StateObject var vm: HomeViewModel
@@ -239,6 +238,14 @@ struct HomeView: View {
                 .onTapGesture {
                     self.endEditing()
                 }
+                .popup(isPresented: $showSignedMessagePopup, view: {
+                    MessageSignedView(success: $signedMessageResult, info: vm.signedMessageHashString)
+                }, customize: { val in
+                    val
+                        .closeOnTap(false)
+                        .closeOnTapOutside(true)
+                        .backgroundColor(Color.popupBKGColor())
+                })
             }
             .popup(isPresented: $showPublicAddressQR, view: {
                 QRCodeAlert(publicAddres: vm.publicAddress, isPresenting: $showPublicAddressQR)
@@ -248,15 +255,6 @@ struct HomeView: View {
                     .closeOnTapOutside(true)
                     .backgroundColor(Color.popupBKGColor())
             })
-            .popup(isPresented: $showPopup, view: {
-                MessageSignedView(success: signedMessageResult, info: signedMessageHashString)
-            }, customize: { val in
-                val
-                    .closeOnTap(false)
-                    .closeOnTapOutside(true)
-                    .backgroundColor(Color.popupBKGColor())
-            })
-
         }
 
     func pastTransactionOnEtherScan() {
@@ -268,9 +266,9 @@ struct HomeView: View {
     func signMessage() {
         endEditing()
         Task {
-            self.signedMessageHashString = await vm.signMessage(message: message)
+            await vm.signMessage(message: message)
                   signedMessageResult = true
-                   showPopup = true
+                   showSignedMessagePopup = true
             }
     }
 

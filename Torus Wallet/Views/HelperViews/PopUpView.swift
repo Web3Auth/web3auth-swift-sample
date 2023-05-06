@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MessageSignedView: View {
-     var success: Bool
-    @State var successMessage: String = "Signed Successfully"
-    @State var errorMessage: String = "Sign Failed"
-    @State var info: String
+    @Binding var success: Bool
+    var successMessage: String = "Signed Successfully"
+    var errorMessage: String = "Sign Failed"
+    var info: String
     var body: some View {
 
             VStack {
@@ -54,8 +54,8 @@ struct PopUpView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black.opacity(0.3)
-            MessageSignedView(success: true, info: "saasa")
+            MessageSignedView(success: .constant(true), info: "saasa")
         }
-        MessageSignedView(success: false, info: "samsa")
+        MessageSignedView(success: .constant(false), info: "samsa")
     }
 }
