@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FC33557229F05CD40068AA18 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC33557129F05CD40068AA18 /* IQKeyboardManagerSwift */; };
 		FC33557429F05E0A0068AA18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC33557329F05E0A0068AA18 /* AppDelegate.swift */; };
+		FC45743F29F9A4F200E79B4D /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = FC45743E29F9A4F200E79B4D /* PopupView */; };
 		FC66F9992932C5C90049DF5B /* ETHManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F9982932C5C90049DF5B /* ETHManagerTest.swift */; };
 		FC66F99B2932C5CE0049DF5B /* SOLManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99A2932C5CE0049DF5B /* SOLManagerTest.swift */; };
 		FC66F99D2932C5D50049DF5B /* TorusUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */; };
@@ -209,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC45743F29F9A4F200E79B4D /* PopupView in Frameworks */,
 				FC33557229F05CD40068AA18 /* IQKeyboardManagerSwift in Frameworks */,
 				FCDAB2CD2928297C00359916 /* CodeScanner in Frameworks */,
 				FCDAB2CA2928296600359916 /* KeychainSwift in Frameworks */,
@@ -529,6 +531,7 @@
 				FCDAB2CF2928299F00359916 /* TweetNacl */,
 				FCDAB2D2292829BB00359916 /* Solana */,
 				FC33557129F05CD40068AA18 /* IQKeyboardManagerSwift */,
+				FC45743E29F9A4F200E79B4D /* PopupView */,
 			);
 			productName = "Torus Wallet";
 			productReference = FCDAB1FE292826DA00359916 /* Torus Wallet.app */;
@@ -615,6 +618,7 @@
 				FCDAB2CE2928299F00359916 /* XCRemoteSwiftPackageReference "tweetnacl-swiftwrap" */,
 				FCDAB2D1292829BB00359916 /* XCRemoteSwiftPackageReference "Solana.Swift" */,
 				FC33557029F05CD40068AA18 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				FC45743D29F9A4F200E79B4D /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = FCDAB1FF292826DA00359916 /* Products */;
 			projectDirPath = "";
@@ -1101,12 +1105,20 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		FC45743D29F9A4F200E79B4D /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		FCDAB2C22928291400359916 /* XCRemoteSwiftPackageReference "web3auth-swift-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Web3Auth/web3auth-swift-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 5.2.1;
 			};
 		};
 		FCDAB2C52928294700359916 /* XCRemoteSwiftPackageReference "web3" */ = {
@@ -1156,6 +1168,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC33557029F05CD40068AA18 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		FC45743E29F9A4F200E79B4D /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC45743D29F9A4F200E79B4D /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 		FCDAB2C32928291400359916 /* Web3Auth */ = {
 			isa = XCSwiftPackageProductDependency;

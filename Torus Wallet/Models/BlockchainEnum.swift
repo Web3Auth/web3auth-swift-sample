@@ -77,8 +77,12 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
 
     var shortName: String {
         switch self {
-        case .ETHMainnet, .PolygonMainnet, .BinanceMainnet, .Goerli, .PolygonTestnet:
+        case .ETHMainnet, .Goerli:
             return "ETH"
+        case .PolygonMainnet, .PolygonTestnet:
+            return "MATIC"
+        case .BinanceMainnet:
+          return "BNB"
         case .SOLMainnet, .SOLtestnet, .SOLdevenet:
             return "SOL"
         }
@@ -104,8 +108,12 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
 
     var currencyValue: TorusSupportedCurrencies {
         switch self {
-        case .ETHMainnet, .PolygonMainnet, .BinanceMainnet, .Goerli, .PolygonTestnet:
+        case .ETHMainnet, .Goerli:
             return .ETH
+        case .PolygonMainnet, .PolygonTestnet:
+            return .MATIC
+        case .BinanceMainnet:
+            return .BNB
         case .SOLMainnet, .SOLtestnet, .SOLdevenet:
             return .SOL
         }
@@ -154,7 +162,7 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
     }
 
     func transactionURL(tx: String) -> URL? {
-        var str = addressURL.appending(tx)
+        var str = transactionURL.appending(tx)
         switch self {
         case .SOLtestnet:
             str.append("?cluster=testnet")
@@ -168,8 +176,14 @@ enum BlockchainEnum: Int, CaseIterable, Hashable, MenuPickerProtocol, Codable, I
 
     var urlLinkName: String {
         switch self {
-        case .ETHMainnet, .PolygonMainnet, .BinanceMainnet, .Goerli, .PolygonTestnet:
+        case .ETHMainnet, .Goerli:
             return "Etherscan"
+        case .PolygonMainnet:
+            return "Polyscan"
+        case .PolygonTestnet:
+            return "Polyscan"
+        case .BinanceMainnet:
+            return "BSCscan"
         case .SOLMainnet, .SOLtestnet, .SOLdevenet:
             return "Explorer"
         }

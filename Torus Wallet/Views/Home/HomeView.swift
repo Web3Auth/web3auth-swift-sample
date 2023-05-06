@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct HomeView: View {
     @State var showTransferScreen = false
@@ -18,6 +19,7 @@ struct HomeView: View {
     @State var signedMessageResult: Bool = false
     @Environment(\.openURL) private var openURL
     @StateObject var vm: HomeViewModel
+    @EnvironmentObject var tabVM: TabViewModel
     var body: some View {
             NavigationView {
                 ScrollView(showsIndicators: false) {
@@ -25,6 +27,7 @@ struct HomeView: View {
                         HStack {
                             Image(vm.user.typeOfImage)
                                 .resizable()
+                                .aspectRatio(contentMode: .fit)
                                 .frame(width: 18, height: 18, alignment: .center)
                                 .aspectRatio(contentMode: .fit)
                             Text(verbatim: "\(vm.user.userInfo.email)")
@@ -60,6 +63,7 @@ struct HomeView: View {
                                     Image("Shape")
                                     Text(vm.publicAddress)
                                         .lineLimit(1)
+                                        .truncationMode(.middle)
                                         .frame(width: 63)
                                         .font(.custom(DMSANSFONTLIST.Bold, size: 12))
                                         .foregroundColor(.labelColor())
@@ -86,19 +90,24 @@ struct HomeView: View {
                                 Button {
 
                                 } label: {
-                                    HStack {
-                                        Image("wi-fi")
-                                            .frame(width: 13, height: 13, alignment: .center)
-                                            .foregroundColor(.black)
-                                        Text("\(vm.blockchain.name)")
-                                            .foregroundColor(.black)
-                                            .font(.custom(DMSANSFONTLIST.Medium, size: 12))
+                                    Button {
+                                        tabVM.selectedTab = 1
+                                    } label: {
+                                        HStack {
+
+                                            Image("wi-fi")
+                                                .frame(width: 13, height: 13, alignment: .center)
+                                                .foregroundColor(.black)
+                                            Text("\(vm.blockchain.name)")
+                                                .foregroundColor(.black)
+                                                .font(.custom(DMSANSFONTLIST.Medium, size: 12))
+                                        }
+                                        .padding([.leading, .trailing], 10)
+                                        .padding([.top, .bottom], 5)
+                                        .background(Color.blockchainIndicatorBkgColor())
+                                        .clipShape( Capsule(style: .continuous)
+                                            )
                                     }
-                                    .padding([.leading, .trailing], 10)
-                                    .padding([.top, .bottom], 5)
-                                    .background(Color.blockchainIndicatorBkgColor())
-                                    .clipShape( Capsule(style: .continuous)
-                                        )
                                 }
 
                             }
@@ -133,7 +142,7 @@ struct HomeView: View {
 
                                     }
 
-                                    Text("1 \(vm.manager.type.shortName) = \(String(format: "%.2f", vm.currentRate)) \(  vm.currentCurrency.rawValue)")
+                                    Text("1 \( vm.manager.type.shortName) = \(String(format: "%.4f", vm.currentRate)) \(  vm.currentCurrency.rawValue)")
                                         .font(.custom(DMSANSFONTLIST.Regular, size: 12))
                                 }
                                 Spacer()
@@ -142,7 +151,7 @@ struct HomeView: View {
                             Button {
                                 pastTransactionOnEtherScan()
                             } label: {
-                                Text("View past transaction’s status on \(vm.manager.type.urlLinkName)")
+                                Text("View account on \(vm.manager.type.urlLinkName)")
                                     .foregroundColor(.blue)
                                     .font(.custom(DMSANSFONTLIST.Medium, size: 14))
                                     .minimumScaleFactor(0.95)
@@ -231,12 +240,23 @@ struct HomeView: View {
                     self.endEditing()
                 }
             }
-            .popup(isPresented: $showPublicAddressQR) {
+            .popup(isPresented: $showPublicAddressQR, view: {
                 QRCodeAlert(publicAddres: vm.publicAddress, isPresenting: $showPublicAddressQR)
-            }
-            .popup(isPresented: $showPopup) {
-                MessageSignedView(success: $signedMessageResult, info: signedMessageHashString)
-            }
+            }, customize: { val in
+                val
+                    .closeOnTap(false)
+                    .closeOnTapOutside(true)
+                    .backgroundColor(Color.popupBKGColor())
+            })
+            .popup(isPresented: $showPopup, view: {
+                MessageSignedView(success: signedMessageResult, info: signedMessageHashString)
+            }, customize: { val in
+                val
+                    .closeOnTap(false)
+                    .closeOnTapOutside(true)
+                    .backgroundColor(Color.popupBKGColor())
+            })
+
         }
 
     func pastTransactionOnEtherScan() {
@@ -248,11 +268,9 @@ struct HomeView: View {
     func signMessage() {
         endEditing()
         Task {
-        signedMessageHashString = await vm.signMessage(message: message)
-                signedMessageResult = true
-                withAnimation {
-                    showPopup = true
-                }
+            self.signedMessageHashString = await vm.signMessage(message: message)
+                  signedMessageResult = true
+                   showPopup = true
             }
     }
 

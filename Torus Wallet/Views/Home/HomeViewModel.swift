@@ -60,23 +60,27 @@ class HomeViewModel: ObservableObject {
     }
 
     private func getConversionRate() {
-        Task(priority: .userInitiated) {
-            if let cached = convRateCache[manager.type]?[currentCurrency] {
+        Task {
+                if let cached = convRateCache[manager.type]?[currentCurrency] {
+                    await MainActor.run(body: {
+                        currentRate = cached
+                    })
+                } else {
+                    let rate = await NetworkingClient.shared.getCurrentPrice(blockChain: manager.type, forCurrency: currentCurrency)
+                    addConvRateInCache(currentRate: rate)
+                    await MainActor.run(body: {
+                        currentRate = rate
+                    })
+                }
                 await MainActor.run(body: {
-                    currentRate = cached
-                })
-            } else {
-                let rate = await NetworkingClient.shared.getCurrentPrice(blockChain: manager.type, forCurrency: currentCurrency)
-                addConvRateInCache(currentRate: rate)
-                await MainActor.run(body: {
-                    currentRate = rate
+                    if currentCurrency == manager.type.currencyValue {
+                        convertedBalance = userBalance
+                    } else {
+                        convertedBalance = userBalance * currentRate
+                    }
                 })
             }
-            await MainActor.run(body: {
-                convertedBalance = userBalance * currentRate
-            })
         }
-    }
 
    private func addConvRateInCache(currentRate: Double) {
         if let _ = convRateCache[manager.type] {

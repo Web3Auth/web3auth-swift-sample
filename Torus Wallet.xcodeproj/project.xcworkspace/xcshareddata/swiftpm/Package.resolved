@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "popupview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/PopupView.git",
+      "state" : {
+        "revision" : "ce0f0762639169f4318ab6ffe952116452b8c551",
+        "version" : "2.1.5"
+      }
+    },
+    {
       "identity" : "secp256k1.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Boilertalk/secp256k1.swift",
@@ -104,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Web3Auth/web3auth-swift-sdk.git",
       "state" : {
-        "revision" : "d797992bc4663c6274233d98437435ce54080e5e",
-        "version" : "4.0.0"
+        "revision" : "a9f05512d4f5768c713ba713755085480cb9f81f",
+        "version" : "5.2.1"
       }
     }
   ],

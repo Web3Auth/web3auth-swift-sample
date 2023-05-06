@@ -48,6 +48,7 @@ struct SettingView: View {
         @Binding var networksExpanded: Bool
         @Binding var themeExpanded: Bool
         @Binding var languageExpanded: Bool
+        @EnvironmentObject var tabVM: TabViewModel
         var body: some View {
             Form {
                 Section(header: Text("Personal Info")
@@ -81,10 +82,11 @@ struct SettingView: View {
                     }
                 }
                     .listRowBackground(Color.whiteGrayColor())
-
                 Section {
                     Button {
                         vm.logout()
+                        tabVM.selectedTab = 0
+
                     } label: {
                         Text("Logout")
                             .font(.custom(DMSANSFONTLIST.Regular, size: 16))

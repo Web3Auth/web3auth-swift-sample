@@ -22,11 +22,17 @@ struct ConfirmTransactionView: View {
                         .font(.custom(POPPINSFONTLIST.SemiBold, size: 18))
                         .padding()
                     HStack {
-                        VStack(spacing: 10) {
+                        VStack(spacing: 20) {
                             Image((vm.user.typeOfDisabledImage))
                                                         .resizable()
-                                                        .frame(width: 40, height: 40, alignment: .center)
-                                                        .cornerRadius(20)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 24, height: 24)
+                                           .background {
+                                                   Circle()
+                                                   .fill(Color.lightGrayColor())
+                                                   .frame(width: 49, height: 49)
+                                                   .cornerRadius(24)
+                                                        }
                             Text("\(vm.manager.addressString)")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                                 .lineLimit(1)
@@ -53,11 +59,19 @@ struct ConfirmTransactionView: View {
                             }
 
                         }
-                        VStack(spacing: 10) {
+                        VStack(spacing: 20) {
                             Image("ethAddress")
                                 .resizable()
-                                .frame(width: 40, height: 40, alignment: .center)
-                                .cornerRadius(20)
+                                .renderingMode(.original)
+                                .tint(.white)
+                                .aspectRatio(contentMode: .fit)
+                            .frame(width: 24, height: 24)
+                         .background {
+                          Circle()
+                       .fill(Color.lightGrayColor())
+                       .frame(width: 49, height: 49)
+                         .cornerRadius(24)
+                            }
                             Text("\(vm.sendingAddress)")
                                 .font(.custom(DMSANSFONTLIST.Regular, size: 10))
                                 .lineLimit(1)

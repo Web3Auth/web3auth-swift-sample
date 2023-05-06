@@ -97,8 +97,10 @@ extension AuthManager {
         Task {
             await initWeb3Auth()
             if email.invalidEmail() {
-                errorMessage = "Invalid Email"
-                showError.toggle()
+                await MainActor.run(body: {
+                    errorMessage = "Invalid Email"
+                    showError = true
+                })
             } else {
                 do {
                     let web3AuthState = try await web3AuthManager?.loginWithEmail(email: email)
@@ -106,8 +108,10 @@ extension AuthManager {
                     let user = self.web3AuthStateToUser(web3AuthState!)
                     await setUser(user: user)
                 } catch let err {
-                    errorMessage = err.localizedDescription
-                    showError = true
+                    await MainActor.run(body: {
+                        errorMessage = err.localizedDescription
+                        showError = true
+                    })
                 }
             }
         }

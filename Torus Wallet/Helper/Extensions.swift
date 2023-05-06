@@ -83,6 +83,8 @@ extension Network: MenuPickerProtocol {
             return "testnet"
         case .cyan:
             return "cyan"
+        default:
+            return ""
         }
     }
 
@@ -94,6 +96,8 @@ extension Network: MenuPickerProtocol {
             return "Testnet"
         case .cyan:
             return "Cyan"
+        default:
+            return ""
         }
     }
 }
@@ -150,6 +154,10 @@ extension Color {
     static func popupBKGColor() -> Color {
         return Color("popupBKGColor")
     }
+    static func lightGrayColor() -> Color {
+        return Color("lightGrayColor")
+    }
+
 }
 
 extension String {
@@ -186,9 +194,9 @@ extension Web3AuthProvider {
         case .TWITTER:
             return ("Twitter")
         case .EMAIL_PASSWORDLESS:
-            return ("")
+            return ("EmailPasswordless")
         case .JWT:
-            return ""
+            return "EmailPasswordless"
         case .KAKAO:
             return "Kakao"
         case .WECHAT:

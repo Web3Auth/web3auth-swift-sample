@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 
     @StateObject var authManager: AuthManager = .init()
+    @StateObject var tabVM = TabViewModel()
 
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: POPPINSFONTLIST.Bold.name, size: 24)!]
@@ -24,15 +25,19 @@ struct ContentView: View {
                 .ignoresSafeArea()
         } else {
             if let user = authManager.user, let blockchainManager = BlockchainManager(authManager: authManager, user: user) {
-                TabView {
+                TabView(selection: $tabVM.selectedTab) {
                     HomeView(vm: .init(blockchainManager: blockchainManager))
+                        .environmentObject(tabVM)
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
+                        .tag(0)
                     SettingView(vm: .init(blockchainManager: blockchainManager))
+                        .environmentObject(tabVM)
                         .tabItem {
                             Label("Setting", systemImage: "gear")
                         }
+                        .tag(1)
                 }
                 .accentColor(Color.tabBarColor())
             } else {
@@ -40,4 +45,10 @@ struct ContentView: View {
             }
         }
     }
+}
+
+class TabViewModel: ObservableObject {
+    @Published var selectedTab = 0
+
+    init() {}
 }

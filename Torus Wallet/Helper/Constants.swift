@@ -30,6 +30,8 @@ enum TorusSupportedCurrencies: String, CaseIterable, MenuPickerProtocol {
     case USD
     case INR
     case SOL
+    case MATIC
+    case BNB
 
     var name: String {
         return rawValue
