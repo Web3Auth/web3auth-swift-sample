@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Volumes/Dhruv/web3auth-swift-sample/ Web3Auth PnP Playground.xcodeproj">
    </FileRef>
 </Workspace>

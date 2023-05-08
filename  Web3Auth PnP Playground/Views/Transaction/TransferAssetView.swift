@@ -50,7 +50,7 @@ struct TransferAssetView: View {
                                     if await AVCaptureDevice.requestAccess(for: .video) == true {
                                         showScanner.toggle()
                                     } else {
-                                        alertMessage = "Please give camera access to the app from Settings"
+                                        alertMessage = "Please grant camera access from Mobile Settings"
                                         showAlert = true
                                     }
                                 }
@@ -147,6 +147,7 @@ struct TransferAssetView: View {
                     }
                     Button {
                         if !vm.loading {
+                            endEditing()
                             showPopup.toggle()
                             HapticGenerator.shared.hapticFeedbackOnTap(style: .medium)
                         }
@@ -179,12 +180,16 @@ struct TransferAssetView: View {
         .background(Color.bkgColor())
         .sheet(isPresented: $showScanner) {
 
-            CodeScannerView(codeTypes: [.qr], scanMode: .continuous) { response in
+            CodeScannerView(codeTypes: [.qr]) { response in
+                showScanner.toggle()
                     if case let .success(result) = response {
                         if vm.manager.checkRecipentAddressError(address: result.string) {
                             vm.sendingAddress = result.string
-                            isPresentingScanner = false
-                            showScanner.toggle()
+                        } else {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                alertMessage = "Invalid QR code. Scan again."
+                                showAlert = true
+                            }
                         }
                     }
             }
