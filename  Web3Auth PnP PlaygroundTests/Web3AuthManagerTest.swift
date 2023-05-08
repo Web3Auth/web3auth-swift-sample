@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Torus_Wallet
+@testable import 
 
 class Web3AuthManagerTest: XCTestCase {
 

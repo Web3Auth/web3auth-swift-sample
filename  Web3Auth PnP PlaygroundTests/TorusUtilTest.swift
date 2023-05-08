@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import OpenLoginKeyViewer
+@testable import Web3Auth_PnP_Playground
 
 class TorusUtiltest: XCTestCase {
 

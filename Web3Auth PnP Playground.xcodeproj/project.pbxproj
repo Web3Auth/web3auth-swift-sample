@@ -125,12 +125,12 @@
 		FC66F9A02932C5EA0049DF5B /* AuthManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManagerTest.swift; sourceTree = "<group>"; };
 		FC69C9B629D76EC8002FBD13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC69C9B829D77715002FBD13 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		FCDAB1FE292826DA00359916 /*  Web3Auth PnP Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = " Web3Auth PnP Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCDAB1FE292826DA00359916 /* Web3Auth PnP Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Web3Auth PnP Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB201292826DA00359916 /* Torus_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletApp.swift; sourceTree = "<group>"; };
 		FCDAB208292826DB00359916 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FCDAB20E292826DB00359916 /*  Web3Auth PnP PlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = " Web3Auth PnP PlaygroundTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCDAB20E292826DB00359916 /* Web3Auth PnP PlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Web3Auth PnP PlaygroundTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB212292826DB00359916 /* Torus_WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletTests.swift; sourceTree = "<group>"; };
-		FCDAB218292826DB00359916 /*  Web3Auth PnP PlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = " Web3Auth PnP PlaygroundUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCDAB218292826DB00359916 /* Web3Auth PnP PlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Web3Auth PnP PlaygroundUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDAB21C292826DB00359916 /* Torus_WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletUITests.swift; sourceTree = "<group>"; };
 		FCDAB21E292826DB00359916 /* Torus_WalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus_WalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FCDAB22D2928270A00359916 /* TransactionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		FCDAB27A2928270A00359916 /* Web3AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Web3AuthManager.swift; sourceTree = "<group>"; };
 		FCDAB27B2928270A00359916 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		FCDAB27D2928270A00359916 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		FCDAB2C12928276F00359916 /*  Web3Auth PnP Playground.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = " Web3Auth PnP Playground.plist"; sourceTree = SOURCE_ROOT; };
+		FCDAB2C12928276F00359916 /* Web3Auth PnP Playground.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Web3Auth PnP Playground.plist"; sourceTree = SOURCE_ROOT; };
 		FCDAB2D529282A5900359916 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FCDAB2D629282A5900359916 /* TorusWeb3Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorusWeb3Utils.swift; sourceTree = "<group>"; };
 		FCDAB2D729282A5900359916 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				FCDAB200292826DA00359916 /*  Web3Auth PnP Playground */,
-				FCDAB211292826DB00359916 /* Torus WalletTests */,
-				FCDAB21B292826DB00359916 /* Torus WalletUITests */,
+				FCDAB211292826DB00359916 /*  Web3Auth PnP PlaygroundTests */,
+				FCDAB21B292826DB00359916 /*  Web3Auth PnP PlaygroundUITests */,
 				FCDAB1FF292826DA00359916 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -251,9 +251,9 @@
 		FCDAB1FF292826DA00359916 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FCDAB1FE292826DA00359916 /*  Web3Auth PnP Playground.app */,
-				FCDAB20E292826DB00359916 /*  Web3Auth PnP PlaygroundTests.xctest */,
-				FCDAB218292826DB00359916 /*  Web3Auth PnP PlaygroundUITests.xctest */,
+				FCDAB1FE292826DA00359916 /* Web3Auth PnP Playground.app */,
+				FCDAB20E292826DB00359916 /* Web3Auth PnP PlaygroundTests.xctest */,
+				FCDAB218292826DB00359916 /* Web3Auth PnP PlaygroundUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 		FCDAB200292826DA00359916 /*  Web3Auth PnP Playground */ = {
 			isa = PBXGroup;
 			children = (
-				FCDAB2C12928276F00359916 /*  Web3Auth PnP Playground.plist */,
+				FCDAB2C12928276F00359916 /* Web3Auth PnP Playground.plist */,
 				FC69C9B629D76EC8002FBD13 /* Assets.xcassets */,
 				FCDAB2522928270A00359916 /* Color.xcassets */,
 				FCDAB2362928270A00359916 /* Fonts */,
@@ -288,7 +288,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		FCDAB211292826DB00359916 /* Torus WalletTests */ = {
+		FCDAB211292826DB00359916 /*  Web3Auth PnP PlaygroundTests */ = {
 			isa = PBXGroup;
 			children = (
 				FCDAB212292826DB00359916 /* Torus_WalletTests.swift */,
@@ -298,16 +298,16 @@
 				FC66F99C2932C5D50049DF5B /* TorusUtilTest.swift */,
 				FC66F99E2932C5E20049DF5B /* Web3AuthManagerTest.swift */,
 			);
-			path = "Torus WalletTests";
+			path = " Web3Auth PnP PlaygroundTests";
 			sourceTree = "<group>";
 		};
-		FCDAB21B292826DB00359916 /* Torus WalletUITests */ = {
+		FCDAB21B292826DB00359916 /*  Web3Auth PnP PlaygroundUITests */ = {
 			isa = PBXGroup;
 			children = (
 				FCDAB21C292826DB00359916 /* Torus_WalletUITests.swift */,
 				FCDAB21E292826DB00359916 /* Torus_WalletUITestsLaunchTests.swift */,
 			);
-			path = "Torus WalletUITests";
+			path = " Web3Auth PnP PlaygroundUITests";
 			sourceTree = "<group>";
 		};
 		FCDAB22C2928270A00359916 /* Models */ = {
@@ -509,9 +509,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FCDAB1FD292826DA00359916 /*  Web3Auth PnP Playground */ = {
+		FCDAB1FD292826DA00359916 /* Web3Auth PnP Playground */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCDAB222292826DB00359916 /* Build configuration list for PBXNativeTarget " Web3Auth PnP Playground" */;
+			buildConfigurationList = FCDAB222292826DB00359916 /* Build configuration list for PBXNativeTarget "Web3Auth PnP Playground" */;
 			buildPhases = (
 				FCDAB1FA292826DA00359916 /* Sources */,
 				FCDAB1FB292826DA00359916 /* Frameworks */,
@@ -522,7 +522,7 @@
 			);
 			dependencies = (
 			);
-			name = " Web3Auth PnP Playground";
+			name = "Web3Auth PnP Playground";
 			packageProductDependencies = (
 				FCDAB2C32928291400359916 /* Web3Auth */,
 				FCDAB2C62928294700359916 /* web3.swift */,
@@ -534,12 +534,12 @@
 				FC45743E29F9A4F200E79B4D /* PopupView */,
 			);
 			productName = "Torus Wallet";
-			productReference = FCDAB1FE292826DA00359916 /*  Web3Auth PnP Playground.app */;
+			productReference = FCDAB1FE292826DA00359916 /* Web3Auth PnP Playground.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FCDAB20D292826DB00359916 /*  Web3Auth PnP PlaygroundTests */ = {
+		FCDAB20D292826DB00359916 /* Web3Auth PnP PlaygroundTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCDAB225292826DB00359916 /* Build configuration list for PBXNativeTarget " Web3Auth PnP PlaygroundTests" */;
+			buildConfigurationList = FCDAB225292826DB00359916 /* Build configuration list for PBXNativeTarget "Web3Auth PnP PlaygroundTests" */;
 			buildPhases = (
 				FCDAB20A292826DB00359916 /* Sources */,
 				FCDAB20B292826DB00359916 /* Frameworks */,
@@ -550,14 +550,14 @@
 			dependencies = (
 				FCDAB210292826DB00359916 /* PBXTargetDependency */,
 			);
-			name = " Web3Auth PnP PlaygroundTests";
+			name = "Web3Auth PnP PlaygroundTests";
 			productName = "Torus WalletTests";
-			productReference = FCDAB20E292826DB00359916 /*  Web3Auth PnP PlaygroundTests.xctest */;
+			productReference = FCDAB20E292826DB00359916 /* Web3Auth PnP PlaygroundTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FCDAB217292826DB00359916 /*  Web3Auth PnP PlaygroundUITests */ = {
+		FCDAB217292826DB00359916 /* Web3Auth PnP PlaygroundUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCDAB228292826DB00359916 /* Build configuration list for PBXNativeTarget " Web3Auth PnP PlaygroundUITests" */;
+			buildConfigurationList = FCDAB228292826DB00359916 /* Build configuration list for PBXNativeTarget "Web3Auth PnP PlaygroundUITests" */;
 			buildPhases = (
 				FCDAB214292826DB00359916 /* Sources */,
 				FCDAB215292826DB00359916 /* Frameworks */,
@@ -568,9 +568,9 @@
 			dependencies = (
 				FCDAB21A292826DB00359916 /* PBXTargetDependency */,
 			);
-			name = " Web3Auth PnP PlaygroundUITests";
+			name = "Web3Auth PnP PlaygroundUITests";
 			productName = "Torus WalletUITests";
-			productReference = FCDAB218292826DB00359916 /*  Web3Auth PnP PlaygroundUITests.xctest */;
+			productReference = FCDAB218292826DB00359916 /* Web3Auth PnP PlaygroundUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -596,7 +596,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FCDAB1F9292826DA00359916 /* Build configuration list for PBXProject " Web3Auth PnP Playground" */;
+			buildConfigurationList = FCDAB1F9292826DA00359916 /* Build configuration list for PBXProject "Web3Auth PnP Playground" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -624,9 +624,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FCDAB1FD292826DA00359916 /*  Web3Auth PnP Playground */,
-				FCDAB20D292826DB00359916 /*  Web3Auth PnP PlaygroundTests */,
-				FCDAB217292826DB00359916 /*  Web3Auth PnP PlaygroundUITests */,
+				FCDAB1FD292826DA00359916 /* Web3Auth PnP Playground */,
+				FCDAB20D292826DB00359916 /* Web3Auth PnP PlaygroundTests */,
+				FCDAB217292826DB00359916 /* Web3Auth PnP PlaygroundUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -784,12 +784,12 @@
 /* Begin PBXTargetDependency section */
 		FCDAB210292826DB00359916 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FCDAB1FD292826DA00359916 /*  Web3Auth PnP Playground */;
+			target = FCDAB1FD292826DA00359916 /* Web3Auth PnP Playground */;
 			targetProxy = FCDAB20F292826DB00359916 /* PBXContainerItemProxy */;
 		};
 		FCDAB21A292826DB00359916 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FCDAB1FD292826DA00359916 /*  Web3Auth PnP Playground */;
+			target = FCDAB1FD292826DA00359916 /* Web3Auth PnP Playground */;
 			targetProxy = FCDAB219292826DB00359916 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -920,8 +920,7 @@
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = " Web3Auth PnP Playground.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Web3Auth PnP Playground";
+				INFOPLIST_FILE = "Web3Auth PnP Playground.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for using code scanner";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -933,7 +932,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Torus-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Web3Auth-PnP-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -955,8 +954,7 @@
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = " Web3Auth PnP Playground.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Web3Auth PnP Playground";
+				INFOPLIST_FILE = "Web3Auth PnP Playground.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for using code scanner";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -968,7 +966,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Torus-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.web3auth.Web3Auth-PnP-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -988,14 +986,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "web3Auth.Torus-WalletTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ Web3Auth PnP Playground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ Web3Auth PnP Playground";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Web3Auth PnP Playground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Web3Auth PnP Playground";
 			};
 			name = Debug;
 		};
@@ -1008,14 +1006,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Q63NCPY55;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "web3Auth.Torus-WalletTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ Web3Auth PnP Playground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ Web3Auth PnP Playground";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Web3Auth PnP Playground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Web3Auth PnP Playground";
 			};
 			name = Release;
 		};
@@ -1058,7 +1056,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FCDAB1F9292826DA00359916 /* Build configuration list for PBXProject " Web3Auth PnP Playground" */ = {
+		FCDAB1F9292826DA00359916 /* Build configuration list for PBXProject "Web3Auth PnP Playground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCDAB220292826DB00359916 /* Debug */,
@@ -1067,7 +1065,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCDAB222292826DB00359916 /* Build configuration list for PBXNativeTarget " Web3Auth PnP Playground" */ = {
+		FCDAB222292826DB00359916 /* Build configuration list for PBXNativeTarget "Web3Auth PnP Playground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCDAB223292826DB00359916 /* Debug */,
@@ -1076,7 +1074,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCDAB225292826DB00359916 /* Build configuration list for PBXNativeTarget " Web3Auth PnP PlaygroundTests" */ = {
+		FCDAB225292826DB00359916 /* Build configuration list for PBXNativeTarget "Web3Auth PnP PlaygroundTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCDAB226292826DB00359916 /* Debug */,
@@ -1085,7 +1083,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCDAB228292826DB00359916 /* Build configuration list for PBXNativeTarget " Web3Auth PnP PlaygroundUITests" */ = {
+		FCDAB228292826DB00359916 /* Build configuration list for PBXNativeTarget "Web3Auth PnP PlaygroundUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCDAB229292826DB00359916 /* Debug */,

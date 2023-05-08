@@ -6,7 +6,7 @@
 //
 
 import Combine
-@testable import OpenLoginKeyViewer
+@testable import
 import web3
 import XCTest
 

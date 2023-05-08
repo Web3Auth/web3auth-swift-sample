@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Torus_Wallet
 
 final class Torus_WalletTests: XCTestCase {
 
