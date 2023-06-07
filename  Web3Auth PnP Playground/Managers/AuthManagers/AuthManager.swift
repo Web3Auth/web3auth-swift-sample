@@ -49,16 +49,15 @@ class AuthManager: ObservableObject {
     }
 
     func web3AuthStateToUser(_ web3AuthState: Web3AuthState) -> User {
-        // fix
         return .init(privKey: web3AuthState.privKey!,
                      ed25519PrivKey: web3AuthState.ed25519PrivKey!,
-                     userInfo: .init(name: web3AuthState.userInfo!.name!,
-                                     profileImage: web3AuthState.userInfo!.profileImage!,
-                                     typeOfLogin: web3AuthState.userInfo!.typeOfLogin!,
-                                     aggregateVerifier: web3AuthState.userInfo?.aggregateVerifier,
-                                     verifier: web3AuthState.userInfo!.verifier!,
+                     userInfo: .init(name: web3AuthState.userInfo?.name ?? "",
+                                     profileImage: web3AuthState.userInfo!.profileImage ?? "",
+                                     typeOfLogin: web3AuthState.userInfo!.typeOfLogin ?? "",
+                                     aggregateVerifier: web3AuthState.userInfo?.aggregateVerifier ?? "",
+                                     verifier: web3AuthState.userInfo?.verifier ?? "",
                                      verifierId: web3AuthState.userInfo?.verifierId,
-                                     email: web3AuthState.userInfo!.email!))
+                                     email: web3AuthState.userInfo?.email ?? ""))
     }
 }
 
